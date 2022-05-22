@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react"
+import * as url from '../../helpers/url_helper'
+import { post, del, get, put } from "../../helpers/api_helper"
+import { useParams } from 'react-router-dom';
 import {
   Col,
   Row,
@@ -25,18 +28,22 @@ import Breadcrumbs from "../../components/Common/Breadcrumb"
 //Loading Component
 import Loading from "../../components/Common/Loading"
 
-//For Call Api
-import { post, del, get, put } from "../../helpers/api_helper"
 
-//Url For Call Api
-import * as url from '../../helpers/url_helper'
+const EditOppositeSide = () => {
+    const { id } = useParams()
+      // ////////////////////////////////////////////////////
+  useEffect(() => {
+        get(`${url.FETCH_Tarafhesab_Detail}/${id}`)
+      .then((response) => {
+        //setIsloading(false)
+        console.log("response received")
+        console.log(response.value)
 
-
-const Blank = () => {
-  // ////////////////////////////////////////////////////
-  // useEffect(() => {
-  //   console.log('componentDidMount')
-  // }, []);
+        //settarafHesab(response);
+      }, (error) => {
+        console.error(error);
+      });
+  }, []);
 
   // useEffect(() => {
   //   console.log('componentDidUpdate')
@@ -49,16 +56,19 @@ const Blank = () => {
   //   }
   // }, [tarafHesab]);
   // ////////////////////////////////////////////////////
+
   return (
     <React.Fragment>
       <div className="page-content">
         <Breadcrumbs title="عنوان" breadcrumbItem="صفحه خالی" />
         <Card className="p-3">
-          <p>صفحه خالی</p>
+          <p>Edit th</p>
+
+          <p> id : {id}</p>
         </Card>
       </div>
     </React.Fragment>
   )
 }
 
-export default Blank
+export default EditOppositeSide

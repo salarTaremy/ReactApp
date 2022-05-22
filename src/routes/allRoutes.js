@@ -12,6 +12,7 @@ import Blank from "../pages/Blank/Blank"
 
 //Opposite Side
 import ManageOppositeSide from "../pages/OppositeSide/ManageOppositeSide"
+import EditOppositeSide from "../pages/OppositeSide/EditOppositeSide"
 
 // Authentication related pages
 import Login from "../pages/Authentication/Login"
@@ -21,6 +22,7 @@ import ForgetPwd from "../pages/Authentication/ForgetPassword"
 
 const userRoutes = [
   { path: "/ManageOppositeSide", component: ManageOppositeSide },
+  { path: "/EditOppositeSide/:id", component: EditOppositeSide },
   { path: "/Blank", component: Blank },
   { path: "/dashboard", component: Dashboard },
   { path: "/test", component: Test },

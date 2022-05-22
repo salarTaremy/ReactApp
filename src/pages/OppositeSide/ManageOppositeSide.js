@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Link, Route, useHistory } from "react-router-dom"
 import Loading from "../../components/Common/Loading"
 import DatePicker from "../../components/Common/DatePicker"
 import MaterialInput from "@material-ui/core/Input"
@@ -49,24 +50,31 @@ const TotalValueRenderer = (props) => {
   const [modal, setmodal] = useState(false)
   const [Isloading, setIsloading] = useState(false)
   const [tarafHesab, settarafHesab] = useState({})
+  const history = useHistory();
   //const [IdMahalTavallod, SetIdMahalTavallod] = useState(0)
   //const { register, handleSubmit, reset, watch,setValue, formState: { errors } } = useForm();
   //const options = [{ label: "نا مشخص", value: "0", }, { label: "1941-", value: "1941", }, { label: "34-", value: "34", }, { label: "2546-", value: "2546", }, { label: "1-", value: "1", },];
 
-  ///////////////////////// Btn _Click /////////////////////////
-  const BtnEditClick = () => {
-    setIsloading(true)
-    setmodal(!modal);
-    console.log("Request Sended")
-    post(`${url.FETCH_Tarafhesab_Detail}/${props.data.id}`)
-      .then((response) => {
-        setIsloading(false)
-        console.log("response received")
+  // ///////////////////////// Btn _Click Old /////////////////////////
+  // const BtnEditClick = () => {
+  //   setIsloading(true)
+  //   setmodal(!modal);
+  //   console.log("Request Sended")
+  //   get(`${url.FETCH_Tarafhesab_Detail}/${props.data.id}`)
+  //     .then((response) => {
+  //       setIsloading(false)
+  //       console.log("response received")
 
-        settarafHesab(response);
-      }, (error) => {
-        console.error(error);
-      });
+  //       settarafHesab(response);
+  //     }, (error) => {
+  //       console.error(error);
+  //     });
+  // };
+  // /////////////////////////////////////////////////////////////
+  ///////////////////////// Btn _Click New /////////////////////////
+  const BtnEditClick = () => {
+    const id = props.data.id;
+    history.push("/EditOppositeSide/" + id);
   };
   /////////////////////////////////////////////////////////////
 
@@ -107,6 +115,12 @@ const TotalValueRenderer = (props) => {
   ];
 
 
+  const getRoat = () => {
+    const id = props.data.id;
+    return id;
+  }
+
+
   return (
     <div className="button-items">
       {/* <EditOppositeSide  Isloading={Isloading}  tarafHesab={tarafHesab} modal={modal} toggle={() => { setmodal(!modal) }} /> */}
@@ -118,6 +132,13 @@ const TotalValueRenderer = (props) => {
       >
         <i className="fa fa-edit"></i>
       </Button>{" "}
+
+
+
+      <Link to={"/EditOppositeSide/" + getRoat()}   >{getRoat()} </Link>
+
+
+
       <Button
         onClick={BtnDeleteClick}
         color="danger"
