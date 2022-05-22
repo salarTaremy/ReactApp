@@ -18,7 +18,7 @@ import NonAuthLayout from "./components/NonAuthLayout"
 // Import scss
 import "./assets/scss/theme.scss"
 
-
+//ok
 const App = props => {
   function getLayout() {
     let layoutCls = VerticalLayout
