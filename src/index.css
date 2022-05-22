@@ -1,0 +1,22 @@
+body {
+  /* margin: 0; */
+  font-family: IRANSansWeb;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@font-face {
+  font-family: 'IranianSans';
+  src: url("assets//fonts/IranianSans.ttf") format('truetype');
+
+}
+
+@font-face {
+  font-family: 'IRANSansWeb';
+  src: url("assets/fonts/IRANSansWeb.ttf") format('truetype');
+}

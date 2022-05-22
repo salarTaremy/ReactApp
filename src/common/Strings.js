@@ -1,0 +1,1 @@
+export const FIELD_IS_REQUIRED = "این فیلد الزامی است"
