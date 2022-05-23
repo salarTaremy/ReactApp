@@ -27,18 +27,21 @@ import Breadcrumbs from "../../components/Common/Breadcrumb"
 
 //Loading Component
 import Loading from "../../components/Common/Loading"
+import { set } from "react-hook-form";
 
 
 const EditOppositeSide = () => {
-  const [Isloading, SetIsloading] = useState(true)
-    const { id } = useParams()
-      // ////////////////////////////////////////////////////
+  const [Isloading, SetIsloading] = useState(true);
+  const { id } = useParams();
+  const [Th, SetTh] = useState({});
+  // ////////////////////////////////////////////////////
   useEffect(() => {
-        get(`${url.FETCH_Tarafhesab_Detail}/${id}`)
+    get(`${url.FETCH_Tarafhesab_Detail}/${id}`)
       .then((response) => {
         SetIsloading(false)
         console.log("response received")
         console.log(response.value)
+        SetTh(response.value)
 
         //settarafHesab(response);
       }, (error) => {
@@ -65,12 +68,12 @@ const EditOppositeSide = () => {
         {Isloading == true
           ? <Loading />
           : <>
-          <Card className="p-3">
-            <p>Edit th</p>
-
-            <p> id : {id}</p>
-          </Card>
-        </>}
+            <Card className="p-3">
+              <p>{Th.name}</p>
+              <p>{Th.famil}</p>
+              <p> id : {id}</p>
+            </Card>
+          </>}
       </div>
     </React.Fragment>
   )
