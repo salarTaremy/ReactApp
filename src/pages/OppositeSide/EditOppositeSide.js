@@ -30,12 +30,13 @@ import Loading from "../../components/Common/Loading"
 
 
 const EditOppositeSide = () => {
+  const [Isloading, SetIsloading] = useState(true)
     const { id } = useParams()
       // ////////////////////////////////////////////////////
   useEffect(() => {
         get(`${url.FETCH_Tarafhesab_Detail}/${id}`)
       .then((response) => {
-        //setIsloading(false)
+        SetIsloading(false)
         console.log("response received")
         console.log(response.value)
 
@@ -61,11 +62,15 @@ const EditOppositeSide = () => {
     <React.Fragment>
       <div className="page-content">
         <Breadcrumbs title="عنوان" breadcrumbItem="صفحه خالی" />
-        <Card className="p-3">
-          <p>Edit th</p>
+        {Isloading == true
+          ? <Loading />
+          : <>
+          <Card className="p-3">
+            <p>Edit th</p>
 
-          <p> id : {id}</p>
-        </Card>
+            <p> id : {id}</p>
+          </Card>
+        </>}
       </div>
     </React.Fragment>
   )
