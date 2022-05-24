@@ -4,6 +4,7 @@ import ReactSelect from "react-select";
 import * as url from '../../helpers/url_helper'
 import { post, del, get, put } from "../../helpers/api_helper"
 import { useParams } from 'react-router-dom';
+import  DatePicker from '../../components/Common/DatePicker';
 import {
   Col,
   Row,
@@ -78,6 +79,7 @@ const EditOppositeSide = () => {
 
         <Select label="محل نولد" {...register("iD_MahalTavalod")} />
         <input type="submit" className="btn btn-primary" />
+        <DatePicker className="form-control"></DatePicker>
       </form>
 
     );
