@@ -49,8 +49,6 @@ const EditOppositeSide = () => {
 
 
   const UserForm = ({ _th }) => {
-    console.log(_th);
-
     const { register, handleSubmit, methods } = useForm({
       defaultValues: _th
     });
@@ -59,16 +57,17 @@ const EditOppositeSide = () => {
       alert(JSON.stringify(data));
     };
 
-  
 
     const Select = React.forwardRef(({ onChange, onBlur, name, label }, ref) => (
       <>
         <label>{label}</label>
-        <select name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
+        <select className="form-control" name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
           <option value="1">ghabl</option>
-          <option value="1268">in 1268</option>
-          <option value="1026">in 1026</option>
-
+          {
+            Cities.map((item) =>
+              <option key={item.id} value={item.id} >{item.value}</option>
+            )
+          }
         </select>
       </>
     ));
