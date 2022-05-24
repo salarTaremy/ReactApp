@@ -26,7 +26,6 @@ import {
 //Import Breadcrumbnpm start
 import Breadcrumbs from "../../components/Common/Breadcrumb"
 
-
 //Loading Component
 import Loading from "../../components/Common/Loading"
 import { set } from "react-hook-form";
@@ -39,14 +38,7 @@ const EditOppositeSide = () => {
     defaultValues: { name: "Davood" }
   });
   const onSubmit = data => console.log(data);
-
   const { id } = useParams();
-
-  const getReactSelectDefault = async () => {
-    // Works (when not `async`):
-    return { value: "1", label: "User ID#1" };
-  };
-
 
   const UserForm = ({ _th }) => {
     const { register, handleSubmit, methods } = useForm({
@@ -84,16 +76,12 @@ const EditOppositeSide = () => {
         <input {...register('code_melli')} className="form-control" />
         <input {...register('iD_MahalTavalod')} className="form-control" />
 
-
-        <Select label="iD_MahalTavalod" {...register("iD_MahalTavalod")} />
-
+        <Select label="محل نولد" {...register("iD_MahalTavalod")} />
         <input type="submit" className="btn btn-primary" />
       </form>
 
     );
   }
-
-
 
   // ////////////////////////////////////////////////////
   useEffect(() => {
@@ -114,8 +102,7 @@ const EditOppositeSide = () => {
         console.error(error);
       });
   }, []);
-
-
+  // ////////////////////////////////////////////////////
   return (
     <React.Fragment>
       <div className="page-content">
@@ -133,9 +120,6 @@ const EditOppositeSide = () => {
       </div>
     </React.Fragment>
   )
-
-
-
 }
 
 export default EditOppositeSide
