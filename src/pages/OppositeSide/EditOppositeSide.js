@@ -4,7 +4,7 @@ import ReactSelect from "react-select";
 import * as url from '../../helpers/url_helper'
 import { post, del, get, put } from "../../helpers/api_helper"
 import { useParams } from 'react-router-dom';
-import  DatePicker from '../../components/Common/DatePicker';
+import DatePicker from '../../components/Common/DatePicker';
 import {
   Col,
   Row,
@@ -39,7 +39,7 @@ const EditOppositeSide = () => {
   const { id } = useParams();
 
   const UserForm = ({ _th }) => {
-    const { register, handleSubmit, methods } = useForm({
+    const { register, handleSubmit, methods ,control} = useForm({
       defaultValues: _th
     });
 
@@ -75,7 +75,20 @@ const EditOppositeSide = () => {
 
         <Select label="محل نولد" {...register("iD_MahalTavalod")} />
         <input type="submit" className="btn btn-primary" />
-        <DatePicker className="form-control"   value ={_th.birthDay}></DatePicker>
+        <DatePicker className="form-control" value={_th.birthDay}></DatePicker>
+
+        <Controller
+          control={control}
+          {...register('birthDay')}
+          //name="birthDay"
+          //defaultValue={[]}
+          render={({ field: { value, onChange } }) => (
+            <DatePicker className="form-control"  onChange={onChange}  value ={value}></DatePicker>
+          )}
+        />
+
+
+
       </form>
 
     );
