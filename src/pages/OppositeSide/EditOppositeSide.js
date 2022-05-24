@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useForm } from "react-hook-form";
 import * as url from '../../helpers/url_helper'
 import { post, del, get, put } from "../../helpers/api_helper"
 import { useParams } from 'react-router-dom';
@@ -31,52 +32,89 @@ import { set } from "react-hook-form";
 
 
 const EditOppositeSide = () => {
-  const [Isloading, SetIsloading] = useState(true);
+  const [Th, SetTh] = useState(null);
+  const [Cities, SetCities] = useState(null);
+  const { register, handleSubmit } = useForm({
+    defaultValues: { name: "Davood" }
+  });
+  const onSubmit = data => console.log(data);
+
   const { id } = useParams();
-  const [Th, SetTh] = useState({});
+
+
+
+
+  const UserForm = ({ _th }) => {
+    console.log(_th);
+
+    const { register, handleSubmit } = useForm({
+      defaultValues: _th
+    });
+
+    const onSubmit = (data) => {
+      alert(JSON.stringify(data));
+    };
+
+    return (
+      <form
+        onSubmit={handleSubmit(onSubmit)}>
+        <input {...register('name')} className="form-control" />
+        <input {...register('famil')} className="form-control" />
+        <input {...register('sh_Sh')} className="form-control" />
+        <input {...register('namePedar')} className="form-control" />
+        <input {...register('code_melli')} className="form-control" />
+        <input type="submit" className="btn btn-primary" />
+        
+      </form>
+
+    );
+  }
+
+
+
   // ////////////////////////////////////////////////////
   useEffect(() => {
+
     get(`${url.FETCH_Tarafhesab_Detail}/${id}`)
       .then((response) => {
-        SetIsloading(false)
-        console.log("response received")
         console.log(response.value)
         SetTh(response.value)
-
-        //settarafHesab(response);
       }, (error) => {
         console.error(error);
       });
+
+      get(url.GET_CITY)
+      .then((response) => {
+        console.log(response.value)
+        SetCities(response.value)
+      }, (error) => {
+        console.error(error);
+      });
+
   }, []);
 
-  // useEffect(() => {
-  //   console.log('componentDidUpdate')
-  // }, [tarafHesab]);
 
-  // useEffect(() => {
-  //   // componentWillUnmount
-  //   return () => {
-  //     console.log('componentWillUnmount')
-  //   }
-  // }, [tarafHesab]);
-  // ////////////////////////////////////////////////////
 
   return (
     <React.Fragment>
       <div className="page-content">
-        <Breadcrumbs title="عنوان" breadcrumbItem="صفحه خالی" />
-        {Isloading == true
-          ? <Loading />
-          : <>
+        <Breadcrumbs title="عنوان" breadcrumbItem="ویرایش طرف حساب ها" />
+        {Th ?
+          <>
             <Card className="p-3">
               <p>{Th.name}</p>
               <p>{Th.famil}</p>
               <p> id : {id}</p>
+              <UserForm _th={Th} />
             </Card>
-          </>}
+          </>
+          : <Loading />}
       </div>
     </React.Fragment>
   )
+
+
+
 }
 
 export default EditOppositeSide
