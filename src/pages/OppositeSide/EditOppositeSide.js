@@ -35,9 +35,6 @@ import { set } from "react-hook-form";
 const EditOppositeSide = () => {
   const [Th, SetTh] = useState(null);
   const [Cities, SetCities] = useState(null);
-  const { register, handleSubmit, control } = useForm({
-    defaultValues: { name: "Davood" }
-  });
   const onSubmit = data => console.log(data);
   const { id } = useParams();
 
@@ -47,7 +44,7 @@ const EditOppositeSide = () => {
     });
 
     const onSubmit = (data) => {
-      alert(JSON.stringify(data));
+      console.log(JSON.stringify(data));
     };
 
 
@@ -66,7 +63,6 @@ const EditOppositeSide = () => {
     ));
 
 
-    const default_value = 1; // you can replace with your default value
     return (
       <form
         onSubmit={handleSubmit(onSubmit)}>
@@ -79,7 +75,7 @@ const EditOppositeSide = () => {
 
         <Select label="محل نولد" {...register("iD_MahalTavalod")} />
         <input type="submit" className="btn btn-primary" />
-        <DatePicker className="form-control"></DatePicker>
+        <DatePicker className="form-control"   value ={_th.birthDay}></DatePicker>
       </form>
 
     );
