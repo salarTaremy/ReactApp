@@ -29,30 +29,25 @@ import Breadcrumbs from "../../components/Common/Breadcrumb"
 
 //Loading Component
 import Loading from "../../components/Common/Loading"
-import { set } from "react-hook-form";
-
+import Select from "react-select";
 
 const EditOppositeSide = () => {
   const [Th, SetTh] = useState(null);
   const [Cities, SetCities] = useState(null);
-  const onSubmit = data => console.log(data);
   const { id } = useParams();
 
   const UserForm = ({ _th }) => {
-    const { register, handleSubmit, methods ,control} = useForm({
+    const { register, handleSubmit, methods, control } = useForm({
       defaultValues: _th
     });
-
     const onSubmit = (data) => {
-      console.log(JSON.stringify(data));
+      console.log(data);
     };
-
-
-    const Select = React.forwardRef(({ onChange, onBlur, name, label }, ref) => (
+    const Select2 = React.forwardRef(({ onChange, onBlur, name, label }, ref) => (
       <>
         <label>{label}</label>
         <select className="form-control" name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
-          <option value="1">ghabl</option>
+          <option value="0">انتخاب کنید</option>
           {
             Cities.map((item) =>
               <option key={item.id} value={item.id} >{item.value}</option>
@@ -61,10 +56,20 @@ const EditOppositeSide = () => {
         </select>
       </>
     ));
+    const [selectedGroup, setselectedGroup] = useState(null);
+    function handleSelectGroup(selectedGroup) {
+      setselectedGroup(selectedGroup);
+    }
+    const optionGroup = [
+      {
 
+        options: Cities,
+      }
+    ];
 
     return (
       <form
+
         onSubmit={handleSubmit(onSubmit)}>
         <input {...register('name')} className="form-control" />
         <input {...register('famil')} className="form-control" />
@@ -72,23 +77,35 @@ const EditOppositeSide = () => {
         <input {...register('namePedar')} className="form-control" />
         <input {...register('code_melli')} className="form-control" />
         <input {...register('iD_MahalTavalod')} className="form-control" />
-
-        <Select label="محل نولد" {...register("iD_MahalTavalod")} />
-        <input type="submit" className="btn btn-primary" />
-        <DatePicker className="form-control" value={_th.birthDay}></DatePicker>
-
+        <Select2 label="محل نولد" {...register("iD_MahalTavalod")} />
         <Controller
           control={control}
           {...register('birthDay')}
-          //name="birthDay"
-          //defaultValue={[]}
           render={({ field: { value, onChange } }) => (
-            <DatePicker className="form-control"  onChange={onChange}  value ={value}></DatePicker>
+            <DatePicker className="form-control" onChange={onChange} value={value}></DatePicker>
+          )}
+        />
+
+        <Controller
+          control={control}
+          {...register('iD_MahalTavalod')}
+          render={({ field: { value, onChange } }) => (
+            <Select
+              onChange={onChange}
+              value={value}
+              // value={selectedGroup}
+              // onChange={() => {
+              //   handleSelectGroup();
+              // }}
+              options={optionGroup}
+              className="text-primary"
+              classNamePrefix="select2-selection"
+            />
           )}
         />
 
 
-
+        <input type="submit" className="btn btn-primary" />
       </form>
 
     );
@@ -121,9 +138,6 @@ const EditOppositeSide = () => {
         {Th && Cities ?
           <>
             <Card className="p-3">
-              <p>{Th.name}</p>
-              <p>{Th.famil}</p>
-              <p> id : {id}</p>
               <UserForm _th={Th} />
             </Card>
           </>
