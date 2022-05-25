@@ -30,6 +30,7 @@ import Breadcrumbs from "../../components/Common/Breadcrumb"
 //Loading Component
 import Loading from "../../components/Common/Loading"
 import Select from "react-select";
+import { intersectRanges } from "@fullcalendar/react";
 
 const EditOppositeSide = () => {
   const [Th, SetTh] = useState(null);
@@ -78,6 +79,7 @@ const EditOppositeSide = () => {
         <input {...register('code_melli')} className="form-control" />
         <input {...register('iD_MahalTavalod')} className="form-control" />
         <Select2 label="محل نولد" {...register("iD_MahalTavalod")} />
+        
         <Controller
           control={control}
           {...register('birthDay')}
@@ -124,7 +126,9 @@ const EditOppositeSide = () => {
   useEffect(() => {
     get(url.GET_CITY)
       .then((response) => {
-        console.log(response.value)
+        response.value.map((item) =>{
+              item.label = item.value;
+        })
         SetCities(response.value)
       }, (error) => {
         console.error(error);
