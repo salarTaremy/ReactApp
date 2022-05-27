@@ -77,7 +77,6 @@ const EditOppositeSide = () => {
         <input {...register('sh_Sh')} className="form-control" />
         <input {...register('namePedar')} className="form-control" />
         <input {...register('code_melli')} className="form-control" />
-        <input {...register('iD_MahalTavalod')} className="form-control" />
         <Select2 label="محل نولد" {...register("iD_MahalTavalod")} />
         
         <Controller
