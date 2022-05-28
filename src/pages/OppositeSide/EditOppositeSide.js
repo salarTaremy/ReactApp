@@ -7,82 +7,15 @@ import DatePicker from '../../components/Common/DatePicker';
 import Breadcrumbs from "../../components/Common/Breadcrumb"
 import Loading from "../../components/Common/Loading"
 import Select from "react-select";
-import {Card,} from "reactstrap"
+import { Card, } from "reactstrap"
 import NormalDropDown from "../../components/Common/NormalDropDown";
+import EditOppositeSideForm from '../OppositeSide/EditOppositeSideForm'
 
 
 const EditOppositeSide = () => {
   const [Th, SetTh] = useState(null);
   const [Cities, SetCities] = useState(null);
   const { id } = useParams();
-
-  const ThForm = ({ _th }) => {
-    const iidd = _th.id;
-    const { register, handleSubmit, methods, control } = useForm({
-      defaultValues: _th
-    });
-    const onSubmit = (data) => {
-      console.log(data);
-    };
-
-    const [selectedGroup, setselectedGroup] = useState(null);
-    function handleSelectGroup(selectedGroup) {
-      setselectedGroup(selectedGroup);
-    }
-    const optionGroup = [
-      {
-        options: Cities,
-      }
-    ];
-
-
-    return (
-      <form
-
-        onSubmit={handleSubmit(onSubmit)}>
-        <input {...register('name')} className="form-control" />
-        <input {...register('famil')} className="form-control" />
-        <input {...register('sh_Sh')} className="form-control" />
-        <input {...register('namePedar')} className="form-control" />
-        <input {...register('code_melli')} className="form-control" />
-        
-        <Controller
-          control={control}
-          {...register('birthDay')}
-          render={({ field: { value, onChange } }) => (
-            <DatePicker className="form-control" onChange={onChange} value={value}></DatePicker>
-          )}
-        />
-
-  
-        <Controller
-          control={control}
-          {...register('iD_MahalTavalod')}
-          render={({
-            field: { onChange, onBlur, value, name, ref },
-            fieldState: { invalid, isTouched, isDirty, error },
-            formState,
-          }) => (
-            <Select
-              onBlur={onBlur} // notify when input is touched
-              onChange={onChange } // send value to hook form
-              inputRef={ref}
-              name={name}
-              options={optionGroup}
-              //value={value}
-              //value={optionGroup[0].options[2]}
-              value={optionGroup[0].options.filter((item) => item.id === _th.iD_MahalTavalod)[0]}
-            />
-          )}
-        />
-
-    <NormalDropDown  className="form-control" {...register("iD_MahalSodoor")}  dataSource = {Cities} />
-
-        <input type="submit" className="btn btn-primary" />
-      </form>
-
-    );
-  }
 
   // ////////////////////////////////////////////////////
   useEffect(() => {
@@ -113,7 +46,7 @@ const EditOppositeSide = () => {
         {Th && Cities ?
           <>
             <Card className="p-3">
-              <ThForm _th={Th} />
+              <EditOppositeSideForm Th={Th} Cities = {Cities} />
             </Card>
           </>
           : <Loading />}
@@ -121,5 +54,4 @@ const EditOppositeSide = () => {
     </React.Fragment>
   )
 }
-
 export default EditOppositeSide
