@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { useForm, Controller } from "react-hook-form";
-import ReactSelect from "react-select";
 import * as url from '../../helpers/url_helper'
 import { post, del, get, put } from "../../helpers/api_helper"
 import { useParams } from 'react-router-dom';
@@ -8,26 +7,8 @@ import DatePicker from '../../components/Common/DatePicker';
 import Breadcrumbs from "../../components/Common/Breadcrumb"
 import Loading from "../../components/Common/Loading"
 import Select from "react-select";
-import { intersectRanges } from "@fullcalendar/react";
-import {
-  Col,
-  Row,
-  Card,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  CardImg,
-  CardText,
-  CardHeader,
-  CardImgOverlay,
-  CardFooter,
-  CardDeck,
-  CardColumns,
-  CardGroup,
-  Spinner,
-} from "reactstrap"
-
-
+import {Card,} from "reactstrap"
+import NormalDropDown from "../../components/Common/NormalDropDown";
 
 
 const EditOppositeSide = () => {
@@ -35,7 +16,7 @@ const EditOppositeSide = () => {
   const [Cities, SetCities] = useState(null);
   const { id } = useParams();
 
-  const UserForm = ({ _th }) => {
+  const ThForm = ({ _th }) => {
     const iidd = _th.id;
     const { register, handleSubmit, methods, control } = useForm({
       defaultValues: _th
@@ -43,19 +24,7 @@ const EditOppositeSide = () => {
     const onSubmit = (data) => {
       console.log(data);
     };
-    const Select2 = React.forwardRef(({ onChange, onBlur, name, label }, ref) => (
-      <>
-        <label>{label}</label>
-        <select className="form-control" name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
-          <option value="0">انتخاب کنید</option>
-          {
-            Cities.map((item) =>
-              <option key={item.id} value={item.id} >{item.value}</option>
-            )
-          }
-        </select>
-      </>
-    ));
+
     const [selectedGroup, setselectedGroup] = useState(null);
     function handleSelectGroup(selectedGroup) {
       setselectedGroup(selectedGroup);
@@ -65,8 +34,7 @@ const EditOppositeSide = () => {
         options: Cities,
       }
     ];
-    console.log(_th.iD_MahalTavalod);
-console.log(optionGroup[0].options.filter((item) => item.id === _th.iD_MahalTavalod)[0]);
+
 
     return (
       <form
@@ -108,7 +76,7 @@ console.log(optionGroup[0].options.filter((item) => item.id === _th.iD_MahalTava
           )}
         />
 
-    <Select2 label="محل صدور" {...register("iD_MahalSodoor")} />
+    <NormalDropDown  className="form-control" {...register("iD_MahalSodoor")}  dataSource = {Cities} />
 
         <input type="submit" className="btn btn-primary" />
       </form>
@@ -145,7 +113,7 @@ console.log(optionGroup[0].options.filter((item) => item.id === _th.iD_MahalTava
         {Th && Cities ?
           <>
             <Card className="p-3">
-              <UserForm _th={Th} />
+              <ThForm _th={Th} />
             </Card>
           </>
           : <Loading />}
