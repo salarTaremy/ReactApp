@@ -5,6 +5,10 @@ import * as url from '../../helpers/url_helper'
 import { post, del, get, put } from "../../helpers/api_helper"
 import { useParams } from 'react-router-dom';
 import DatePicker from '../../components/Common/DatePicker';
+import Breadcrumbs from "../../components/Common/Breadcrumb"
+import Loading from "../../components/Common/Loading"
+import Select from "react-select";
+import { intersectRanges } from "@fullcalendar/react";
 import {
   Col,
   Row,
@@ -24,13 +28,7 @@ import {
 } from "reactstrap"
 
 
-//Import Breadcrumbnpm start
-import Breadcrumbs from "../../components/Common/Breadcrumb"
 
-//Loading Component
-import Loading from "../../components/Common/Loading"
-import Select from "react-select";
-import { intersectRanges } from "@fullcalendar/react";
 
 const EditOppositeSide = () => {
   const [Th, SetTh] = useState(null);
@@ -38,6 +36,7 @@ const EditOppositeSide = () => {
   const { id } = useParams();
 
   const UserForm = ({ _th }) => {
+    const iidd = _th.id;
     const { register, handleSubmit, methods, control } = useForm({
       defaultValues: _th
     });
@@ -63,10 +62,11 @@ const EditOppositeSide = () => {
     }
     const optionGroup = [
       {
-
         options: Cities,
       }
     ];
+    console.log(_th.iD_MahalTavalod);
+console.log(optionGroup[0].options.filter((item) => item.id === _th.iD_MahalTavalod)[0]);
 
     return (
       <form
@@ -77,7 +77,6 @@ const EditOppositeSide = () => {
         <input {...register('sh_Sh')} className="form-control" />
         <input {...register('namePedar')} className="form-control" />
         <input {...register('code_melli')} className="form-control" />
-        <Select2 label="محل نولد" {...register("iD_MahalTavalod")} />
         
         <Controller
           control={control}
@@ -87,24 +86,29 @@ const EditOppositeSide = () => {
           )}
         />
 
+  
         <Controller
           control={control}
           {...register('iD_MahalTavalod')}
-          render={({ field: { value, onChange } }) => (
+          render={({
+            field: { onChange, onBlur, value, name, ref },
+            fieldState: { invalid, isTouched, isDirty, error },
+            formState,
+          }) => (
             <Select
-              onChange={onChange}
-              value={value}
-              // value={selectedGroup}
-              // onChange={() => {
-              //   handleSelectGroup();
-              // }}
+              onBlur={onBlur} // notify when input is touched
+              onChange={onChange } // send value to hook form
+              inputRef={ref}
+              name={name}
               options={optionGroup}
-              className="text-primary"
-              classNamePrefix="select2-selection"
+              //value={value}
+              //value={optionGroup[0].options[2]}
+              value={optionGroup[0].options.filter((item) => item.id === _th.iD_MahalTavalod)[0]}
             />
           )}
         />
 
+    <Select2 label="محل صدور" {...register("iD_MahalSodoor")} />
 
         <input type="submit" className="btn btn-primary" />
       </form>
@@ -116,7 +120,7 @@ const EditOppositeSide = () => {
   useEffect(() => {
     get(`${url.FETCH_Tarafhesab_Detail}/${id}`)
       .then((response) => {
-        console.log(response.value)
+        //response.value.iD_MahalTavalo2 = response.value.iD_MahalTavalod
         SetTh(response.value)
       }, (error) => {
         console.error(error);
@@ -125,8 +129,8 @@ const EditOppositeSide = () => {
   useEffect(() => {
     get(url.GET_CITY)
       .then((response) => {
-        response.value.map((item) =>{
-              item.label = item.value;
+        response.value.map((item) => {
+          item.label = item.value;
         })
         SetCities(response.value)
       }, (error) => {
