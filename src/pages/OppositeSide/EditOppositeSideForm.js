@@ -16,16 +16,7 @@ const ThForm = (props) => {
     const optionGroup = [{options: props.Cities}];
     const [CurentValue,SetCurentValue] = useState(optionGroup[0].options.filter((item) => item.id === Th.iD_MahalTavalod)[0])
 
-    const chn =(data)=>{
-        console.log('data is : ',data.id);
-        const tt = {...Th}
-        tt.iD_MahalTavalod = data.id;
-        SetTh({...tt})
-        SetCurentValue(data)
-        console.log('data tt : ',tt.iD_MahalTavalod);
-        console.log('data Th : ',Th.iD_MahalTavalod);
-        
-    }
+
     //console.log(watch("iD_MahalTavalod"));
     return (
       <form
@@ -56,7 +47,7 @@ const ThForm = (props) => {
           }) => (
             <Select
               onBlur={onBlur} // notify when input is touched
-              onChange={chn } // send value to hook form
+              onChange={onChange } // send value to hook form
               inputRef={ref}
               name={name}
               options={optionGroup}
