@@ -18,7 +18,7 @@ import NormalDropDown from "../../components/Common/NormalDropDown";
 
 const ThForm = (props) => {
   const textColor = "text-secondary"
-  const { register, handleSubmit, methods, control, watch } = useForm({
+  const { register, handleSubmit, methods, control, watch,  formState: { errors } } = useForm({
     defaultValues: props.Th
   });
   const onSubmit = (data) => {
@@ -37,26 +37,32 @@ const ThForm = (props) => {
             <CardBody>
               <h4 className="card-title">صرفا جهت ویرایش طرف حساب ها</h4>
               <p className="card-title-desc">
-                جهت اصلاح طرف حسابهایی که قبلا ایجاد کرده اید از این فرم استفاده کنید.
+                جهت اصلاح طرف حساب هایی که قبلا ایجاد کرده اید از این فرم استفاده کنید.
               </p>
-              <form
-                onSubmit={handleSubmit(onSubmit)}>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <Row>
                   <Col md="4">
                     <div className="mb-3">
-                      <Label htmlFor="validationCustom01">نام</Label>
-                      <input {...register('name')} className="form-control" />
+                      <Label>نام</Label>
+                      <input {...register("name", { required: true, maxLength: 10 })} className="form-control" />
+                      {errors?.name?.type === "required" && (<p className="text-danger">این فیلد الزامی است</p>)}
+                      {errors?.name?.type === "maxLength" && (
+                        <p className="text-danger">First name cannot exceed 20 characters</p>
+                      )}
+                      {errors?.name?.type === "pattern" && (
+                        <p className="text-danger">Alphabetical characters only</p>
+                      )}
                     </div>
                   </Col>
                   <Col md="4">
                     <div className="mb-3">
-                      <Label htmlFor="validationCustom01">نام خانوادگی</Label>
+                      <Label>نام خانوادگی</Label>
                       <input {...register('famil')} className="form-control" />
                     </div>
                   </Col>
                   <Col md="4">
                     <div className="mb-3">
-                      <Label htmlFor="validationCustom01">نام پدر</Label>
+                      <Label>نام پدر</Label>
                       <input {...register('namePedar')} className="form-control" />
                     </div>
                   </Col>
@@ -65,19 +71,19 @@ const ThForm = (props) => {
                 <Row>
                   <Col md="4">
                     <div className="mb-3">
-                      <Label htmlFor="validationCustom01">شماره شناسنامه</Label>
+                      <Label>شماره شناسنامه</Label>
                       <input {...register('sh_Sh')} className="form-control" />
                     </div>
                   </Col>
                   <Col md="4">
                     <div className="mb-3">
-                      <Label htmlFor="validationCustom01">کد ملی</Label>
+                      <Label>کد ملی</Label>
                       <input {...register('code_melli')} className="form-control" />
                     </div>
                   </Col>
                   <Col md="4">
                     <div className="mb-3">
-                      <Label htmlFor="validationCustom01">کد اقتصادی</Label>
+                      <Label>کد اقتصادی</Label>
                       <input {...register('code_Eghtesadi')} className="form-control" />
                     </div>
                   </Col>
@@ -86,7 +92,7 @@ const ThForm = (props) => {
                 <Row>
                   <Col md="3">
                     <div className="mb-3">
-                      <Label htmlFor="validationCustom01">تاریخ تولد</Label>
+                      <Label>تاریخ تولد</Label>
                       <Controller
                         control={control}
                         {...register('birthDay')}
@@ -102,7 +108,7 @@ const ThForm = (props) => {
                   </Col>
                   <Col md="3">
                     <div className="mb-3">
-                      <Label htmlFor="validationCustom01">تاریخ صدور شناسنامه</Label>
+                      <Label>تاریخ صدور شناسنامه</Label>
                       <Controller
                         control={control}
                         {...register('sodoorDate')}
@@ -118,7 +124,7 @@ const ThForm = (props) => {
                   </Col>
                   <Col md="3">
                     <div className="mb-3">
-                      <Label htmlFor="validationCustom01">محل تولد</Label>
+                      <Label>محل تولد</Label>
                       <Controller
                         control={control}
                         className="form-control text-danger"
@@ -143,7 +149,7 @@ const ThForm = (props) => {
                   </Col>
                   <Col md="3">
                     <div className="mb-3">
-                      <Label htmlFor="validationCustom01">محل صدور</Label>
+                      <Label>محل صدور</Label>
                       <NormalDropDown
                         className="form-control" {...register("iD_MahalSodoor")}
                         dataSource={props.Cities}
@@ -155,12 +161,12 @@ const ThForm = (props) => {
                 <Row>
                   <Col >
                     <div className="mb-3">
-                      <Label htmlFor="validationCustom01">توضیحات</Label>
+                      <Label>توضیحات</Label>
                       <textarea {...register('description')} className="form-control" />
                     </div>
                   </Col>
                 </Row>
-                <input type="submit" className="btn btn-primary"  value="تایید و ذخیره"/>
+                <input type="submit" className="btn btn-primary" value="تایید و ذخیره" />
               </form>
             </CardBody>
           </Card>
