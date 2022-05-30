@@ -6,18 +6,17 @@ import { Card, } from "reactstrap"
 import NormalDropDown from "../../components/Common/NormalDropDown";
 
 const ThForm = (props) => {
-    const [Th,SetTh] = useState({...props.Th})
     const { register, handleSubmit, methods, control,watch } = useForm({
-      defaultValues: Th
+      defaultValues: props.Th
     });
     const onSubmit = (data) => {
-      console.log(data.iD_MahalTavalod);
+      //typeof() result => array,object,null,number,string
+      if(typeof(data.iD_MahalTavalod) == 'object'){
+        data.iD_MahalTavalod = data.iD_MahalTavalod.id;
+      }
+      console.log(data)
     };
-    const optionGroup = [{options: props.Cities}];
-    const [CurentValue,SetCurentValue] = useState(optionGroup[0].options.filter((item) => item.id === Th.iD_MahalTavalod)[0])
 
-
-    //console.log(watch("iD_MahalTavalod"));
     return (
       <form
         onSubmit={handleSubmit(onSubmit)}>
@@ -50,10 +49,8 @@ const ThForm = (props) => {
               onChange={onChange } // send value to hook form
               inputRef={ref}
               name={name}
-              options={optionGroup}
-              //value={value}
-              //value={optionGroup[0].options[2]}
-              value={CurentValue}
+              options={props.Cities}
+              defaultValue = {props.Cities.filter((item) => item.id === props.Th.iD_MahalTavalod)[0]}
             />
           )}
         />
