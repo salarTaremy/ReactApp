@@ -11,8 +11,6 @@ import { Card, } from "reactstrap"
 import NormalDropDown from "../../components/Common/NormalDropDown";
 import EditOppositeSideForm from '../OppositeSide/EditOppositeSideForm'
 
-
-
 const EditOppositeSide = () => {
   const [Th, SetTh] = useState(null);
   const [Cities, SetCities] = useState(null);
@@ -45,11 +43,7 @@ const EditOppositeSide = () => {
       <div className="page-content">
         <Breadcrumbs title="عنوان" breadcrumbItem="ویرایش طرف حساب ها" />
         {Th && Cities ?
-          <>
-            <Card className="p-3">
               <EditOppositeSideForm Th={Th} Cities = {Cities} />
-            </Card>
-          </>
           : <Loading />}
       </div>
     </React.Fragment>
