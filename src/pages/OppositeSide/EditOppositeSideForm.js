@@ -15,6 +15,8 @@ import {
   Input
 } from "reactstrap"
 import NormalDropDown from "../../components/Common/NormalDropDown";
+import Error from "../../components/Common/Error";
+import { MDBListGroup } from "mdbreact";
 
 const ThForm = (props) => {
   const textColor = "text-secondary"
@@ -44,26 +46,23 @@ const ThForm = (props) => {
                   <Col md="4">
                     <div className="mb-3">
                       <Label>نام</Label>
-                      <input {...register("name", { required: true, maxLength: 10 })} className="form-control" />
-                      {errors?.name?.type === "required" && (<p className="text-danger">این فیلد الزامی است</p>)}
-                      {errors?.name?.type === "maxLength" && (
-                        <p className="text-danger">First name cannot exceed 20 characters</p>
-                      )}
-                      {errors?.name?.type === "pattern" && (
-                        <p className="text-danger">Alphabetical characters only</p>
-                      )}
+                      <input {...register("name", { required: true, maxLength: 70 , minLength: 1})} className="form-control" />
+                      <Error Err={errors?.name}></Error>
+                      {/* {errors?.name?.type === 'required' && <Error Err ={errors?.name}  Msg="Msg" ></Error>} */}
                     </div>
                   </Col>
                   <Col md="4">
                     <div className="mb-3">
                       <Label>نام خانوادگی</Label>
-                      <input {...register('famil')} className="form-control" />
+                      <input {...register('famil',{required: true,maxLength:70})} className="form-control" />
+                      <Error Err={errors?.famil}></Error>
                     </div>
                   </Col>
                   <Col md="4">
                     <div className="mb-3">
                       <Label>نام پدر</Label>
-                      <input {...register('namePedar')} className="form-control" />
+                      <input {...register('namePedar',{maxLength:70})} className="form-control" />
+                      <Error Err={errors?.namePedar}></Error>
                     </div>
                   </Col>
                 </Row>
@@ -72,19 +71,22 @@ const ThForm = (props) => {
                   <Col md="4">
                     <div className="mb-3">
                       <Label>شماره شناسنامه</Label>
-                      <input {...register('sh_Sh')} className="form-control" />
+                      <input {...register('sh_Sh',{required:true,maxLength:10})} className="form-control" />
+                      <Error Err={errors?.sh_Sh}></Error>
                     </div>
                   </Col>
                   <Col md="4">
                     <div className="mb-3">
                       <Label>کد ملی</Label>
-                      <input {...register('code_melli')} className="form-control" />
+                      <input {...register('code_melli',{required:true, minLength:10,maxLength:10})} className="form-control" />
+                      <Error Err={errors?.code_melli}></Error>
                     </div>
                   </Col>
                   <Col md="4">
                     <div className="mb-3">
                       <Label>کد اقتصادی</Label>
-                      <input {...register('code_Eghtesadi')} className="form-control" />
+                      <input {...register('code_Eghtesadi',{maxLength:50})} className="form-control" />
+                      <Error Err={errors?.code_Eghtesadi}></Error>
                     </div>
                   </Col>
                 </Row>
@@ -162,7 +164,8 @@ const ThForm = (props) => {
                   <Col >
                     <div className="mb-3">
                       <Label>توضیحات</Label>
-                      <textarea {...register('description')} className="form-control" />
+                      <textarea {...register('description',{maxLength:200})} className="form-control" />
+                      <Error Err={errors?.description}></Error>
                     </div>
                   </Col>
                 </Row>
