@@ -9,6 +9,7 @@ import {
   CardBody,
   FormGroup,
   Button,
+  Spinner,
   CardTitle,
   CardSubtitle,
   Label,
@@ -20,7 +21,7 @@ import { MDBListGroup } from "mdbreact";
 
 const ThForm = (props) => {
   const textColor = "text-secondary"
-  const { register, handleSubmit, methods, control, watch,  formState: { errors } } = useForm({
+  const { register, handleSubmit, methods, control, watch, formState: { errors } } = useForm({
     defaultValues: props.Th
   });
   const onSubmit = (data) => {
@@ -46,7 +47,7 @@ const ThForm = (props) => {
                   <Col md="4">
                     <div className="mb-3">
                       <Label>نام</Label>
-                      <input {...register("name", { required: true, maxLength: 70 , minLength: 1})} className="form-control" />
+                      <input {...register("name", { required: true, maxLength: 70, minLength: 1 })} className="form-control" />
                       <Error Err={errors?.name}></Error>
                       {/* {errors?.name?.type === 'required' && <Error Err ={errors?.name}  Msg="Msg" ></Error>} */}
                     </div>
@@ -54,14 +55,14 @@ const ThForm = (props) => {
                   <Col md="4">
                     <div className="mb-3">
                       <Label>نام خانوادگی</Label>
-                      <input {...register('famil',{required: true,maxLength:70})} className="form-control" />
+                      <input {...register('famil', { required: true, maxLength: 70 })} className="form-control" />
                       <Error Err={errors?.famil}></Error>
                     </div>
                   </Col>
                   <Col md="4">
                     <div className="mb-3">
                       <Label>نام پدر</Label>
-                      <input {...register('namePedar',{maxLength:70})} className="form-control" />
+                      <input {...register('namePedar', { maxLength: 70 })} className="form-control" />
                       <Error Err={errors?.namePedar}></Error>
                     </div>
                   </Col>
@@ -71,21 +72,21 @@ const ThForm = (props) => {
                   <Col md="4">
                     <div className="mb-3">
                       <Label>شماره شناسنامه</Label>
-                      <input {...register('sh_Sh',{required:true,maxLength:10})} className="form-control" />
+                      <input {...register('sh_Sh', { required: true, maxLength: 10 })} className="form-control" />
                       <Error Err={errors?.sh_Sh}></Error>
                     </div>
                   </Col>
                   <Col md="4">
                     <div className="mb-3">
                       <Label>کد ملی</Label>
-                      <input {...register('code_melli',{required:true, minLength:10,maxLength:10})} className="form-control" />
+                      <input {...register('code_melli', { required: true, minLength: 10, maxLength: 10 })} className="form-control" />
                       <Error Err={errors?.code_melli}></Error>
                     </div>
                   </Col>
                   <Col md="4">
                     <div className="mb-3">
                       <Label>کد اقتصادی</Label>
-                      <input {...register('code_Eghtesadi',{maxLength:50})} className="form-control" />
+                      <input {...register('code_Eghtesadi', { maxLength: 50 })} className="form-control" />
                       <Error Err={errors?.code_Eghtesadi}></Error>
                     </div>
                   </Col>
@@ -164,12 +165,13 @@ const ThForm = (props) => {
                   <Col >
                     <div className="mb-3">
                       <Label>توضیحات</Label>
-                      <textarea {...register('description',{maxLength:200})} className="form-control" />
+                      <textarea {...register('description', { maxLength: 200 })} className="form-control" />
                       <Error Err={errors?.description}></Error>
                     </div>
                   </Col>
                 </Row>
                 <input type="submit" className="btn btn-primary" value="تایید و ذخیره" />
+
               </form>
             </CardBody>
           </Card>
