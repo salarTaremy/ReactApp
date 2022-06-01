@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react"
-import { useForm, Controller } from "react-hook-form";
 import * as url from '../../helpers/url_helper'
 import { post, del, get, put } from "../../helpers/api_helper"
 import { useParams } from 'react-router-dom';
-import DatePicker from '../../components/Common/DatePicker';
 import Breadcrumbs from "../../components/Common/Breadcrumb"
 import Loading from "../../components/Common/Loading"
-import Select from "react-select";
-import { Card, } from "reactstrap"
-import NormalDropDown from "../../components/Common/NormalDropDown";
 import EditOppositeSideForm from '../OppositeSide/EditOppositeSideForm'
 
 const EditOppositeSide = () => {
