@@ -17,12 +17,41 @@ import {
 } from "reactstrap"
 import NormalDropDown from "../../components/Common/NormalDropDown";
 import Error from "../../components/Common/Error";
-import { MDBListGroup } from "mdbreact";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 
 const ThForm = (props) => {
   const textColor = "text-secondary"
+  const validationSchema = Yup.object().shape({
+    name: Yup.string()
+      .required('نام اجباری'),
+      sh_Sh: Yup.number('شش با ید عدد باشد')
+      .required('ش ش اجباری'),
+    title: Yup.string()
+      .required('Title is required'),
+    firstName: Yup.string()
+      .required('First Name is required'),
+    lastName: Yup.string()
+      .required('Last name is required'),
+    dob: Yup.string()
+      .required('Date of Birth is required')
+      .matches(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/, 'Date of Birth must be a valid date in the format YYYY-MM-DD'),
+    email: Yup.string()
+      .required('Email is required')
+      .email('Email is invalid'),
+    password: Yup.string()
+      .min(6, 'Password must be at least 6 characters')
+      .required('Password is required'),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password'), null], 'Passwords must match')
+      .required('Confirm Password is required'),
+    acceptTerms: Yup.bool()
+      .oneOf([true], 'Accept Ts & Cs is required')
+  });
+
   const { register, handleSubmit, methods, control, watch, formState: { errors } } = useForm({
-    defaultValues: props.Th
+    defaultValues: props.Th,
+    resolver: yupResolver(validationSchema)
   });
   const onSubmit = (data) => {
     //typeof() result => array,object,null,number,string
@@ -46,9 +75,11 @@ const ThForm = (props) => {
                 <Row>
                   <Col md="4">
                     <div className="mb-3">
-                      <Label>نام</Label>
+                      <Label >نام</Label>
                       <input {...register("name", { required: true, maxLength: 70, minLength: 1 })} className="form-control" />
-                      <Error Err={errors?.name}></Error>
+                      {/* <Error Err={errors?.name}></Error> */}
+                      <div className="text-danger">{errors.name?.message}</div>
+                      {/* Dont Clear this comment : */}
                       {/* {errors?.name?.type === 'required' && <Error Err ={errors?.name}  Msg="Msg" ></Error>} */}
                     </div>
                   </Col>
@@ -74,6 +105,7 @@ const ThForm = (props) => {
                       <Label>شماره شناسنامه</Label>
                       <input {...register('sh_Sh', { required: true, maxLength: 10 })} className="form-control" />
                       <Error Err={errors?.sh_Sh}></Error>
+                      <div className="text-danger">{errors.sh_Sh?.message}</div>
                     </div>
                   </Col>
                   <Col md="4">
