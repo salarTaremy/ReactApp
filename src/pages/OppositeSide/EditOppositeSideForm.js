@@ -20,13 +20,38 @@ import Error from "../../components/Common/Error";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
+Yup.setLocale({
+  mixed: {
+    default: 'مقدار نا معتبر',
+    required: 'این فیلد الزامی میباشد',
+    typeError: 'typeError  ... ... ...'
+  },
+  number: {
+    default: 'meghdar na moarabar',
+    min: 'این فیلد نباید از ${min} کوچکتر باشد',
+    max: 'این فیلد نباید از ${max} تجاوز کند',
+    typeError: 'نوع ورودی نا معتبر است ... ... ...',
+  },
+  string:{
+    min: 'تعداد ارقام این فیلد نباید از ${min} کاراکتر کمتر باشد',
+    max: 'تعداد ارقام این فیلد نباید از ${max} کاراکتر تجاوز کند',
+}
+});
+
 const ThForm = (props) => {
   const textColor = "text-secondary"
   const validationSchema = Yup.object().shape({
     name: Yup.string()
-      .required('نام اجباری'),
-      sh_Sh: Yup.number('شش با ید عدد باشد')
+      .required(),
+    sh_Sh: Yup.number()
+      .min(5)
+      .max(10)
+      // .typeError('نوع ورودی نا معتبر است')
       .required('ش ش اجباری'),
+    code_melli: Yup.string()
+      .min(10)
+      .max(10)
+      .required('کد ملی الزامی است'),
     title: Yup.string()
       .required('Title is required'),
     firstName: Yup.string()
@@ -78,7 +103,7 @@ const ThForm = (props) => {
                       <Label >نام</Label>
                       <input {...register("name", { required: true, maxLength: 70, minLength: 1 })} className="form-control" />
                       {/* <Error Err={errors?.name}></Error> */}
-                      <div className="text-danger">{errors.name?.message}</div>
+                      <div className="text-warning">{errors.name?.message}</div>
                       {/* Dont Clear this comment : */}
                       {/* {errors?.name?.type === 'required' && <Error Err ={errors?.name}  Msg="Msg" ></Error>} */}
                     </div>
@@ -105,7 +130,7 @@ const ThForm = (props) => {
                       <Label>شماره شناسنامه</Label>
                       <input {...register('sh_Sh', { required: true, maxLength: 10 })} className="form-control" />
                       <Error Err={errors?.sh_Sh}></Error>
-                      <div className="text-danger">{errors.sh_Sh?.message}</div>
+                      <div className="text-warning">{errors.sh_Sh?.message}</div>
                     </div>
                   </Col>
                   <Col md="4">
@@ -113,6 +138,7 @@ const ThForm = (props) => {
                       <Label>کد ملی</Label>
                       <input {...register('code_melli', { required: true, minLength: 10, maxLength: 10 })} className="form-control" />
                       <Error Err={errors?.code_melli}></Error>
+                      <div className="text-warning">{errors.code_melli?.message}</div>
                     </div>
                   </Col>
                   <Col md="4">
