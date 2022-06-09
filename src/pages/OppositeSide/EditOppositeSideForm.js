@@ -24,18 +24,18 @@ Yup.setLocale({
   mixed: {
     default: 'مقدار نا معتبر',
     required: 'این فیلد الزامی میباشد',
-    typeError: 'typeError  ... ... ...'
-  },
-  number: {
-    default: 'meghdar na moarabar',
-    min: 'این فیلد نباید از ${min} کوچکتر باشد',
-    max: 'این فیلد نباید از ${max} تجاوز کند',
     typeError: 'نوع ورودی نا معتبر است ... ... ...',
   },
-  string:{
+  number: {
+    min: 'این فیلد نباید از ${min} کوچکتر باشد',
+    max: 'این فیلد نباید از ${max} تجاوز کند',
+    positive: 'عدد باید بزرگتر از صفر باشد',
+
+  },
+  string: {
     min: 'تعداد ارقام این فیلد نباید از ${min} کاراکتر کمتر باشد',
     max: 'تعداد ارقام این فیلد نباید از ${max} کاراکتر تجاوز کند',
-}
+  }
 });
 
 const ThForm = (props) => {
@@ -46,11 +46,13 @@ const ThForm = (props) => {
     sh_Sh: Yup.number()
       .min(5)
       .max(10)
-      // .typeError('نوع ورودی نا معتبر است')
+      //.positive()
+      .typeError('فقط مجاز به ورود اعداد هستید')
       .required('ش ش اجباری'),
     code_melli: Yup.string()
       .min(10)
       .max(10)
+      .nullable(false)
       .required('کد ملی الزامی است'),
     title: Yup.string()
       .required('Title is required'),
