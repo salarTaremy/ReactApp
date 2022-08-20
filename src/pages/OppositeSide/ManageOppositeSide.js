@@ -121,6 +121,7 @@ const TotalValueRenderer = (props) => {
   }
 
 
+  
   return (
     <div className="button-items">
       {/* <EditOppositeSide  Isloading={Isloading}  tarafHesab={tarafHesab} modal={modal} toggle={() => { setmodal(!modal) }} /> */}
