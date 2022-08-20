@@ -5,7 +5,8 @@ import authHeader from "../helpers/jwt-token-access/auth-token-header"
 //const token = 'Bearer '+ authHeader().Authorization; 
 
 //apply base url for axios
-const API_URL = "http://localhost:4000/api"
+//const API_URL = "http://192.168.200.7:4000/api"
+const API_URL = "http://localhost:5000/api"
 
 const axiosApi = axios.create({
   baseURL: API_URL,

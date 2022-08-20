@@ -132,13 +132,6 @@ const TotalValueRenderer = (props) => {
       >
         <i className="fa fa-edit"></i>
       </Button>{" "}
-
-
-
-      <Link to={"/EditOppositeSide/" + getRoat()}   >{getRoat()} </Link>
-
-
-
       <Button
         onClick={BtnDeleteClick}
         color="danger"
@@ -146,6 +139,7 @@ const TotalValueRenderer = (props) => {
       >
         <i className="fa fa-times"></i>
       </Button>{" "}
+      <Link to={"/EditOppositeSide/" + getRoat()}   >{getRoat()} </Link>
     </div>
   );
 };
