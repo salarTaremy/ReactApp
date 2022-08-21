@@ -1,110 +1,16 @@
 import React, { useState, useEffect } from "react"
-//1
+import * as cols from "components/Grid/columnHelper"
 import { Link, Route, useHistory } from "react-router-dom"
-import Loading from "../../components/Common/Loading"
-import DatePicker from "../../components/Common/DatePicker"
-import MaterialInput from "@material-ui/core/Input"
+import Loading from "components/Common/Loading"
+import DatePicker from "components/Common/DatePicker"
 //import { useForm } from "react-hook-form";
-import {
-  Col,
-  Row,
-  Spinner,
-  Card,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  CardImg,
-  CardText,
-  CardHeader,
-  CardImgOverlay,
-  CardFooter,
-  CardDeck,
-  CardColumns,
-  CardGroup,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Button,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  ButtonDropdown,
-  Input,
-  Label,
-  Alert,
-} from "reactstrap"
-import Select from "react-select";
-import InputMask from "react-input-mask"
-import * as Strings from "../../common/Strings"
-import { AvForm, AvField } from "availity-reactstrap-validation"
-import Breadcrumbs from "../../components/Common/Breadcrumb"
-import GridView from "../../components/Grid/GridView"
-import * as url from '../../helpers/url_helper'
-import * as defaultOptions from "../../components/Grid/defaultOptions"
-import { post, del, get, put } from "../../helpers/api_helper"
-
+import { Card } from "reactstrap"
+import Breadcrumbs from "components/Common/Breadcrumb"
+import GridView from "components/Grid/GridView"
+import * as url from 'helpers/url_helper'
+import { post,del, get, put } from "helpers/api_helper"
 
 let CityList = [];
-
-const TotalValueRenderer = (props) => {
-  const cellValue = props.valueFormatted ? props.valueFormatted : props.value;
-  const [modal, setmodal] = useState(false)
-  const [Isloading, setIsloading] = useState(false)
-  const [tarafHesab, settarafHesab] = useState({})
-  const history = useHistory();
-  //const [IdMahalTavallod, SetIdMahalTavallod] = useState(0)
-  //const { register, handleSubmit, reset, watch,setValue, formState: { errors } } = useForm();
-  //const options = [{ label: "نا مشخص", value: "0", }, { label: "1941-", value: "1941", }, { label: "34-", value: "34", }, { label: "2546-", value: "2546", }, { label: "1-", value: "1", },];
-
-  const BtnEditClick = () => {
-    const id = props.data.id;
-    history.push("/EditOppositeSide/" + id);
-  };
-
-
-  const BtnDeleteClick = () => { }
-
-  return (
-    <div className="button-items">
-      {/* <OppositeSideDetail  Isloading={Isloading}  tarafHesab={tarafHesab} modal={modal} toggle={() => { setmodal(!modal) }} /> */}
-
-      <Button
-        onClick={BtnEditClick}
-        color="info"
-        className="btn btn-info waves-effect waves-light"
-      >
-        <i className="fa fa-edit"></i>
-      </Button>{" "}
-      <Button
-        onClick={BtnDeleteClick}
-        color="danger"
-        className="btn btn-danger waves-effect waves-light"
-      >
-        <i className="fa fa-times"></i>
-      </Button>{" "}
-      <Link to={url.OPPOSITE_SIDE_DETAIL+ "/" + props.data.id}   >{props.data.id} </Link>
-    </div>
-  );
-};
-
-
-const GetLink = (props) => {
-  return    <Link   to={url.OPPOSITE_SIDE_DETAIL +"/" + props.data.id}  > {props.data.id} </Link>
-}
-
-const columns = [
-  //buttons: ['reset','cancel']     =>   Filter Btn
-  //debounceMs: 1000                => Delay to serach millisec
-  //  { headerName: "شناسه", field: "id", filter: "agNumberColumnFilter", valueFormatter: defaultOptions.currencyFormatter },
-  { minWidth: 200, cellRenderer: TotalValueRenderer },
-  { headerName: "شناسه", field: "id", filter: "agNumberColumnFilter"   ,cellRenderer: GetLink},
-  { headerName: "نام", field: "name", filter: "agTextColumnFilter" },
-  { headerName: "نام خانوادگی", field: "famil", filter: "agTextColumnFilter" },
-  { headerName: "ش-شناسنامه", field: "sh_sh", filter: "agNumberColumnFilter", hide: false },
-  { headerName: "کد ملی", field: 'code_melli', filter: "agTextColumnFilter", maxWidth: 150 },
-  { headerName: "کد اقتصادی", field: 'code_Eghtesadi', filter: "agTextColumnFilter", minWidth: 150 },
-  { headerName: "نام پدر", field: 'namePedar', filter: "agTextColumnFilter", rowGroup: false },
-]
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const ManageOppositeSide = () => {
   const [Isloading, SetIsloading] = useState(true)
@@ -132,7 +38,7 @@ const ManageOppositeSide = () => {
               <p>لیست طرف حساب ها</p>
             </Card>
             <Card className="p-1">
-              <GridView Url={url.FETCH_OPPOSITE_SIDE} Columns={columns} />
+              <GridView Url={url.FETCH_OPPOSITE_SIDE} Columns={cols.OPPOSITE_SIDE_COLUMNS} />
             </Card>
           </>}
       </div>

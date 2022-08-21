@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
-import * as url from '../../helpers/url_helper'
-import { post, del, get, put } from "../../helpers/api_helper"
+import * as url from 'helpers/url_helper'
+import { post, del, get, put } from "helpers/api_helper"
 import { useParams } from 'react-router-dom';
-import Breadcrumbs from "../../components/Common/Breadcrumb"
-import Loading from "../../components/Common/Loading"
-import OppositeSideDetailForm from './OppositeSideDetailForm'
+import Breadcrumbs from "components/Common/Breadcrumb"
+import Loading from "components/Common/Loading"
+import OppositeSideDetailForm from 'pages/OppositeSide/OppositeSideDetailForm'
 
 const OppositeSideDetail = () => {
   const [Th, SetTh] = useState(null);
@@ -38,7 +38,7 @@ const OppositeSideDetail = () => {
       <div className="page-content">
         <Breadcrumbs title="عنوان" breadcrumbItem="ویرایش طرف حساب ها" />
         {Th && Cities ?
-              <OppositeSideDetailForm Th={Th} Cities = {Cities} />
+          <OppositeSideDetailForm Th={Th} Cities={Cities} />
           : <Loading />}
       </div>
     </React.Fragment>

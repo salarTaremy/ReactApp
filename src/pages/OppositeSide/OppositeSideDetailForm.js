@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useForm, Controller } from "react-hook-form";
-import DatePicker from '../../components/Common/DatePicker';
+import DatePicker from 'components/Common/DatePicker';
 import Select from "react-select";
 import {
   Row,
@@ -15,8 +15,8 @@ import {
   Label,
   Input
 } from "reactstrap"
-import NormalDropDown from "../../components/Common/NormalDropDown";
-import Error from "../../components/Common/Error";
+import NormalDropDown from "components/Common/NormalDropDown";
+import Error from "components/Common/Error";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
