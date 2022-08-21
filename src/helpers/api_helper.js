@@ -1,7 +1,7 @@
 import axios from "axios"
 import authHeader from "../helpers/jwt-token-access/auth-token-header"
 
-//pass new generated access token here
+//pass new generated access token here ...
 //const token = 'Bearer '+ authHeader().Authorization; 
 
 //apply base url for axios
