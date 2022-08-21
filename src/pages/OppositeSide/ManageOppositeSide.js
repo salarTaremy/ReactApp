@@ -83,46 +83,6 @@ const TotalValueRenderer = (props) => {
 
   const BtnDeleteClick = () => { }
 
-  const handleChange = (e) => {
-    let th = { ...tarafHesab }
-    th.iD_MahalTavalod = e.target.value
-    settarafHesab(th)
-  }
-  const birthDayChange = (e, props) => {
-    const Th = { ...tarafHesab };
-    const val = e.target.value.replace('/', '').replace('/', '')
-    Th.birthDay = val
-    settarafHesab(Th)
-  }
-  const handleSubmit = (e, data) => {
-    //e.preventDefault();
-    console.log('Submit data:', data);
-  }
-
-  const chng = (e) => {
-
-    let th = { ...tarafHesab }
-    th.iD_MahalTavalod = e.target.value
-    settarafHesab(th)
-
-  }
-
-
-
-  const optionGroup = [
-    { label: "Mustard", value: "1" },
-    { label: "Ketchup", value: "2" },
-    { label: "Relish", value: "3" },
-  ];
-
-
-  const getRoat = () => {
-    const id = props.data.id;
-    return id;
-  }
-
-
-
   return (
     <div className="button-items">
       {/* <EditOppositeSide  Isloading={Isloading}  tarafHesab={tarafHesab} modal={modal} toggle={() => { setmodal(!modal) }} /> */}
@@ -141,17 +101,22 @@ const TotalValueRenderer = (props) => {
       >
         <i className="fa fa-times"></i>
       </Button>{" "}
-      <Link to={"/EditOppositeSide/" + getRoat()}   >{getRoat()} </Link>
+      <Link to={"/EditOppositeSide/" + props.data.id}   >{props.data.id} </Link>
     </div>
   );
 };
+
+
+const GetLink = (props) => {
+  return    <Link   to={"/EditOppositeSide/" + props.data.id}  > {props.data.id} </Link>
+}
 
 const columns = [
   //buttons: ['reset','cancel']     =>   Filter Btn
   //debounceMs: 1000                => Delay to serach millisec
   //  { headerName: "شناسه", field: "id", filter: "agNumberColumnFilter", valueFormatter: defaultOptions.currencyFormatter },
   { minWidth: 200, cellRenderer: TotalValueRenderer },
-  { headerName: "شناسه", field: "id", filter: "agNumberColumnFilter" },
+  { headerName: "شناسه", field: "id", filter: "agNumberColumnFilter"   ,cellRenderer: GetLink},
   { headerName: "نام", field: "name", filter: "agTextColumnFilter" },
   { headerName: "نام خانوادگی", field: "famil", filter: "agTextColumnFilter" },
   { headerName: "ش-شناسنامه", field: "sh_sh", filter: "agNumberColumnFilter", hide: false },
@@ -161,7 +126,6 @@ const columns = [
 ]
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const ManageOppositeSide = () => {
-
   const [Isloading, SetIsloading] = useState(true)
   useEffect(() => {
     get(url.GET_CITY)
@@ -184,7 +148,7 @@ const ManageOppositeSide = () => {
           ? <Loading />
           : <>
             <Card className="p-3">
-              <p>این یک صفحه خالی است</p>
+              <p>لیست طرف حساب ها</p>
             </Card>
             <Card className="p-1">
               <GridView Url={url.FETCH_Tarafhesab} Columns={columns} />
