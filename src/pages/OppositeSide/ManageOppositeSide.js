@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+//1
 import { Link, Route, useHistory } from "react-router-dom"
 import Loading from "../../components/Common/Loading"
 import DatePicker from "../../components/Common/DatePicker"
@@ -121,7 +122,7 @@ const TotalValueRenderer = (props) => {
   }
 
 
-  
+
   return (
     <div className="button-items">
       {/* <EditOppositeSide  Isloading={Isloading}  tarafHesab={tarafHesab} modal={modal} toggle={() => { setmodal(!modal) }} /> */}
