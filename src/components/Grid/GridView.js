@@ -12,7 +12,7 @@ import '../../../node_modules/ag-grid-community/dist/styles/ag-theme-material.cs
 import { AG_GRID_LOCALE_FA } from "./agLocalFa";
 import *  as defaultOptions from "./defaultOptions"
 import { LicenseManager } from "ag-grid-enterprise";
-import { post, del, get, put,get2 } from "../../helpers/api_helper"
+import { post, del, get, put } from "../../helpers/api_helper"
 
 LicenseManager.setLicenseKey("DownloadDevTools_COM_NDEwMjM0NTgwMDAwMA==59158b5225400879a12a96634544f5b6");
 
