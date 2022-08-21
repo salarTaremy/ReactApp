@@ -46,8 +46,10 @@ export const GET_CUSTOMERS = "/customers"
 export const FETCH_CUSTOMERS = "/Customer/List"
 
 //TarafHesab
-export const FETCH_Tarafhesab = "/Tarafhesab/Filter"
-export const FETCH_Tarafhesab_Detail = "/TarafHesab"
+export const FETCH_OPPOSITE_SIDE= "/Tarafhesab/Filter"
+export const FETCH_OPPOSITE_SIDE_DETAIL = "/TarafHesab"
+export const OPPOSITE_SIDE_DETAIL = "/OppositeSideDetail"
+
 
 //SHOPS
 export const GET_SHOPS = "/shops"

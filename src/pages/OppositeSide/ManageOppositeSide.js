@@ -56,36 +56,17 @@ const TotalValueRenderer = (props) => {
   //const { register, handleSubmit, reset, watch,setValue, formState: { errors } } = useForm();
   //const options = [{ label: "نا مشخص", value: "0", }, { label: "1941-", value: "1941", }, { label: "34-", value: "34", }, { label: "2546-", value: "2546", }, { label: "1-", value: "1", },];
 
-  // ///////////////////////// Btn _Click Old /////////////////////////
-  // const BtnEditClick = () => {
-  //   setIsloading(true)
-  //   setmodal(!modal);
-  //   console.log("Request Sended")
-  //   get(`${url.FETCH_Tarafhesab_Detail}/${props.data.id}`)
-  //     .then((response) => {
-  //       setIsloading(false)
-  //       console.log("response received")
-
-  //       settarafHesab(response);
-  //     }, (error) => {
-  //       console.error(error);
-  //     });
-  // };
-  // /////////////////////////////////////////////////////////////
-  ///////////////////////// Btn _Click New /////////////////////////
   const BtnEditClick = () => {
     const id = props.data.id;
     history.push("/EditOppositeSide/" + id);
   };
-  /////////////////////////////////////////////////////////////
-
 
 
   const BtnDeleteClick = () => { }
 
   return (
     <div className="button-items">
-      {/* <EditOppositeSide  Isloading={Isloading}  tarafHesab={tarafHesab} modal={modal} toggle={() => { setmodal(!modal) }} /> */}
+      {/* <OppositeSideDetail  Isloading={Isloading}  tarafHesab={tarafHesab} modal={modal} toggle={() => { setmodal(!modal) }} /> */}
 
       <Button
         onClick={BtnEditClick}
@@ -101,14 +82,14 @@ const TotalValueRenderer = (props) => {
       >
         <i className="fa fa-times"></i>
       </Button>{" "}
-      <Link to={"/EditOppositeSide/" + props.data.id}   >{props.data.id} </Link>
+      <Link to={url.OPPOSITE_SIDE_DETAIL+ "/" + props.data.id}   >{props.data.id} </Link>
     </div>
   );
 };
 
 
 const GetLink = (props) => {
-  return    <Link   to={"/EditOppositeSide/" + props.data.id}  > {props.data.id} </Link>
+  return    <Link   to={url.OPPOSITE_SIDE_DETAIL +"/" + props.data.id}  > {props.data.id} </Link>
 }
 
 const columns = [
@@ -151,7 +132,7 @@ const ManageOppositeSide = () => {
               <p>لیست طرف حساب ها</p>
             </Card>
             <Card className="p-1">
-              <GridView Url={url.FETCH_Tarafhesab} Columns={columns} />
+              <GridView Url={url.FETCH_OPPOSITE_SIDE} Columns={columns} />
             </Card>
           </>}
       </div>
