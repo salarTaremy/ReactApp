@@ -48,9 +48,6 @@ const GridView = (props) => {
       const data = params.request
 
       console.log(JSON.stringify(params.request, null, 1))
-      ///////////////////////////
-      var salar =  JSON.stringify(params.request,null, 1);
-      //////////////////////////
 
       post(props.Url  ,data).then((response) => {
         console.log (response)

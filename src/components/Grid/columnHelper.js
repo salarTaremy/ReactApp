@@ -1,6 +1,6 @@
 import { Link, Route, useHistory } from "react-router-dom"
 import { Button } from "reactstrap"
-import * as url from '../../helpers/url_helper'
+import * as url from 'helpers/url_helper'
 
 
 //OPPOSITE_SIDE

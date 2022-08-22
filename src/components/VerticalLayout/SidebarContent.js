@@ -117,9 +117,13 @@ const SidebarContent = props => {
                 <span>{props.t("طرف حساب ها")}</span>
               </Link>
               <ul className="sub-menu">
-              <li>
+                <li>
                   <Link to="/ManageOppositeSide">{props.t("مدیریت طرف حساب ها")} </Link>
                 </li>
+                <li>
+                  <Link to="/OppositeReport">{props.t("گزارش حساب ها")} </Link>
+                </li>
+                
                 <li>
                   <Link to="/Blank">{props.t("صفحه خالی")} </Link>
                 </li>

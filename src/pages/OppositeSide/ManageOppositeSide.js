@@ -18,7 +18,6 @@ const ManageOppositeSide = () => {
     get(url.GET_CITY)
       .then((response) => {
         SetIsloading(false)
-        console.log("url.GET_CITY received", response)
         CityList = response
         // const transformed = response.map(({ id, code, value }) => ({ label: value, value: id, code: code ,id:id}));
         // CityList = transformed

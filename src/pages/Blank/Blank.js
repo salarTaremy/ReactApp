@@ -19,17 +19,17 @@ import {
 
 
 //Import Breadcrumbnpm start
-import Breadcrumbs from "../../components/Common/Breadcrumb"
+import Breadcrumbs from "components/Common/Breadcrumb"
 
 
 //Loading Component
-import Loading from "../../components/Common/Loading"
+import Loading from "components/Common/Loading"
 
 //For Call Api
-import { post, del, get, put } from "../../helpers/api_helper"
+import { post, del, get, put } from "helpers/api_helper"
 
 //Url For Call Api
-import * as url from '../../helpers/url_helper'
+import * as url from 'helpers/url_helper'
 
 
 const Blank = () => {

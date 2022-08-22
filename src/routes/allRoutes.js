@@ -2,23 +2,24 @@ import React from "react"
 import { Redirect } from "react-router-dom"
 
 // test
-import Test from "../pages/Test/index"
+import Test from "pages/Test/index"
 
 // Dashboard
-import Dashboard from "../pages/Dashboard/index"
+import Dashboard from "pages/Dashboard/index"
 
 //Blank
-import Blank from "../pages/Blank/Blank"
+import Blank from "pages/Blank/Blank"
 
 //Opposite Side
-import ManageOppositeSide from "../pages/OppositeSide/ManageOppositeSide"
-import OppositeSideDetail from "../pages/OppositeSide/OppositeSideDetail"
+import ManageOppositeSide from "pages/OppositeSide/ManageOppositeSide"
+import OppositeSideDetail from "pages/OppositeSide/OppositeSideDetail"
+import OppositeReport     from "pages/OppositeSide/OppositeReport"
 
 // Authentication related pages
-import Login from "../pages/Authentication/Login"
-import Logout from "../pages/Authentication/Logout"
-import Register from "../pages/Authentication/Register"
-import ForgetPwd from "../pages/Authentication/ForgetPassword"
+import Login from "pages/Authentication/Login"
+import Logout from "pages/Authentication/Logout"
+import Register from "pages/Authentication/Register"
+import ForgetPwd from "pages/Authentication/ForgetPassword"
 
 const userRoutes = [
   { path: "/ManageOppositeSide", component: ManageOppositeSide },
@@ -26,6 +27,7 @@ const userRoutes = [
   { path: "/Blank", component: Blank },
   { path: "/dashboard", component: Dashboard },
   { path: "/test", component: Test },
+  { path: "/OppositeReport", component: OppositeReport },
 
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
