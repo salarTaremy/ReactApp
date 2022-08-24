@@ -35,6 +35,19 @@ const Page = ({ cities }) => {
     const Stimulsoft = window.Stimulsoft || {};
     useEffect(() => {
         const stiOptions = new Stimulsoft.Viewer.StiViewerOptions();
+        //stiOptions.width = "1000px";
+        //stiOptions.height = "1000px";
+        stiOptions.appearance.reportDisplayMode = Stimulsoft.Report.Export.StiHtmlExportMode.Div;
+        stiOptions.toolbar.showAboutButton = false;
+        stiOptions.appearance.scrollbarsMode = true;
+        stiOptions.appearance.backgroundColor = "#ffffff";
+        // stiOptions.appearance.backgroundColor = Stimulsoft.System.Drawing.Color.black;
+        // stiOptions.appearance.showTooltips = false;
+        // stiOptions.toolbar.showPrintButton = false;
+        // stiOptions.toolbar.showDesignButton = false;
+        // stiOptions.exports.showExportToPdf = true;
+        // stiOptions.exports.ShowExportToWord2007 = true;
+
         const viewer = new Stimulsoft.Viewer.StiViewer(stiOptions, "content_viewer", false);
         const dsDataSource = new Stimulsoft.System.Data.DataSet();
         const report = new Stimulsoft.Report.StiReport();
@@ -46,8 +59,9 @@ const Page = ({ cities }) => {
         };
         dsDataSource.readJson(Ds);
         report.regData("DataSource", null, dsDataSource);
-
         viewer.report = report;
+
+
 
     }, []);
     return (
@@ -55,6 +69,10 @@ const Page = ({ cities }) => {
         </div>
     )
 }
+
+
+
+
 
 const Main = () => {
     const [Cities, SetCities] = useState(null);

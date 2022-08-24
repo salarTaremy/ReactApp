@@ -14,6 +14,7 @@ import Blank from "pages/Blank/Blank"
 import ManageOppositeSide from "pages/OppositeSide/ManageOppositeSide"
 import OppositeSideDetail from "pages/OppositeSide/OppositeSideDetail"
 import OppositeReport from "pages/OppositeSide/OppositeReport"
+import OppositeReportDesigner from "pages/OppositeSide/OppositeReportDesigner"
 
 // Authentication related pages
 import Login from "pages/Authentication/Login"
@@ -28,6 +29,7 @@ const userRoutes = [
   { path: "/dashboard", component: Dashboard },
   { path: "/test", component: Test },
   { path: "/OppositeReport", component: OppositeReport },
+  { path: "/OppositeReportDesigner", component: OppositeReportDesigner },
 
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },

@@ -123,7 +123,9 @@ const SidebarContent = props => {
                 <li>
                   <Link to="/OppositeReport">{props.t("گزارش حساب ها")} </Link>
                 </li>
-                
+                <li>
+                  <Link to="/OppositeReportDesigner">{props.t("طراحی گزارش حساب ها")} </Link>
+                </li>
                 <li>
                   <Link to="/Blank">{props.t("صفحه خالی")} </Link>
                 </li>
