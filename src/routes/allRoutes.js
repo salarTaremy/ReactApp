@@ -13,7 +13,7 @@ import Blank from "pages/Blank/Blank"
 //Opposite Side
 import ManageOppositeSide from "pages/OppositeSide/ManageOppositeSide"
 import OppositeSideDetail from "pages/OppositeSide/OppositeSideDetail"
-import OppositeReport     from "pages/OppositeSide/OppositeReport"
+import OppositeReport from "pages/OppositeSide/OppositeReport"
 
 // Authentication related pages
 import Login from "pages/Authentication/Login"
