@@ -39,10 +39,11 @@ const Page = ({ cities }) => {
     useEffect(() => {
         const stiOptions = new Stimulsoft.Viewer.StiViewerOptions();
         const viewer = new Stimulsoft.Viewer.StiViewer(stiOptions, "content_viewer", false);
-        viewer.renderHtml("content");
-        const report = new Stimulsoft.Report.StiReport();
-        report.loadFile("/reports/crossTabTest2.mrt");
         const dsDataSource = new Stimulsoft.System.Data.DataSet();
+        const report = new Stimulsoft.Report.StiReport();
+
+        report.loadFile("/reports/crossTabTest2.mrt");
+        viewer.renderHtml("content");
         const Ds = {
             "value": cities.value
         };
