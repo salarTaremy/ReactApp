@@ -62,7 +62,6 @@ const Page = ({ cities }) => {
         viewer.report = report;
 
 
-
     }, []);
     return (
         <div id="content">
