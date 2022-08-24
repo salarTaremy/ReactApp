@@ -32,10 +32,7 @@ import { post, del, get, put } from "helpers/api_helper"
 import * as url from 'helpers/url_helper'
 
 const Page = ({ cities }) => {
-
     const Stimulsoft = window.Stimulsoft || {};
-
-    // ////////////////////////////////////////////////////
     useEffect(() => {
         const stiOptions = new Stimulsoft.Viewer.StiViewerOptions();
         const viewer = new Stimulsoft.Viewer.StiViewer(stiOptions, "content_viewer", false);
@@ -58,7 +55,6 @@ const Page = ({ cities }) => {
         </div>
     )
 }
-
 
 const Main = () => {
     const [Cities, SetCities] = useState(null);
