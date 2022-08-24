@@ -32,7 +32,7 @@ import { post, del, get, put } from "helpers/api_helper"
 import * as url from 'helpers/url_helper'
 
 
-const Blank = () => {
+const Blank = ({cities}) => {
     const Stimulsoft = window.Stimulsoft || {};
   useEffect(() => {
    
@@ -56,14 +56,8 @@ const Blank = () => {
      //report.loadFile("/reports/crossTabTest2.mrt");
 
 
-     const Ds = {
-      "value": [{"id": 1 , "name":"tar"},{"id": 2 , "name":"salar"}]
-      ,"val2": [{"id": 4 , "name":"aaaa"},{"id": 5 , "name":"bbbb"}]
-      ,"val3": "dasdas"
-      ,"val4": {"ffff" :11111111111}
-  };
 
-    dsDataSource.readJson(Ds);
+    dsDataSource.readJson(cities);
     report.regData("DataSource", null, dsDataSource);
 
 
@@ -85,18 +79,42 @@ const Blank = () => {
 
 
   return (
-    <React.Fragment>
-      <div className="page-content">
-        <Breadcrumbs title="عنوان" breadcrumbItem="صفحه خالی" />
-
-        <style>{".ltr{direction: ltr;}"}</style>
+  <>
+  
+  <style>{".ltr{direction: ltr;}"}</style>
    
-        <div   className="ltr"  
-          id="content"></div>
-      
-      </div>
-    </React.Fragment>
+   <div   className="ltr"  
+     id="content"></div>
+  
+  </>
   )
 }
 
-export default Blank
+
+
+const Main = () => {
+  const [Cities, SetCities] = useState(null);
+  useEffect(() => {
+      get(url.GET_CITY)
+          .then((response) => {
+              console.clear()
+              console.log('response')
+              //SetCities(response.value)                 
+              SetCities(response)
+          }, (error) => {
+              console.error(error);
+          });
+  }, []);
+  return (
+      <React.Fragment>
+          <div className="page-content">
+              <Breadcrumbs title="گزارش طرف حساب" breadcrumbItem="طرف حساب ها" />
+              {Cities ?
+                  <Blank cities={Cities}   ></Blank>
+                  : <Loading />}
+          </div>
+      </React.Fragment>
+  )
+}
+export default Main
+
