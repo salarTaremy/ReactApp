@@ -34,23 +34,23 @@ import * as url from 'helpers/url_helper'
 const Page = ({ cities }) => {
     const Stimulsoft = window.Stimulsoft || {};
     useEffect(() => {
-        const stiOptions = new Stimulsoft.Viewer.StiViewerOptions();
-        //stiOptions.width = "1000px";
-        //stiOptions.height = "1000px";
+        const options = new Stimulsoft.Viewer.StiViewerOptions();
+        //options.width = "1000px";
+        //options.height = "1000px";
 
+        options.appearance.reportDisplayMode = Stimulsoft.Report.Export.StiHtmlExportMode.Div;
+        options.toolbar.showAboutButton = false;
+        options.appearance.scrollbarsMode = true;
+        //options.appearance.fullScreenMode = true;
+        options.appearance.backgroundColor = "#ffffff";
+        options.appearance.showTooltips = false;
+        // options.appearance.backgroundColor = Stimulsoft.System.Drawing.Color.black;
+        // options.toolbar.showPrintButton = false;
+        // options.toolbar.showDesignButton = false;
+        // options.exports.showExportToPdf = true;
+        // options.exports.ShowExportToWord2007 = true;
 
-        stiOptions.appearance.reportDisplayMode = Stimulsoft.Report.Export.StiHtmlExportMode.Div;
-        stiOptions.toolbar.showAboutButton = false;
-        stiOptions.appearance.scrollbarsMode = true;
-        stiOptions.appearance.backgroundColor = "#ffffff";
-        stiOptions.appearance.showTooltips = false;
-        // stiOptions.appearance.backgroundColor = Stimulsoft.System.Drawing.Color.black;
-        // stiOptions.toolbar.showPrintButton = false;
-        // stiOptions.toolbar.showDesignButton = false;
-        // stiOptions.exports.showExportToPdf = true;
-        // stiOptions.exports.ShowExportToWord2007 = true;
-
-        const viewer = new Stimulsoft.Viewer.StiViewer(stiOptions, "content_viewer", false);
+        const viewer = new Stimulsoft.Viewer.StiViewer(options, "content_viewer", false);
         const dsDataSource = new Stimulsoft.System.Data.DataSet();
         const report = new Stimulsoft.Report.StiReport();
 

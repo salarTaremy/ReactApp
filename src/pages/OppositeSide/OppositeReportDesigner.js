@@ -38,9 +38,9 @@ const Blank = ({ cities }) => {
 
     const dsDataSource = new Stimulsoft.System.Data.DataSet();
     var options = new Stimulsoft.Designer.StiDesignerOptions();
-    //options.appearance.fullScreenMode = true;
 
 
+    // options.appearance.fullScreenMode = true;
     // options.viewerOptions.appearance.reportDisplayMode = Stimulsoft.Report.Export.StiHtmlExportMode.Auto;
     // options.toolbar.showFileMenuExit = false;
     // options.toolbar.showFileMenuOptions = false;
@@ -48,6 +48,8 @@ const Blank = ({ cities }) => {
     // options.components.showPanel = false;
     // options.appearance.showReportTree = false;
     // options.appearance.showTooltips = false;
+    
+
 
 
     var designer = new Stimulsoft.Designer.StiDesigner(options, 'StiDesigner', false);
@@ -60,7 +62,7 @@ const Blank = ({ cities }) => {
 
     designer.report = report;
     designer.renderHtml("content");
-
+    //designer.jsObject.options.buttons.resizeDesigner.style.display = "none";
 
 
   }, []);
