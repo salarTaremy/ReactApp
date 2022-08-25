@@ -37,6 +37,8 @@ const Page = ({ cities }) => {
         const stiOptions = new Stimulsoft.Viewer.StiViewerOptions();
         //stiOptions.width = "1000px";
         //stiOptions.height = "1000px";
+
+
         stiOptions.appearance.reportDisplayMode = Stimulsoft.Report.Export.StiHtmlExportMode.Div;
         stiOptions.toolbar.showAboutButton = false;
         stiOptions.appearance.scrollbarsMode = true;
@@ -54,10 +56,9 @@ const Page = ({ cities }) => {
 
         report.loadFile("/reports/crossTabTest2.mrt");
         viewer.renderHtml("content");
-        const Ds = {
-            "value": cities.value
-        };
-        dsDataSource.readJson(Ds);
+
+
+        dsDataSource.readJson(cities);
         report.regData("DataSource", null, dsDataSource);
         viewer.report = report;
 

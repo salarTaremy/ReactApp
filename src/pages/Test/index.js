@@ -39,7 +39,7 @@ const test = () => {
           <p>تا تاریخ 1400/01/01</p>
         </Card>
         <Card   className="p-1">
-          <GridView  Url={ url.FETCH_CUSTOMERS} />
+          <p>محدوده زمانی</p>
         </Card>
       </div>
     </React.Fragment>

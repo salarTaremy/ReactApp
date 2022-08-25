@@ -50,10 +50,9 @@ const Blank = ({ cities }) => {
     // options.appearance.showTooltips = false;
 
 
-
     var designer = new Stimulsoft.Designer.StiDesigner(options, 'StiDesigner', false);
     var report = new Stimulsoft.Report.StiReport();
-    //report.loadFile("/reports/crossTabTest2.mrt");
+    report.loadFile("/reports/crossTabTest2.mrt");
 
     dsDataSource.readJson(cities);
     report.regData("DataSource", null, dsDataSource);
@@ -85,10 +84,7 @@ const Main = () => {
   const [Cities, SetCities] = useState(null);
   useEffect(() => {
     get(url.GET_CITY)
-      .then((response) => {
-        console.clear()
-        console.log('response')
-        //SetCities(response.value)                 
+      .then((response) => {         
         SetCities(response)
       }, (error) => {
         console.error(error);
