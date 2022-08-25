@@ -41,8 +41,8 @@ const Page = ({ cities }) => {
         stiOptions.toolbar.showAboutButton = false;
         stiOptions.appearance.scrollbarsMode = true;
         stiOptions.appearance.backgroundColor = "#ffffff";
+        stiOptions.appearance.showTooltips = false;
         // stiOptions.appearance.backgroundColor = Stimulsoft.System.Drawing.Color.black;
-        // stiOptions.appearance.showTooltips = false;
         // stiOptions.toolbar.showPrintButton = false;
         // stiOptions.toolbar.showDesignButton = false;
         // stiOptions.exports.showExportToPdf = true;
