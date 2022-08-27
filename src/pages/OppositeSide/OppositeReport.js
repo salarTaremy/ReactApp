@@ -54,7 +54,10 @@ const Page = ({ cities }) => {
         const dsDataSource = new Stimulsoft.System.Data.DataSet();
         const report = new Stimulsoft.Report.StiReport();
 
-        report.loadFile("/reports/crossTabTest2.mrt");
+        //report.loadFile("/reports/crossTabTest2.mrt");
+        var JsonRep= localStorage.getItem("rep")
+        report.load( JsonRep);
+
         viewer.renderHtml("content");
 
 

@@ -66,7 +66,10 @@ const Blank = ({ cities }) => {
 
 
 
-  report.loadFile("/reports/crossTabTest2.mrt");
+ //report.loadFile("/reports/crossTabTest2.mrt");
+
+var JsonRep= localStorage.getItem("rep")
+report.load( JsonRep);
 
 
     //LoadFromJson(string json)
@@ -91,28 +94,33 @@ const Blank = ({ cities }) => {
 
      //var a = args.report.SaveToString();
      var b = args.report.saveToJsonString();
-     //var c = args.report.SaveToByteArray();
 
 
-    //localStorage.setItem("wwww", JSON.stringify(b))
-
-    //report.loadFile("/reports/crossTabTest2.mrt");
-    report.loadJson(JSON.stringify(b))
-    //LoadFromString
+      localStorage.setItem("rep",b)
 
 
-    //LoadFromJson(string json)
-
-    // LoadFromString(string reportStr)
-    // LoadFromJson(string json)
-    // , Load(byte[] bytes) for loading the report.
-
-    dsDataSource.readJson(cities);
-    report.regData("DataSource", null, dsDataSource);
+    // //var c = args.report.SaveToByteArray();
 
 
-    designer.report = report;
-    designer.renderHtml("content");
+    // //localStorage.setItem("wwww", JSON.stringify(b))
+
+    // report.loadFile(JSON.stringify(b));
+    // //report.loadJson(JSON.stringify(b))
+    // //LoadFromString
+
+
+    // //LoadFromJson(string json)
+
+    // // LoadFromString(string reportStr)
+    // // LoadFromJson(string json)
+    // // , Load(byte[] bytes) for loading the report.
+
+    // dsDataSource.readJson(cities);
+    // report.regData("DataSource", null, dsDataSource);
+
+
+    // designer.report = report;
+    // designer.renderHtml("content");
 
 
       }
