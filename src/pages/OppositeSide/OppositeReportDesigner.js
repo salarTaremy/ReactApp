@@ -32,6 +32,11 @@ import { post, del, get, put } from "helpers/api_helper"
 import * as url from 'helpers/url_helper'
 
 
+
+
+
+
+
 const Blank = ({ cities }) => {
   const Stimulsoft = window.Stimulsoft || {};
   useEffect(() => {
@@ -50,11 +55,25 @@ const Blank = ({ cities }) => {
     // options.appearance.showTooltips = false;
     
 
+    // StiReport report = new StiReport();
+    // report.Load(new MemoryStream(byte[] data));
+
 
 
     var designer = new Stimulsoft.Designer.StiDesigner(options, 'StiDesigner', false);
     var report = new Stimulsoft.Report.StiReport();
-    report.loadFile("/reports/crossTabTest2.mrt");
+
+
+
+
+  report.loadFile("/reports/crossTabTest2.mrt");
+
+
+    //LoadFromJson(string json)
+
+    // LoadFromString(string reportStr)
+    // LoadFromJson(string json)
+    // , Load(byte[] bytes) for loading the report.
 
     dsDataSource.readJson(cities);
     report.regData("DataSource", null, dsDataSource);
@@ -62,7 +81,43 @@ const Blank = ({ cities }) => {
 
     designer.report = report;
     designer.renderHtml("content");
-    //designer.jsObject.options.buttons.resizeDesigner.style.display = "none";
+
+    
+
+
+
+
+    designer.onSaveReport = function (args) {
+
+     //var a = args.report.SaveToString();
+     var b = args.report.saveToJsonString();
+     //var c = args.report.SaveToByteArray();
+
+
+    //localStorage.setItem("wwww", JSON.stringify(b))
+
+    //report.loadFile("/reports/crossTabTest2.mrt");
+    report.loadJson(JSON.stringify(b))
+    //LoadFromString
+
+
+    //LoadFromJson(string json)
+
+    // LoadFromString(string reportStr)
+    // LoadFromJson(string json)
+    // , Load(byte[] bytes) for loading the report.
+
+    dsDataSource.readJson(cities);
+    report.regData("DataSource", null, dsDataSource);
+
+
+    designer.report = report;
+    designer.renderHtml("content");
+
+
+      }
+
+    //designer.jsObject.options.buttons.resizeDesigner.style.display = "none";s
 
 
   }, []);
