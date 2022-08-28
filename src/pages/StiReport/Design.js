@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react"
 import options from "pages/StiReport/StiDesignerOption"
 import { useParams, useLocation } from 'react-router-dom';
 import Breadcrumbs from "components/Common/Breadcrumb"
+import { post, del, get, put } from "helpers/api_helper"
+import * as url from 'helpers/url_helper'
 
 const Design = () => {
     const location = useLocation();
@@ -9,6 +11,20 @@ const Design = () => {
     var data = {}
     var JsonRep = {}
     var route = ""
+    const onSaveReport = (args) =>{
+        var jsonReport = args.report.saveToJsonString();
+        var obj = JSON.parse(jsonReport)
+        obj.Route = route
+        //const obj = [...d, {"route": route}]
+
+        post(url.POST_STIREPORT,obj)
+        .then((response) => {
+            console.log (response)
+          }, (error) => {
+              console.error(error);
+          });
+
+    }
 
     useEffect(() => {
         console.log(location.pathname); // result: '/secondpage'
@@ -27,19 +43,14 @@ const Design = () => {
         //report.loadFile("/reports/crossTabTest2.mrt");
         // var JsonRep= localStorage.getItem("rep")
         report.load(JsonRep);
-
         dsDataSource.readJson(data);
         report.dictionary.clear();
         report.regData("DataSource", 'MainData', dsDataSource);
         report.dictionary.synchronize();
-
         designer.report = report;
         designer.renderHtml("designer");
 
-        designer.onSaveReport = function (args) {
-            var jsonReport = args.report.saveToJsonString();
-            localStorage.setItem("rep", jsonReport)
-        }
+        designer.onSaveReport = onSaveReport
         //designer.jsObject.options.buttons.resizeDesigner.style.display = "none";s
     }, []);
 
@@ -47,13 +58,13 @@ const Design = () => {
     return (
         <>
         <style>{".ltr{direction: ltr;}"}</style>
-            <React.Fragment>
+
                 <div className="page-content">
                     
                     <div className="ltr"
                 id="designer"></div>
                 </div>
-            </React.Fragment>
+  
             
           
         </>

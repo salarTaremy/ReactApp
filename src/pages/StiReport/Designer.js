@@ -21,10 +21,12 @@ const Designer = ({ data ,route}) => {
     report.dictionary.synchronize();
     designer.report = report;
     designer.renderHtml("designer");
+    
     designer.onSaveReport = function (args) {
       //var a = args.report.SaveToString();
       var b = args.report.saveToJsonString();
       localStorage.setItem("rep", b)
+      console.log('df')
     }
 
     //designer.jsObject.options.buttons.resizeDesigner.style.display = "none";s

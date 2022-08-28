@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import options from "./StiViewerOption";
 import { Link, Route, useHistory } from "react-router-dom"
+import { post, del, get, put } from "helpers/api_helper"
+import * as url from 'helpers/url_helper'
 
 const Report = ({ data ,route}) => {
     const history = useHistory();
@@ -11,13 +13,33 @@ const Report = ({ data ,route}) => {
         const report = new Stimulsoft.Report.StiReport();
 
         //report.loadFile("/reports/crossTabTest2.mrt");
-        var JsonRep= localStorage.getItem("rep")
-        report.load( JsonRep);
-        viewer.renderHtml("report");
+        //var JsonRep= localStorage.getItem("rep")
+        var JsonRep = ""
+        get(url.GET_STIREPORT )
+        .then((response) => {
+            JsonRep = response.value.jsonData
+            console.log (response.value)
+            console.log (response.value.jsonData)
 
-        dsDataSource.readJson(data);
-        report.regData("DataSource", null, dsDataSource);
-        viewer.report = report;
+
+            report.load( JsonRep);
+            viewer.renderHtml("report");
+    
+            dsDataSource.readJson(data);
+            report.regData("DataSource", null, dsDataSource);
+            viewer.report = report;
+
+
+
+
+          }, (error) => {
+              console.error(error);
+          });
+
+
+
+
+ 
 
         viewer.onDesignReport = function (args) {
             history.push({
