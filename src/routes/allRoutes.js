@@ -16,6 +16,9 @@ import OppositeSideDetail from "pages/OppositeSide/OppositeSideDetail"
 import OppositeReport from "pages/OppositeSide/OppositeReport"
 import OppositeReportDesigner from "pages/OppositeSide/OppositeReportDesigner"
 
+//Stimulsoft Report
+import Design from "pages/StiReport/Design"
+
 // Authentication related pages
 import Login from "pages/Authentication/Login"
 import Logout from "pages/Authentication/Logout"
@@ -30,6 +33,7 @@ const userRoutes = [
   { path: "/test", component: Test },
   { path: "/OppositeReport", component: OppositeReport },
   { path: "/OppositeReportDesigner", component: OppositeReportDesigner },
+  { path: "/Design", component: Design },
 
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
