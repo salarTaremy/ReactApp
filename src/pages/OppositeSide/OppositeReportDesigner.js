@@ -75,8 +75,6 @@ const Blank = ({ cities }) => {
     const dsDataSource2 = new Stimulsoft.System.Data.DataSet("DsName");
     dsDataSource2.readJson(ds);
 
-
-    
     dsDataSource.readJson(cities);
 
     report.dictionary.clear();
