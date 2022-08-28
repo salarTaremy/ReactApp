@@ -966,49 +966,49 @@
     <YourPreviousWorkSession>In your previous work session, the designer terminated unexpectedly.</YourPreviousWorkSession>
   </ExceptionProvider>
   <Export>
-    <AddPageBreaks>Add Page Breaks</AddPageBreaks>
-    <AllBands>All bands</AllBands>
-    <AllowAddOrModifyTextAnnotations>Allow Add or Modify Text Annotations</AllowAddOrModifyTextAnnotations>
-    <AllowCopyTextAndGraphics>Allow Copy Text and Graphics</AllowCopyTextAndGraphics>
-    <AllowEditable>Allow Editable:</AllowEditable>
-    <AllowModifyContents>Allow Modify Contents</AllowModifyContents>
-    <AllowPrintDocument>Allow Print Document</AllowPrintDocument>
-    <Auto>Auto</Auto>
-    <BandsFilter>Bands Filter:</BandsFilter>
-    <CancelExport>Cancel Export</CancelExport>
-    <Color>Color</Color>
-    <Compressed>Compressed</Compressed>
-    <CompressToArchive>Compress to Archive</CompressToArchive>
+    <AddPageBreaks>اضافه کردن صفحه شکست</AddPageBreaks>
+    <AllBands>همه مولفه ها</AllBands>
+    <AllowAddOrModifyTextAnnotations>مچاز به اضافه کردن یا تغییر حاشیه‌نویسی ها </AllowAddOrModifyTextAnnotations>
+    <AllowCopyTextAndGraphics>اجازه کپی کردن تصاویر</AllowCopyTextAndGraphics>
+    <AllowEditable>قابلیت ویرایش:</AllowEditable>
+    <AllowModifyContents>مجاز به ویرایش فهرست ها</AllowModifyContents>
+    <AllowPrintDocument>مجاز به چاپ  برگه</AllowPrintDocument>
+    <Auto>خودکار</Auto>
+    <BandsFilter>فیلتر باندها:</BandsFilter>
+    <CancelExport>انصراف از خروجی</CancelExport>
+    <Color>رنگ</Color>
+    <Compressed>فشرده شده</Compressed>
+    <CompressToArchive>فشرده سازی به آرشیو</CompressToArchive>
     <ContinuousPages>صفحات پشت سر هم</ContinuousPages>
-    <DataAndHeaders>Data and Headers</DataAndHeaders>
-    <DataAndHeadersFooters>Data and Headers/Footers</DataAndHeadersFooters>
-    <DataOnly>Data only</DataOnly>
-    <DigitalSignature>Digital Signature</DigitalSignature>
-    <DigitalSignatureCertificateNotSelected>Certificate is not selected</DigitalSignatureCertificateNotSelected>
-    <DigitalSignatureError>Digital Signature error at step</DigitalSignatureError>
-    <DocumentSecurity>Document Security</DocumentSecurity>
+    <DataAndHeaders>دیتاوسربرگ ها</DataAndHeaders>
+    <DataAndHeadersFooters>داده ها و سربرگ ها / سرجمع ها</DataAndHeadersFooters>
+    <DataOnly>فقط داده</DataOnly>
+    <DigitalSignature>امضای دیجیتالی</DigitalSignature>
+    <DigitalSignatureCertificateNotSelected>گواهی انتخاب نشده است</DigitalSignatureCertificateNotSelected>
+    <DigitalSignatureError>خطای امضای دیجیتال</DigitalSignatureError>
+    <DocumentSecurity>امنیت پرونده</DocumentSecurity>
     <DotMatrixMode>Dot-Matrix Mode</DotMatrixMode>
-    <EmbeddedFonts>Embedded Fonts</EmbeddedFonts>
-    <EmbeddedImageData>Embedded Image Data</EmbeddedImageData>
-    <EnableAnimation>Enable Animation</EnableAnimation>
-    <Encoding>Encoding:</Encoding>
-    <EncryptionError>Encryption error at step</EncryptionError>
-    <EscapeCodes>Escape Codes</EscapeCodes>
-    <Exactly>Exactly</Exactly>
-    <ExceptEditableFields>Except Editable Fields</ExceptEditableFields>
-    <ExportDataOnly>Export Data Only</ExportDataOnly>
-    <ExportEachPageToSheet>Export Each Page to Sheet</ExportEachPageToSheet>
-    <Exporting>Exporting</Exporting>
-    <ExportingCalculatingCoordinates>Calculating Coordinates</ExportingCalculatingCoordinates>
-    <ExportingCreatingDocument>Creating Document</ExportingCreatingDocument>
-    <ExportingFormatingObjects>Formatting Objects</ExportingFormatingObjects>
-    <ExportingReport>Exporting Report</ExportingReport>
-    <ExportMode>Export Mode:</ExportMode>
-    <ExportModeFrame>Frame</ExportModeFrame>
-    <ExportModeTable>Table</ExportModeTable>
-    <ExportObjectFormatting>Export Object Formatting</ExportObjectFormatting>
-    <ExportPageBreaks>Export Page Breaks</ExportPageBreaks>
-    <ExportRtfTextAsImage>Export Rich Text as Image</ExportRtfTextAsImage>
+    <EmbeddedFonts>فونت های جایگزین شده</EmbeddedFonts>
+    <EmbeddedImageData>جایگزینی داده های تصاویری</EmbeddedImageData>
+    <EnableAnimation>فعال سازی انیمیشن</EnableAnimation>
+    <Encoding>رمزگذاری:</Encoding>
+    <EncryptionError>خطای رمزگذاری</EncryptionError>
+    <EscapeCodes>کدهای بازگشت</EscapeCodes>
+    <Exactly>دقیقا</Exactly>
+    <ExceptEditableFields>به جز فیلدهای قابل ویرایش</ExceptEditableFields>
+    <ExportDataOnly>فقط استخراج داده ها</ExportDataOnly>
+    <ExportEachPageToSheet>خروجی صفحات در قالب شیت</ExportEachPageToSheet>
+    <Exporting>در حال استخراج</Exporting>
+    <ExportingCalculatingCoordinates>محاسبه مختصات</ExportingCalculatingCoordinates>
+    <ExportingCreatingDocument>ساخت پرونده</ExportingCreatingDocument>
+    <ExportingFormatingObjects>پیکربندی ایتم ها</ExportingFormatingObjects>
+    <ExportingReport>خروجی گزارش</ExportingReport>
+    <ExportMode>شیوه خروجی:</ExportMode>
+    <ExportModeFrame>قالب</ExportModeFrame>
+    <ExportModeTable>جدول</ExportModeTable>
+    <ExportObjectFormatting>خروجی پیکربندی ایتم ها</ExportObjectFormatting>
+    <ExportPageBreaks>خروجی وقفه های صفحات</ExportPageBreaks>
+    <ExportRtfTextAsImage>استخراج متون به عنوان تصویر</ExportRtfTextAsImage>
     <ExportTypeBmpFile>BMP Image...</ExportTypeBmpFile>
     <ExportTypeCalcFile>OpenDocument Calc File...</ExportTypeCalcFile>
     <ExportTypeCsvFile>CSV File...</ExportTypeCsvFile>
@@ -1041,35 +1041,35 @@
     <ExportTypeXmlFile>XML File...</ExportTypeXmlFile>
     <ExportTypeXpsFile>Microsoft XPS File...</ExportTypeXpsFile>
     <GetCertificateFromCryptoUI>Get Certificate from Crypto UI</GetCertificateFromCryptoUI>
-    <ImageCompressionMethod>Image Compression Method:</ImageCompressionMethod>
+    <ImageCompressionMethod>شیوه فشرده سازی تصاویر:</ImageCompressionMethod>
     <ImageCutEdges>Cut Edges</ImageCutEdges>
     <ImageFormat>Image Format:</ImageFormat>
     <ImageGrayscale>Grayscale</ImageGrayscale>
     <ImageMonochrome>Monochrome</ImageMonochrome>
-    <ImageQuality>Image Quality:</ImageQuality>
-    <ImageResolution>Image Resolution:</ImageResolution>
-    <ImageResolutionMode>Image Resolution Mode:</ImageResolutionMode>
+    <ImageQuality>وضوح تصاویر:</ImageQuality>
+    <ImageResolution>رزولیشن تصاویر:</ImageResolution>
+    <ImageResolutionMode>نوع وضوح تصاویر:</ImageResolutionMode>
     <ImageType>Image Type</ImageType>
-    <labelEncryptionKeyLength>Encryption Key Length:</labelEncryptionKeyLength>
-    <labelOwnerPassword>Owner Password:</labelOwnerPassword>
+    <labelEncryptionKeyLength>طول کلید رمزنگاری:</labelEncryptionKeyLength>
+    <labelOwnerPassword>تکرار رمز:</labelOwnerPassword>
     <labelSubjectNameString>Subject Name String:</labelSubjectNameString>
-    <labelUserPassword>User Password:</labelUserPassword>
+    <labelUserPassword>رمز کاربری:</labelUserPassword>
     <MonochromeDitheringType>Monochrome Dithering Type:</MonochromeDitheringType>
-    <MoreSettings>More Settings</MoreSettings>
+    <MoreSettings>سایر تنظیمات</MoreSettings>
     <MultipleFiles>Multiple Files</MultipleFiles>
     <NoMoreThan>No More Than</NoMoreThan>
     <OpenAfterExport>Open After Export</OpenAfterExport>
-    <PdfACompliance>PDF/A Compliance</PdfACompliance>
+    <PdfACompliance>PDF/A انطباق</PdfACompliance>
     <PrintingReport>Printing Report</PrintingReport>
     <RemoveEmptySpaceAtBottom>Remove Empty Space at Bottom of Page</RemoveEmptySpaceAtBottom>
     <RestrictEditing>Restrict Editing:</RestrictEditing>
     <Scale>Scale:</Scale>
-    <Separator>Separator:</Separator>
-    <Settings>Settings</Settings>
+    <Separator>جدا کننده:</Separator>
+    <Settings>تنظیمات</Settings>
     <SkipColumnHeaders>Skip Column Headers</SkipColumnHeaders>
     <StandardPDFFonts>Standard PDF Fonts</StandardPDFFonts>
     <TiffCompressionScheme>TIFF Compression Scheme:</TiffCompressionScheme>
-    <title>Export Settings</title>
+    <title>تنظیمات استخراج داده</title>
     <TxtBorderType>Border Type</TxtBorderType>
     <TxtBorderTypeDouble>Unicode-Double</TxtBorderTypeDouble>
     <TxtBorderTypeSimple>Simple</TxtBorderTypeSimple>
@@ -1079,16 +1079,16 @@
     <TxtKillSpaceGraphLines>Kill Space Graph Lines</TxtKillSpaceGraphLines>
     <TxtKillSpaceLines>Kill Space Lines</TxtKillSpaceLines>
     <TxtPutFeedPageCode>Put Feed Page Code</TxtPutFeedPageCode>
-    <Type>Type:</Type>
-    <UseDefaultSystemEncoding>Use Default System Encoding</UseDefaultSystemEncoding>
-    <UseDigitalSignature>Use Digital Signature</UseDigitalSignature>
+    <Type>نوع:</Type>
+    <UseDefaultSystemEncoding>رمزنگاری پیش فرض سیستم</UseDefaultSystemEncoding>
+    <UseDigitalSignature>امضای دیجیتال</UseDigitalSignature>
     <UseEscapeCodes>Use Escape Codes</UseEscapeCodes>
     <UseOnePageHeaderAndFooter>Use One Page Header and Footer</UseOnePageHeaderAndFooter>
     <UsePageHeadersAndFooters>Use Page Headers and Footers</UsePageHeadersAndFooters>
-    <UseUnicode>Use Unicode</UseUnicode>
+    <UseUnicode>استفاده از Unicode</UseUnicode>
     <X>X:</X>
     <Y>Y:</Y>
-    <Zoom>Zoom:</Zoom>
+    <Zoom>بزرگنمایی:</Zoom>
   </Export>
   <FileFilters>
     <AllFiles>All Files</AllFiles>
@@ -1775,11 +1775,11 @@
     <TickCustomValue>Tick Custom Value</TickCustomValue>
   </Gauge>
   <Gui>
-    <barname_cancel>Cancel</barname_cancel>
+    <barname_cancel>انصراف</barname_cancel>
     <barname_caption>New Toolbar</barname_caption>
     <barname_msginvalidname>Toolbar name cannot be empty.</barname_msginvalidname>
     <barname_name>&amp;Toolbar Name:</barname_name>
-    <barname_ok>OK</barname_ok>
+    <barname_ok>تایید</barname_ok>
     <barrename_caption>Rename Toolbar</barrename_caption>
     <barsys_autohide_tooltip>Auto-Hide</barsys_autohide_tooltip>
     <barsys_close_tooltip>Close</barsys_close_tooltip>
@@ -4785,11 +4785,11 @@
     <Professional>Professional</Professional>
     <ProfessionalConfiguration>All object properties.</ProfessionalConfiguration>
     <PropertiesTab>Properties Tab</PropertiesTab>
-    <RangeAll>All</RangeAll>
-    <RangeCurrentPage>Current Page</RangeCurrentPage>
-    <RangeInfo>Enter page number and/or pages ranges separated by commas. For example: 1, 3, 5-12</RangeInfo>
-    <RangePage>Page Range</RangePage>
-    <RangePages>Pages:</RangePages>
+    <RangeAll>همه</RangeAll>
+    <RangeCurrentPage>صفحه جاری</RangeCurrentPage>
+    <RangeInfo>شماره صفحه یا بازه صفحات را وارد کنید. به عنوان مثال 1 و 2 و5-10</RangeInfo>
+    <RangePage>بازه صفحات</RangePage>
+    <RangePages>صفحات:</RangePages>
     <ReportChecker>Checker</ReportChecker>
     <ReportRenderingMessages>Report Rendering Messages</ReportRenderingMessages>
     <RestartDesigner>You need to restart the report designer</RestartDesigner>

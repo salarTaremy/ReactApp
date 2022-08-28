@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useLocation } from 'react-router-dom'
 import {
     Col,
     Row,
@@ -31,7 +32,9 @@ import { post, del, get, put } from "helpers/api_helper"
 //Url For Call Api
 import * as url from 'helpers/url_helper'
 
+
 const Page = ({ cities }) => {
+    const location = useLocation();
     const Stimulsoft = window.Stimulsoft || {};
     useEffect(() => {
         const options = new Stimulsoft.Viewer.StiViewerOptions();
@@ -42,10 +45,10 @@ const Page = ({ cities }) => {
         options.appearance.scrollbarsMode = true;
         //options.appearance.fullScreenMode = true;
         options.appearance.showTooltips = false;
-        options.appearance.backgroundColor = "#ffffff";
-        options.appearance.pageBorderColor = Stimulsoft.System.Drawing.Color.transparent;
+        //options.appearance.backgroundColor = "#ffffff";
+        //options.appearance.pageBorderColor = Stimulsoft.System.Drawing.Color.transparent;
         //options.appearance.rightToLeft = false;
-        //options.appearance.fullScreenMode = true;
+        options.appearance.fullScreenMode = true;
         //options.appearance.scrollbarsMode = false;
         options.appearance.pageAlignment = Stimulsoft.Viewer.StiContentAlignment.right
 
@@ -81,6 +84,8 @@ const Page = ({ cities }) => {
 
         
         viewer.onDesignReport = function (args) {
+            alert(location.pathname)
+            alert(location.cities)
 
             window.open("https://www.stimulsoft.com?reportName=" + args.report.reportName);
             
