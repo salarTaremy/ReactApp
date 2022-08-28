@@ -39,16 +39,30 @@ const Page = ({ cities }) => {
         //options.height = "1000px";
 
         options.appearance.reportDisplayMode = Stimulsoft.Report.Export.StiHtmlExportMode.Div;
-        options.toolbar.showAboutButton = false;
         options.appearance.scrollbarsMode = true;
         //options.appearance.fullScreenMode = true;
-        options.appearance.backgroundColor = "#ffffff";
         options.appearance.showTooltips = false;
-        // options.appearance.backgroundColor = Stimulsoft.System.Drawing.Color.black;
+        options.appearance.backgroundColor = "#ffffff";
+        options.appearance.pageBorderColor = Stimulsoft.System.Drawing.Color.transparent;
+        //options.appearance.rightToLeft = false;
+        //options.appearance.fullScreenMode = true;
+        //options.appearance.scrollbarsMode = false;
+        options.appearance.pageAlignment = Stimulsoft.Viewer.StiContentAlignment.right
+
+
+        options.toolbar.visible = true 
+        // options.toolbar.backgroundColor = Stimulsoft.System.Drawing.Color.transparent;
+        // options.toolbar.borderColor = Stimulsoft.System.Drawing.Color.black;
+        // options.toolbar.fontColor = Stimulsoft.System.Drawing.Color.pink;
+        options.toolbar.fontFamily = "IRANSansWeb"
+        options.toolbar.showAboutButton = false;
         // options.toolbar.showPrintButton = false;
-        // options.toolbar.showDesignButton = false;
-        // options.exports.showExportToPdf = true;
-        // options.exports.ShowExportToWord2007 = true;
+         options.toolbar.showDesignButton = true;
+         options.toolbar.alignment = Stimulsoft.Viewer.StiContentAlignment.Center ;
+         options.toolbar.showButtonCaptions = true
+         options.toolbar.viewMode = Stimulsoft.Viewer.StiWebViewMode.Continuous
+     
+
 
         const viewer = new Stimulsoft.Viewer.StiViewer(options, "content_viewer", false);
         const dsDataSource = new Stimulsoft.System.Data.DataSet();
@@ -64,6 +78,15 @@ const Page = ({ cities }) => {
         dsDataSource.readJson(cities);
         report.regData("DataSource", null, dsDataSource);
         viewer.report = report;
+
+        
+        viewer.onDesignReport = function (args) {
+
+            window.open("https://www.stimulsoft.com?reportName=" + args.report.reportName);
+            
+            }
+
+
 
 
     }, []);

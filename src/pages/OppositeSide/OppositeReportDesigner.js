@@ -41,7 +41,7 @@ const Blank = ({ cities }) => {
   const Stimulsoft = window.Stimulsoft || {};
   useEffect(() => {
 
-    const dsDataSource = new Stimulsoft.System.Data.DataSet();
+    const dsDataSource = new Stimulsoft.System.Data.DataSet("DsName");
     var options = new Stimulsoft.Designer.StiDesignerOptions();
 
 
@@ -53,7 +53,7 @@ const Blank = ({ cities }) => {
     // options.components.showPanel = false;
     // options.appearance.showReportTree = false;
     // options.appearance.showTooltips = false;
-    
+
 
     // StiReport report = new StiReport();
     // report.Load(new MemoryStream(byte[] data));
@@ -62,83 +62,59 @@ const Blank = ({ cities }) => {
 
     var designer = new Stimulsoft.Designer.StiDesigner(options, 'StiDesigner', false);
     var report = new Stimulsoft.Report.StiReport();
+    report.reportName = "MyNewReport";
 
 
 
+    report.loadFile("/reports/crossTabTest2.mrt");
 
- //report.loadFile("/reports/crossTabTest2.mrt");
+    // var JsonRep= localStorage.getItem("rep")
+    // report.load( JsonRep);
 
-var JsonRep= localStorage.getItem("rep")
-report.load( JsonRep);
+    var ds = { "test": [{ "id": 1 }, { "id": 2 }, { "id": 3 }] }
+    const dsDataSource2 = new Stimulsoft.System.Data.DataSet("DsName");
+    dsDataSource2.readJson(ds);
 
 
-    //LoadFromJson(string json)
-
-    // LoadFromString(string reportStr)
-    // LoadFromJson(string json)
-    // , Load(byte[] bytes) for loading the report.
-
+    
     dsDataSource.readJson(cities);
-    report.regData("DataSource", null, dsDataSource);
 
+    report.dictionary.clear();
+    report.regData("DataSource", 'MainData', dsDataSource);
+    report.regData("DataSource2", 'MainData2', dsDataSource2);
+    report.dictionary.synchronize();
 
     designer.report = report;
     designer.renderHtml("content");
 
-    
 
+    designer.onCreateReport = function (event) {
+
+      var dataSet = new Stimulsoft.System.Data.DataSet("ds_name");
+      var ds = { "test": [{ "id": 1 }, { "id": 2 }, { "id": 3 }] }
+      dataSet.readJson(ds);
+      event.report.regData("Demo", "Demo", dataSet);
+
+
+    }
 
 
 
     designer.onSaveReport = function (args) {
-
-     //var a = args.report.SaveToString();
-     var b = args.report.saveToJsonString();
-
-
-      localStorage.setItem("rep",b)
-
-
-    // //var c = args.report.SaveToByteArray();
-
-
-    // //localStorage.setItem("wwww", JSON.stringify(b))
-
-    // report.loadFile(JSON.stringify(b));
-    // //report.loadJson(JSON.stringify(b))
-    // //LoadFromString
-
-
-    // //LoadFromJson(string json)
-
-    // // LoadFromString(string reportStr)
-    // // LoadFromJson(string json)
-    // // , Load(byte[] bytes) for loading the report.
-
-    // dsDataSource.readJson(cities);
-    // report.regData("DataSource", null, dsDataSource);
-
-
-    // designer.report = report;
-    // designer.renderHtml("content");
-
-
-      }
+      //var a = args.report.SaveToString();
+      var b = args.report.saveToJsonString();
+      localStorage.setItem("rep", b)
+    }
 
     //designer.jsObject.options.buttons.resizeDesigner.style.display = "none";s
-
-
   }, []);
 
 
   return (
     <>
-
       <style>{".ltr{direction: ltr;}"}</style>
-
       <div className="ltr"
         id="content"></div>
-
     </>
   )
 }
@@ -149,7 +125,7 @@ const Main = () => {
   const [Cities, SetCities] = useState(null);
   useEffect(() => {
     get(url.GET_CITY)
-      .then((response) => {         
+      .then((response) => {
         SetCities(response)
       }, (error) => {
         console.error(error);
