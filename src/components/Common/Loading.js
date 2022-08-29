@@ -7,7 +7,7 @@ import {
     Spinner,
 } from "reactstrap"
 //Import Images
-import errorImage from "../../assets/images/loading.webp"
+//import errorImage from "../../assets/images/loading.webp"
 const Loading = () => {
     return (
             <div className="page-content">

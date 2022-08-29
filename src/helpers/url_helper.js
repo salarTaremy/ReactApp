@@ -73,8 +73,7 @@ export const GET_TASKS = "/tasks"
 export const GET_USERS = "/users"
 export const GET_USER_PROFILE = "/user"
 
-
-
 //Stimulsoft Report
 export const POST_STIREPORT= "/StiReport"
 export const GET_STIREPORT= "/StiReport"
+export const GET_STIREPORT_BY_ROUTE= "/StiReport"

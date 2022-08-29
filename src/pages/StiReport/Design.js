@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import options from "pages/StiReport/StiDesignerOption"
+import Options from "pages/StiReport/StiDesignerOption"
 import { useParams, useLocation } from 'react-router-dom';
 import Breadcrumbs from "components/Common/Breadcrumb"
 import { post, del, get, put } from "helpers/api_helper"
@@ -11,6 +11,9 @@ const Design = () => {
     var data = {}
     var JsonRep = {}
     var route = ""
+
+
+
     const onSaveReport = (args) =>{
         var jsonReport = args.report.saveToJsonString();
         var obj = JSON.parse(jsonReport)
@@ -37,7 +40,7 @@ const Design = () => {
 
     useEffect(() => {
         const dsDataSource = new Stimulsoft.System.Data.DataSet("DsName");
-        var designer = new Stimulsoft.Designer.StiDesigner(options, 'StiDesigner', false);
+        var designer = new Stimulsoft.Designer.StiDesigner(Options, 'StiDesigner', false);
         var report = new Stimulsoft.Report.StiReport();
         //report.reportName = "MyNewReport";
         //report.loadFile("/reports/crossTabTest2.mrt");

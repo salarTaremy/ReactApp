@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import options from "./StiViewerOption";
+import Options from "./StiViewerOption";
 import { Link, Route, useHistory } from "react-router-dom"
 import { post, del, get, put } from "helpers/api_helper"
 import * as url from 'helpers/url_helper'
@@ -8,9 +8,11 @@ const Report = ({ data ,route}) => {
     const history = useHistory();
     const Stimulsoft = window.Stimulsoft || {};
     useEffect(() => {
-        const viewer = new Stimulsoft.Viewer.StiViewer(options, "content_viewer", false);
+        const viewer = new Stimulsoft.Viewer.StiViewer(Options, "content_viewer", false);
         const dsDataSource = new Stimulsoft.System.Data.DataSet();
         const report = new Stimulsoft.Report.StiReport();
+  
+
 
         //report.loadFile("/reports/crossTabTest2.mrt");
         //var JsonRep= localStorage.getItem("rep")

@@ -10,8 +10,7 @@ const OppositeSideDetail = () => {
   const [Th, SetTh] = useState(null);
   const [Cities, SetCities] = useState(null);
   const { id } = useParams();
-
-  // ////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////
   useEffect(() => {
     get(`${url.FETCH_OPPOSITE_SIDE_DETAIL}/${id}`)
       .then((response) => {
@@ -32,7 +31,7 @@ const OppositeSideDetail = () => {
         console.error(error);
       });
   }, []);
-  // ////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////
   return (
     <React.Fragment>
       <div className="page-content">
