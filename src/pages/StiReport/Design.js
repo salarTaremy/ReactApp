@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import Options from "pages/StiReport/StiDesignerOption"
+//import Options from "pages/StiReport/StiDesignerOption"
 import { useParams, useLocation } from 'react-router-dom';
 import Breadcrumbs from "components/Common/Breadcrumb"
 import { post, del, get, put } from "helpers/api_helper"
@@ -14,18 +14,27 @@ const Design = () => {
 
 
 
-    const onSaveReport = (args) =>{
+    var Options = new Stimulsoft.Designer.StiDesignerOptions();
+    //Options.appearance.fullScreenMode = true;
+    //Options.viewerOptions.appearance.reportDisplayMode = Stimulsoft.Report.Export.StiHtmlExportMode.Auto;
+    //Options.toolbar.showFileMenuExit = false;
+    //Options.toolbar.showFileMenuOptions = false;
+    //Options.bands.showChildBand = false;
+    //Options.components.showPanel = false;
+    //Options.appearance.showReportTree = false;
+    //Options.appearance.showTooltips = false;
+
+
+    const onSaveReport = (args) => {
         var jsonReport = args.report.saveToJsonString();
         var obj = JSON.parse(jsonReport)
         obj.Route = route
-        //const obj = [...d, {"route": route}]
-
-        post(url.POST_STIREPORT,obj)
-        .then((response) => {
-            console.log (response)
-          }, (error) => {
-              console.error(error);
-          });
+        put(url.PUT_STIREPORT, obj)
+            .then((response) => {
+                console.log(response)
+            }, (error) => {
+                console.error(error);
+            });
 
     }
 
@@ -60,16 +69,11 @@ const Design = () => {
 
     return (
         <>
-        <style>{".ltr{direction: ltr;}"}</style>
-
-                <div className="page-content">
-                    
-                    <div className="ltr"
-                id="designer"></div>
-                </div>
-  
-            
-          
+            <style>{".ltr{direction: ltr;}"}</style>
+            <div className="page-content">
+                <div className="ltr"
+                    id="designer"></div>
+            </div>
         </>
     )
 }

@@ -10,9 +10,9 @@ import { Link } from "react-router-dom";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 
 // Import menuDropdown
-import LanguageDropdown from "../CommonForBoth/TopbarDropdown/LanguageDropdown";
 import NotificationDropdown from "../CommonForBoth/TopbarDropdown/NotificationDropdown";
 import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu";
+import StiDropdown from "../CommonForBoth/TopbarDropdown/StiDropdown";
 
 import logoSm from "../../assets/images/logo-sm.png";
 import logoDark from "../../assets/images/logo-dark.png";
@@ -119,7 +119,6 @@ const Header = (props) => {
                   </Form>
                 </DropdownMenu>
               </Dropdown>
-              <LanguageDropdown />{" "}
               <Dropdown className="d-none d-lg-inline-block ms-1">
                 <button
                   type="button"
@@ -132,7 +131,9 @@ const Header = (props) => {
                   <i className="mdi mdi-fullscreen"></i>
                 </button>
               </Dropdown>{" "}
-              <NotificationDropdown /> <ProfileMenu />{" "}
+              <StiDropdown/>
+              <NotificationDropdown /> 
+              <ProfileMenu />{" "}
               <button
                 type="button"
                 className="btn header-item noti-icon right-bar-toggle waves-effect"
