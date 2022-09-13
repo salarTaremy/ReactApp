@@ -8,42 +8,6 @@ const Test = (props) => {
 
 
 
-  // useEffect(() => {
-  //    console.log('useEffect');
-  //    console.log(props.tarafhesab);
-  //   // settarafhesab(props.tarafhesab)
-  //   // console.log('settarafhesab()');
-
-  //     //when this.state.errors object is empty 
-  //     if (Object.entries(tarafhesab).length === 0 && tarafhesab.constructor === Object) {
-  //       console.log('is null');
-  //       settarafhesab(props.tarafhesab)
-  //       console.log(tarafhesab);
-  //     }
-
-  // });
-
-
-
-  // useEffect(
-  //   () => {
-  //     console.log('use ef');
-  //     console.log(props.tarafhesab);
-  //     settarafhesab(props.tarafhesab)
-  //     // //when this.state.errors object is empty 
-  //     // if (Object.entries(tarafhesab).length === 0 && tarafhesab.constructor === Object) {
-  //     //   console.log('is null');
-  //     //   console.log(tarafhesab);
-  //     //   settarafhesab(props.tarafhesab)
-  //     // }
-
-  //     return () => {
-  //       console.log('Unload');
-  //       //settarafhesab({});
-  //     };
-  //   },
-  //   []
-  // );
 
 
 

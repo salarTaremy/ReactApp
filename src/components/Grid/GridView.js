@@ -36,6 +36,18 @@ const GridView = (props) => {
   gridOptions.onGridReady = onGridReady
   gridOptions.onFilterChanged = onFilterChanged
 
+
+
+  const getRowId = params => { 
+    if (params.data.id!=null) {
+        return params.data.id;
+    }
+    console.error("The datasource related to the 'GridView' must include the 'ID' column.")
+    return -1
+};
+
+
+
   const datasource = {
     getRows(params) {
       if (IsFiterChanged == true) {
@@ -43,12 +55,11 @@ const GridView = (props) => {
         params.request.startRow = 0;
         params.request.endRow = rowCount;
       }
+
       //let url = `${props.Url}`
       //const data = JSON.stringify(params.request, null, 1)
       const data = params.request
-
-      console.log(JSON.stringify(params.request, null, 1))
-
+      //console.log(JSON.stringify(params.request, null, 1))
       post(props.Url  ,data).then((response) => {
         console.log (response)
         var lastRow = 0;
@@ -57,7 +68,6 @@ const GridView = (props) => {
           //gridOptions.api.setColumnDefs(response.columns)     //For Server Side Cols
           gridOptions.api.setColumnDefs(props.Columns)       //For Client Side Cols
           lastRow = parseInt(response.value[0].lastRow);
-          console.log("lastRow",lastRow)
         }
         params.request.startRow = 0;
         params.successCallback(response.value, lastRow);
@@ -87,6 +97,7 @@ const GridView = (props) => {
           //serverSideFilteringAlwaysResets = {true}
           localeText={AG_GRID_LOCALE_FA}
           ref={grid}
+          getRowId={getRowId}
           popupParent={document.body}
           enableRangeSelection={true}
           enableCharts={true}

@@ -43,7 +43,7 @@ const OPPOSITE_SIDE_COLUMNS = [
     { headerName: "شناسه", field: "id", filter: "agNumberColumnFilter", cellRenderer: Cell_ID },
     { headerName: "نام", field: "name", filter: "agTextColumnFilter" },
     { headerName: "نام خانوادگی", field: "famil", filter: "agTextColumnFilter" },
-    { headerName: "ش-شناسنامه", field: "sh_sh", filter: "agNumberColumnFilter", hide: false },
+    { headerName: "ش-شناسنامه", field: "sh_Sh", filter: "agTextColumnFilter", hide: false },
     { headerName: "کد ملی", field: 'code_melli', filter: "agTextColumnFilter", maxWidth: 150 },
     { headerName: "کد اقتصادی", field: 'code_Eghtesadi', filter: "agTextColumnFilter", minWidth: 150 },
     { headerName: "نام پدر", field: 'namePedar', filter: "agTextColumnFilter", rowGroup: false },

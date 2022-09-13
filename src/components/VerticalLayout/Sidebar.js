@@ -20,8 +20,8 @@ const Sidebar = props => {
             </div>
 
               <div className="mt-3">
-                <Link to="#" className="text-dark fw-medium font-size-16">Patrick Becker</Link>
-                <p className="text-body mt-1 mb-0 font-size-13">UI/UX Designer</p>
+                <Link to="#" className="text-dark fw-medium font-size-16">سالار طارمی</Link>
+                <p className="text-body mt-1 mb-0 font-size-13">برنامه نویس ومشاور SQL Server</p>
               </div>
             </div>
             <div data-simplebar className="h-100">
