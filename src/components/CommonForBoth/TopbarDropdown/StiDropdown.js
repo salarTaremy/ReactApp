@@ -18,8 +18,8 @@ const StiDropdown = props => {
     const RenderList = () => {
         return (
             Rep.Reports.map((item, i) =>
-                <>
-                    <Link to="" key={i} onClick={() => { alert('Menu Item Click !!!') }}
+                <div key={i}>
+                    <Link to=""  onClick={() => { alert('Menu Item Click !!!') }}
                         className="text-reset notification-item">
                         <div className="d-flex align-items-start">
                             <div className="avatar-xs me-3">
@@ -43,7 +43,7 @@ const StiDropdown = props => {
                             </div>
                         </div>
                     </Link>
-                </>
+                </div>
             ))
     }
 

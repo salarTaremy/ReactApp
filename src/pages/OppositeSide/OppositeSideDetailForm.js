@@ -43,6 +43,9 @@ const ThForm = (props) => {
   const validationSchema = Yup.object().shape({
     name: Yup.string()
       .required(),
+    birthDay: Yup.string()
+      .max(3)
+      .required(),
     sh_Sh: Yup.number()
       .min(5)
       .max(10)
@@ -131,7 +134,6 @@ const ThForm = (props) => {
                     <div className="mb-3">
                       <Label>شماره شناسنامه</Label>
                       <input {...register('sh_Sh', { required: true, maxLength: 10 })} className="form-control" />
-                      <Error Err={errors?.sh_Sh}></Error>
                       <div className="text-warning">{errors.sh_Sh?.message}</div>
                     </div>
                   </Col>
@@ -158,7 +160,8 @@ const ThForm = (props) => {
                       <Label>تاریخ تولد</Label>
                       <Controller
                         control={control}
-                        {...register('birthDay')}
+                        // {...register('birthDay')}
+                        name = "birthDay"
                         render={({ field: { value, onChange } }) => (
                           <DatePicker
                             className="form-control"
@@ -167,6 +170,7 @@ const ThForm = (props) => {
                           />
                         )}
                       />
+                       <div className="text-warning">{errors.birthDay?.message}</div>
                     </div>
                   </Col>
                   <Col md="3">
@@ -174,7 +178,8 @@ const ThForm = (props) => {
                       <Label>تاریخ صدور شناسنامه</Label>
                       <Controller
                         control={control}
-                        {...register('sodoorDate')}
+                        // {...register('sodoorDate')}
+                        name = "sodoorDate"
                         render={({ field: { value, onChange } }) => (
                           <DatePicker
                             className="form-control"
@@ -191,7 +196,8 @@ const ThForm = (props) => {
                       <Controller
                         control={control}
                         className="form-control text-danger"
-                        {...register('iD_MahalTavalod')}
+                        // {...register('iD_MahalTavalod')}
+                        name="iD_MahalTavalod"
                         render={({
                           field: { onChange, onBlur, value, name, ref },
                           fieldState: { invalid, isTouched, isDirty, error },
