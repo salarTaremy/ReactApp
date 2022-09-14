@@ -4,7 +4,8 @@ import React, { useState, useRef } from 'react';
 import { AgGridReact, AgGridColumn } from 'ag-grid-react';
 import 'ag-grid-enterprise';
 import '../../../node_modules/ag-grid-community/dist/styles/ag-grid.css';
-import '../../../node_modules/ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
+// import '../../../node_modules/ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
+import '../../assets/css/ag-theme-alpine-dark.css'
 import '../../../node_modules/ag-grid-community/dist/styles/ag-theme-balham-dark.css';
 import '../../../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css';
 import '../../../node_modules/ag-grid-community/dist/styles/ag-theme-balham.css';
@@ -79,8 +80,10 @@ const GridView = (props) => {
   };
 
 
-  // const themeName = 'ag-theme-alpine-dark';
-  // const themeName = 'ag-theme-balham-dark';
+  const themeName = 'ag-theme-alpine-dark';
+  //const themeName = 'ag-theme-balham-dark';
+  //const themeName = 'ag-theme-alpine';
+  //const themeName = 'ag-theme-balham';
   //const themeName = 'ag-theme-material';
 
   return (
@@ -90,7 +93,7 @@ const GridView = (props) => {
         height: '510px',
         width: '100%',
       }}
-      className="ag-theme-alpine-dark" >
+      className={themeName} >
       <AgGridReact  
           cacheBlockSize={rowCount}
           //enablegrouping={true}
