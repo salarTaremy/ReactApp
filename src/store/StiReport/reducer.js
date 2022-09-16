@@ -1,7 +1,7 @@
 import { SET_REPORT, RELOAD } from "./actionTypes"
 
 
-const initialState = { isLoading: false, Reports: [{ ReportName: "", Description: "", Detail: "" }] }
+const initialState = { isLoading: false, Reports: [] }
 const stiReport = (state = initialState, action) => {
   switch (action.type) {
     case RELOAD:

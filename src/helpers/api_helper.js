@@ -62,7 +62,10 @@ export async function get(url, config = {}) {
   axiosApi.defaults.headers.common["Authorization"] = 'Bearer '+ authHeader().Authorization;
   return await axiosApi
   .get(url, { ...config })
-  .then(response => response.data)
+  .then((response) => {
+    console.log(response)
+    return response.data
+  })
 }
 
 export async function post(url, data, config = {}) {

@@ -37,7 +37,7 @@ const StiDropdown = props => {
                                     </p>
                                     <p className="mb-0">
                                         <i className="mdi mdi-clock-outline" />
-                                        {item.Detail}
+                                        {item.CreateDate}
                                     </p>
                                 </div>
                             </div>
