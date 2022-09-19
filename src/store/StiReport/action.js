@@ -1,5 +1,5 @@
 import {
-    RELOAD,SET_REPORT
+    RELOAD,SET_REPORT,REG_DATA
   } from "./actionTypes"
   
   

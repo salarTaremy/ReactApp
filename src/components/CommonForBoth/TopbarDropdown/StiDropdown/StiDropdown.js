@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { Dropdown, DropdownToggle, DropdownMenu, Row, Col, Media, Label, Button } from "reactstrap"
 import SimpleBar from "simplebar-react"
-import { SET_REPORT, RELOAD } from "store/StiReport/actionTypes"
+import { SET_REPORT, RELOAD,REG_DATA } from "store/StiReport/actionTypes"
 import { useSelector, useDispatch } from 'react-redux'
 import { Spinner, Modal } from "reactstrap"
 import RenderList from "./RenderList"
@@ -26,8 +26,8 @@ const StiDropdown = props => {
                 response.value.map((item, i) => {
                     Reports.push(JSON.parse(item))
                 })
-                const stRep = { isLoading: false, Reports: Reports }
-                dispatch({ type: SET_REPORT, payload: stRep });
+                //const stRep = { isLoading: false, Reports: Reports , data:{} }
+                dispatch({ type: SET_REPORT, payload: Reports });
             }, (error) => {
                 console.error(error);
             });
@@ -85,6 +85,8 @@ const StiDropdown = props => {
                     <AddNewReportForm onSubmit={onSubmit} IsLoading={IsLoading} />
                 </div>
             </Modal>
+
+            <p>{Rep.data.name}</p>
             <Dropdown
                 isOpen={menu}
                 toggle={() => setMenu(!menu)}
@@ -117,7 +119,7 @@ const StiDropdown = props => {
                         :
                         <>
                             <SimpleBar >
-                                <RenderList Rep={Rep} onClick={() => { alert('Click item ') }} />
+                                <RenderList Rep={Rep} onClick={() => { var dt = new Date().toString();   dispatch({ type: REG_DATA, payload: {name:dt} });    }} />
                             </SimpleBar>
                             <div className="p-2 border-top d-grid">
                                 <button
