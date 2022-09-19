@@ -69,7 +69,7 @@ const StiDropdown = props => {
                 backdrop={false}
             >
                 <div className="modal-header">
-                    <h5 className="modal-title mt-0">گزارش</h5>
+                    <h5 className="modal-title mt-0">{str.REPORTS.ADD_NEW_REPORT}</h5>
                     <button
                         type="button"
                         onClick={() => { setModalIsVisible(false) }}
