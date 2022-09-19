@@ -12,7 +12,7 @@ import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 // Import menuDropdown
 import NotificationDropdown from "../CommonForBoth/TopbarDropdown/NotificationDropdown";
 import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu";
-import StiDropdown from "../CommonForBoth/TopbarDropdown/StiDropdown";
+import StiDropdown from "../CommonForBoth/TopbarDropdown/StiDropdown/StiDropdown";
 
 import logoSm from "../../assets/images/logo-sm.png";
 import logoDark from "../../assets/images/logo-dark.png";

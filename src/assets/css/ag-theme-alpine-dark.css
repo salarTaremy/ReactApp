@@ -4721,7 +4721,7 @@
   text-align: center;
 }
 .ag-theme-alpine-dark .ag-checkbox-input-wrapper {
-  font-family: "IRANSansWeb";
+  font-family: "agGridAlpine";
   font-size: 16px;
   line-height: 16px;
   font-style: normal;
@@ -4841,7 +4841,7 @@
   border-color: var(--ag-toggle-button-on-border-color, var(--ag-checkbox-checked-color, var(--ag-alpine-active-color, #2196f3)));
 }
 .ag-theme-alpine-dark .ag-radio-button-input-wrapper {
-  font-family: "IRANSansWeb";
+  font-family: "agGridAlpine";
   font-size: 16px;
   line-height: 16px;
   font-style: normal;
