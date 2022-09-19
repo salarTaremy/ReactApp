@@ -35,7 +35,7 @@ const StiDropdown = props => {
     const onSubmit = (data) => {
         setIsLoading(true)
         console.log(data)
-        const obj = { reportName: 'Name', description: "description", route: location.pathname }
+        const obj = { reportName: data.reportName, description: data.description, route: location.pathname }
         api.post(url.POST_STIREPORT, obj)
             .then((response) => {
                 console.log(response)
