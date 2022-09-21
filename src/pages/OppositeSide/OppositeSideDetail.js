@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react"
 import * as url from 'helpers/url_helper'
 import * as api from "helpers/api_helper"
-import { useParams } from 'react-router-dom';
+import { useParams,useHistory } from 'react-router-dom';
 import Breadcrumbs from "components/Common/Breadcrumb"
 import Loading from "components/Common/Loading"
 import OppositeSideDetailForm from 'pages/OppositeSide/OppositeSideDetailForm'
+import { useDispatch } from "react-redux";
+import { REG_DATA, SET_ON_CLICK } from "store/StiReport/actionTypes"
 
-const OppositeSideDetail = (prop) => { 
+const OppositeSideDetail = () => { 
   const [Th, SetTh] = useState(null);
   const [Cities, SetCities] = useState(null);
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const history = useHistory();
   ////////////////////////////////////////////////////
   useEffect(() => {
     api.get(`${url.FETCH_OPPOSITE_SIDE_DETAIL}/${id}`)
@@ -31,6 +35,12 @@ const OppositeSideDetail = (prop) => {
         console.error(error);
       });
   }, []);
+  ////////////////////////////////////////////////////
+  const stiDataSeter =(event)=> {
+    dispatch({type: REG_DATA , payload:Th})
+    history.push("/ShowReport")
+  }
+  dispatch({type: SET_ON_CLICK , payload:stiDataSeter})
   ////////////////////////////////////////////////////
   return (
     <React.Fragment>

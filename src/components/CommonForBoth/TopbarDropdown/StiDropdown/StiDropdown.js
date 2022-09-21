@@ -18,6 +18,14 @@ const StiDropdown = props => {
     const Rep = useSelector((state) => state.stiReport)
     const dispatch = useDispatch()
     const tog_center = () => {setModalIsVisible(!ModalIsVisible)}
+
+
+    useEffect(() => {
+        console.log(location)
+      }, []);
+
+
+
     const onClickAddNewReportBtn = () => {
         dispatch({ type: RELOAD });
         api.get(`${url.GET_STIREPORT}?Route=${location.pathname}`)
@@ -34,7 +42,6 @@ const StiDropdown = props => {
     }
     const onSubmit = (data) => {
         setIsLoading(true)
-        console.log(data)
         const obj = { reportName: data.reportName, description: data.description, route: location.pathname }
         api.post(url.POST_STIREPORT, obj)
             .then((response) => {
@@ -86,7 +93,7 @@ const StiDropdown = props => {
                 </div>
             </Modal>
 
-            <p>{Rep.data.name}</p>
+            {/* <p>{ JSON.stringify( Rep)}</p> */}
             <Dropdown
                 isOpen={menu}
                 toggle={() => setMenu(!menu)}
@@ -119,7 +126,10 @@ const StiDropdown = props => {
                         :
                         <>
                             <SimpleBar >
-                                <RenderList Rep={Rep} onClick={() => { var dt = new Date().toString();   dispatch({ type: REG_DATA, payload: {name:dt} });    }} />
+                                <RenderList Rep={Rep} 
+                                //onClick={() => { alert('Click')}} 
+                                onClick={Rep.ONC}
+                                />
                             </SimpleBar>
                             <div className="p-2 border-top d-grid">
                                 <button

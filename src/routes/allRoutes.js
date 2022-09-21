@@ -13,7 +13,7 @@ import Blank from "pages/Blank/Blank"
 //Opposite Side
 import ManageOppositeSide from "pages/OppositeSide/ManageOppositeSide"
 import OppositeSideDetail from "pages/OppositeSide/OppositeSideDetail"
-import OppositeReport from "pages/OppositeSide/OppositeReport"
+import ShowReport from "pages/OppositeSide/ShowReport"
 import OppositeReportDesigner from "pages/OppositeSide/OppositeReportDesigner"
 
 //Stimulsoft Report
@@ -31,7 +31,7 @@ const userRoutes = [
   { path: "/Blank", component: Blank },
   { path: "/dashboard", component: Dashboard },
   { path: "/test", component: Test },
-  { path: "/OppositeReport", component: OppositeReport },
+  { path: "/ShowReport/:id", component: ShowReport },
   { path: "/OppositeReportDesigner", component: OppositeReportDesigner },
   { path: "/Design", component: Design },
 

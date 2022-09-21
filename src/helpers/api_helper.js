@@ -33,11 +33,9 @@ axiosApi.interceptors.response.use(
 
 
 const handeError = (error) =>{
-
   if(error.response.status == 401){
     window.location = "/logout";
   }
-
   if (error.response) {
     // // The request was made and the server responded with a status code
     // // that falls out of the range of 2xx
@@ -63,7 +61,6 @@ export async function get(url, config = {}) {
   return await axiosApi
   .get(url, { ...config })
   .then((response) => {
-    console.log(response)
     return response.data
   })
 }

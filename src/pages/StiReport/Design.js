@@ -10,8 +10,6 @@ const Design = () => {
     const Stimulsoft = window.Stimulsoft || {};
     var data = {}
     var JsonRep = {}
-    var route = ""
-
 
 
     var Options = new Stimulsoft.Designer.StiDesignerOptions();
@@ -28,14 +26,13 @@ const Design = () => {
     const onSaveReport = (args) => {
         var jsonReport = args.report.saveToJsonString();
         var obj = JSON.parse(jsonReport)
-        obj.Route = route
+        obj.id = JSON.parse(JsonRep).id
         put(url.PUT_STIREPORT, obj)
             .then((response) => {
                 console.log(response)
             }, (error) => {
                 console.error(error);
             });
-
     }
 
     useEffect(() => {
@@ -44,7 +41,7 @@ const Design = () => {
         console.log(location.state); // result: 'some_value'
         data = location.state.data
         JsonRep = location.state.JsonRep
-        route = location.state.route
+
     }, [location]);
 
     useEffect(() => {
@@ -61,7 +58,6 @@ const Design = () => {
         report.dictionary.synchronize();
         designer.report = report;
         designer.renderHtml("designer");
-
         designer.onSaveReport = onSaveReport
         //designer.jsObject.options.buttons.resizeDesigner.style.display = "none";s
     }, []);

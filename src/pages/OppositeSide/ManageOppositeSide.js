@@ -1,30 +1,28 @@
 import React, { useState, useEffect } from "react"
 import * as cols from "components/Grid/columnHelper"
-import { Link, Route, useHistory } from "react-router-dom"
-import Loading from "components/Common/Loading"
-import DatePicker from "components/Common/DatePicker"
-//import { useForm } from "react-hook-form";
 import { Card, Modal } from "reactstrap"
 import Breadcrumbs from "components/Common/Breadcrumb"
 import GridView from "components/Grid/GridView"
-import * as url from 'helpers/url_helper'
-import { post, del, get, put } from "helpers/api_helper"
+import Loading from "components/Common/Loading"
+import {api,url,str} from 'common/imports'
+import { useDispatch } from "react-redux"
+import { REG_DATA } from "store/StiReport/actionTypes"
 
 let CityList = [];
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const ManageOppositeSide = () => {
   const [Isloading, SetIsloading] = useState(true)
+  const dispatch = useDispatch();
   useEffect(() => {
-    get(url.GET_CITY)
+    api.get(url.GET_CITY)
       .then((response) => {
         SetIsloading(false)
         CityList = response
-        // const transformed = response.map(({ id, code, value }) => ({ label: value, value: id, code: code ,id:id}));
-        // CityList = transformed
       }, (error) => {
         console.error(error);
       });
   }, []);
+  dispatch({type: REG_DATA , payload:{ name:"salar" , famil:"taremi" }})
   return (
     <React.Fragment>
       <div className="page-content">
@@ -41,22 +39,12 @@ const ManageOppositeSide = () => {
             <Card >
               <Report></Report>
             </Card>
-            <Card >
-              <Report></Report>
-            </Card>
-
           </>}
       </div>
     </React.Fragment>
   )
 }
 export default ManageOppositeSide
-
-
-
-
-
-
 const Report = () => {
   const [modal_center, setmodal_center] = useState(false)
   const tog_center = () => {

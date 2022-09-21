@@ -121,7 +121,7 @@ const SidebarContent = props => {
                   <Link to="/ManageOppositeSide">{props.t("مدیریت طرف حساب ها")} </Link>
                 </li>
                 <li>
-                  <Link to="/OppositeReport">{props.t("گزارش حساب ها")} </Link>
+                  <Link to="/ShowReport/131">{props.t("گزارش")} </Link>
                 </li>
                 <li>
                   <Link to="/OppositeReportDesigner">{props.t("طراحی گزارش حساب ها")} </Link>

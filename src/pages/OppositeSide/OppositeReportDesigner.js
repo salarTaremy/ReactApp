@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react"
-
-//Import Breadcrumbnpm start
+import { useSelector, useDispatch } from 'react-redux'
 import Breadcrumbs from "components/Common/Breadcrumb"
-
-
-//Loading Component
 import Loading from "components/Common/Loading"
 
 //For Call Api
@@ -17,6 +13,11 @@ import Designer from "pages/StiReport/Designer"
 
 
 const Main = () => {
+
+  const Rep = useSelector((state) => state.stiReport)
+
+
+
   const [Cities, SetCities] = useState(null);
   useEffect(() => {
     get(url.GET_CITY)
@@ -31,7 +32,7 @@ const Main = () => {
       <div className="page-content">
         <Breadcrumbs title="گزارش طرف حساب" breadcrumbItem="طرف حساب ها" />
         {Cities ?
-          <Designer data={Cities}   ></Designer>
+          <Designer data={Rep.data}   ></Designer>
           : <Loading />}
       </div>
     </React.Fragment>

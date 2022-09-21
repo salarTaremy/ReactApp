@@ -1,4 +1,4 @@
-import { SET_REPORT, RELOAD,REG_DATA } from "./actionTypes"
+import { SET_REPORT, RELOAD,REG_DATA ,SET_ON_CLICK } from "./actionTypes"
 
 
 const initialState = { isLoading: false, Reports: [] ,data:{} }
@@ -20,10 +20,17 @@ const stiReport = (state = initialState, action) => {
         data: action.payload,
       }
       break
+      case SET_ON_CLICK:
+        state= {
+          ...state,
+          ONC: action.payload,
+        }
+        break
     default:
       state = { ...state }
       break
   }
+  console.log (state)
   return state
 }
 
