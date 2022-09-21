@@ -5,15 +5,17 @@ import Loading from "components/Common/Loading"
 import {api,url,str} from 'common/imports'
 import ReportViewer from "pages/StiReport/ReportViewer"
 import { useParams } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { select } from "redux-saga/effects"
+
 const ShowReport = () => {
-    const data = {id:256 , name : 'salar' , age: 38}
     const location = useLocation();
     const [JsonData, SetJsonData] = useState(null);
+    const Rep = useSelector((state) => state.stiReport)
     const { id } = useParams();
     useEffect(() => {
         api.get(`${url.GET_STIREPORT_BY_ID}/${id}`)
             .then((response) => {
-                console.log(response.value.jsonData)
                 SetJsonData(response.value.jsonData)
             }, (error) => {
                 console.error(error);
@@ -24,7 +26,7 @@ const ShowReport = () => {
             <div className="page-content">
                 <Breadcrumbs title="گزارش طرف حساب" breadcrumbItem="طرف حساب ها" />
                 {JsonData ?
-                    <ReportViewer data={data}  route={location.pathname}  JsonData = {JsonData}    ></ReportViewer>
+                    <ReportViewer data={Rep.data}  route={location.pathname}  JsonData = {JsonData}    ></ReportViewer>
                     : <Loading />}
             </div>
         </React.Fragment>

@@ -21,8 +21,6 @@ const StiDropdown = props => {
 
 
 
-    
-
     const getCurrentRouteWithoutLastPart = () => {
         return location.pathname.slice(0, location.pathname.lastIndexOf('/'))
     }
@@ -30,10 +28,7 @@ const StiDropdown = props => {
         const route = getCurrentRouteWithoutLastPart()
         return route?route:location.pathname
     }
-
-
     const onToggleDropDown = () => {
-
         if (menu == false) {
             console.log('Menu Open')
             dispatch({ type: RELOAD });
