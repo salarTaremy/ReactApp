@@ -13,6 +13,7 @@ const REPORTS = {
     REPORTS: 'گزارشات',
     REPORT : 'گزارش',
     REPORT_NAME : 'نام گزارش',
+    REPORT_PATH : 'مسیر گزارش',
     RECEIVING_RELEVANT_REPORTS : "درحال دریافت گزارشات مربوطه",
     ADD_NEW_REPORT : "اضافه کردن گزارش جدید"
 }

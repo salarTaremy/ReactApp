@@ -36,7 +36,14 @@ export const AddNewReportForm = (props) => {
                     </div>
                 </Col>
             </Row>
-
+            <Row>
+                <Col >
+                    <div className="mb-3">
+                        <Label>{str.REPORTS.REPORT_PATH}</Label>
+                        <input  className="form-control"  value={props.route} disabled={true}/>
+                    </div>
+                </Col>
+            </Row>
             {props.IsLoading ?
                 <button  
                     disabled={true}

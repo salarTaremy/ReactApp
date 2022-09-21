@@ -36,9 +36,9 @@ const OppositeSideDetail = () => {
       });
   }, []);
   ////////////////////////////////////////////////////
-  const stiDataSeter =(event)=> {
+  const stiDataSeter =()=> {
     dispatch({type: REG_DATA , payload:Th})
-    history.push("/ShowReport")
+    //history.push("/ShowReport")
   }
   dispatch({type: SET_ON_CLICK , payload:stiDataSeter})
   ////////////////////////////////////////////////////

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { Dropdown, DropdownToggle, DropdownMenu, Row, Col, Media, Label, Button } from "reactstrap"
 import SimpleBar from "simplebar-react"
-import { SET_REPORT, RELOAD,REG_DATA } from "store/StiReport/actionTypes"
+import { SET_REPORT, RELOAD, REG_DATA } from "store/StiReport/actionTypes"
 import { useSelector, useDispatch } from 'react-redux'
 import { Spinner, Modal } from "reactstrap"
 import RenderList from "./RenderList"
 import { Reload } from "./Reload"
 import AddNewReportForm from './AddNewReportForm'
-import {api,url,str} from 'common/imports'
+import { api, url, str } from 'common/imports'
 
 const StiDropdown = props => {
     const [IsLoading, setIsLoading] = useState(false)
@@ -17,41 +17,62 @@ const StiDropdown = props => {
     const location = useLocation()
     const Rep = useSelector((state) => state.stiReport)
     const dispatch = useDispatch()
-    const tog_center = () => {setModalIsVisible(!ModalIsVisible)}
-
-
-    useEffect(() => {
-        console.log(location)
-      }, []);
+    const tog_center = () => { setModalIsVisible(!ModalIsVisible) }
 
 
 
-    const onClickAddNewReportBtn = () => {
-        dispatch({ type: RELOAD });
-        api.get(`${url.GET_STIREPORT}?Route=${location.pathname}`)
-            .then((response) => {
-                var Reports = []
-                response.value.map((item, i) => {
-                    Reports.push(JSON.parse(item))
-                })
-                //const stRep = { isLoading: false, Reports: Reports , data:{} }
-                dispatch({ type: SET_REPORT, payload: Reports });
-            }, (error) => {
-                console.error(error);
-            });
+    
+
+    const getCurrentRouteWithoutLastPart = () => {
+        return location.pathname.slice(0, location.pathname.lastIndexOf('/'))
     }
+    const getCurrentRoute = () => {
+        const route = getCurrentRouteWithoutLastPart()
+        return route?route:location.pathname
+    }
+
+
+    const onToggleDropDown = () => {
+
+        if (menu == false) {
+            console.log('Menu Open')
+            dispatch({ type: RELOAD });
+            //const finalUrl = `${url.GET_STIREPORT}?Route=${location.pathname}`;
+            const finalUrl = `${url.GET_STIREPORT}?Route=${getCurrentRoute()}`;
+            api.get(finalUrl)
+                .then((response) => {
+                    var Reports = []
+                    response.value.map((item, i) => {
+                        Reports.push(JSON.parse(item))
+                    })
+                    dispatch({ type: SET_REPORT, payload: Reports });
+                }, (error) => {
+                    console.error(error);
+                });
+                Rep.ONC()
+        }
+        else {
+            console.log('Menu Open')
+        }
+        setMenu(!menu)
+    }
+
+
+
+
+
     const onSubmit = (data) => {
         setIsLoading(true)
-        const obj = { reportName: data.reportName, description: data.description, route: location.pathname }
+        const obj = { reportName: data.reportName, description: data.description, route:getCurrentRoute() , jsonData : '' }
         api.post(url.POST_STIREPORT, obj)
             .then((response) => {
-                console.log(response)
                 setIsLoading(false)
                 tog_center()
             }, (error) => {
                 console.error(error);
             });
     };
+
     const modifiers = {
         setMaxHeight: {
             enabled: true,
@@ -67,6 +88,7 @@ const StiDropdown = props => {
             },
         },
     }
+    
     return (
         <>
             <Modal
@@ -76,12 +98,12 @@ const StiDropdown = props => {
                 backdrop={false}
             >
                 <div className="modal-header">
-                    <h5 className="modal-title mt-0">{str.REPORTS.ADD_NEW_REPORT}</h5>
+                    <h6 className="modal-title mt-0">{str.REPORTS.ADD_NEW_REPORT}</h6>
                     <button
                         type="button"
                         onClick={() => { setModalIsVisible(false) }}
                         className="close bg-danger"
-                        disabled = {IsLoading}
+                        disabled={IsLoading}
                         data-dismiss="modal"
                         aria-label="Close"
                     >
@@ -89,14 +111,14 @@ const StiDropdown = props => {
                     </button>
                 </div>
                 <div className="modal-body">
-                    <AddNewReportForm onSubmit={onSubmit} IsLoading={IsLoading} />
+                    <AddNewReportForm onSubmit={onSubmit} IsLoading={IsLoading}  route={getCurrentRoute()} />
                 </div>
             </Modal>
 
             {/* <p>{ JSON.stringify( Rep)}</p> */}
             <Dropdown
                 isOpen={menu}
-                toggle={() => setMenu(!menu)}
+                toggle={onToggleDropDown}
                 className="dropdown d-inline-block"
                 tag="li"
             >
@@ -105,7 +127,6 @@ const StiDropdown = props => {
                     tag="button"
                     disabled={menu}
                     id="page-header-notifications-dropdown-print"
-                    onClick={onClickAddNewReportBtn}
                 >
                     <i className="dripicons-print"></i>
                     {/* <span className="badge rounded-pill bg-danger ">2</span> */}
@@ -126,9 +147,8 @@ const StiDropdown = props => {
                         :
                         <>
                             <SimpleBar >
-                                <RenderList Rep={Rep} 
-                                //onClick={() => { alert('Click')}} 
-                                onClick={Rep.ONC}
+                                <RenderList Rep={Rep}
+                                    //onClick={Rep.ONC}
                                 />
                             </SimpleBar>
                             <div className="p-2 border-top d-grid">

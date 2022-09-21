@@ -13,6 +13,7 @@ const ShowReport = () => {
     useEffect(() => {
         api.get(`${url.GET_STIREPORT_BY_ID}/${id}`)
             .then((response) => {
+                console.log(response.value.jsonData)
                 SetJsonData(response.value.jsonData)
             }, (error) => {
                 console.error(error);

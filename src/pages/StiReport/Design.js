@@ -27,6 +27,7 @@ const Design = () => {
         var jsonReport = args.report.saveToJsonString();
         var obj = JSON.parse(jsonReport)
         obj.id = JSON.parse(JsonRep).id
+        obj.Route = JSON.parse(JsonRep).Route
         put(url.PUT_STIREPORT, obj)
             .then((response) => {
                 console.log(response)

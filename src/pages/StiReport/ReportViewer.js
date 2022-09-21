@@ -52,10 +52,6 @@ const ReportViewer = ({ data, route, JsonData }) => {
 
 
         viewer.onDesignReport = function (args) {
-
-            console.log('JsonData')
-            console.log(JsonData)
-
             history.push({
                 pathname: '/Design',
                 //search: '?Reportid=1',

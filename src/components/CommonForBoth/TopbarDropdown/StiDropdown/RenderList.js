@@ -2,8 +2,8 @@ import { Link } from "react-router-dom"
 const RenderList = (props) => {
     return (
         props.Rep.Reports.map((item, i) =>
-            <div key={i}>
-                <Link onClick={props.onClick}
+            <div key={item.id}>
+                <Link  to={`/ShowReport/${item.id}`}
                     className="text-reset notification-item">
                     <div className="d-flex align-items-start">
                         <div className="avatar-xs me-3">
