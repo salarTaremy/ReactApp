@@ -19,8 +19,6 @@ const StiDropdown = props => {
     const dispatch = useDispatch()
     const tog_center = () => { setModalIsVisible(!ModalIsVisible) }
 
-
-
     const getCurrentRouteWithoutLastPart = () => {
         return location.pathname.slice(0, location.pathname.lastIndexOf('/'))
     }
