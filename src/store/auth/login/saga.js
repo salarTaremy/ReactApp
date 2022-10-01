@@ -9,7 +9,7 @@ import {
   postLogin,
   postJwtLogin,
   postSocialLogin,
-} from "../../../helpers/fakebackend_helper"
+} from "../../../helpers/backend_helper"
 
 
 function* loginUser({ payload: { user, history } }) {

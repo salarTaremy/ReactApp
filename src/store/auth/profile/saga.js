@@ -5,9 +5,9 @@ import { EDIT_PROFILE } from "./actionTypes"
 import { profileSuccess, profileError } from "./actions"
 
 import {
-  postFakeProfile,
+  postProfile,
   postJwtProfile,
-} from "../../../helpers/fakebackend_helper"
+} from "../../../helpers/backend_helper"
 
 
 
@@ -20,7 +20,7 @@ function* editProfile({ payload: { user } }) {
       })
       yield put(profileSuccess(response))
     } else if (process.env.REACT_APP_DEFAULTAUTH === "fake") {
-      const response = yield call(postFakeProfile, {
+      const response = yield call(postProfile, {
         username: user.username,
         idx: user.idx,
       })
