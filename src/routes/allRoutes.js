@@ -44,4 +44,5 @@ const authRoutes = [
 
 ]
 
+
 export { userRoutes, authRoutes }
