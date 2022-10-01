@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom"
+import { useHistory } from "react-router-dom";
 const RenderList = (props) => {
+    const history = useHistory();
     return (
         props.Rep.Reports.map((item, i) =>
             <div key={item.id}>
-                <Link  to={`/ShowReport/${item.id}`}
+                <div
+                    //to={`/ShowReport/${item.id}`}
+                    //onClick={()=>{history.push(`/ShowReport/${item.id}`)}}
                     className="text-reset notification-item">
                     <div className="d-flex align-items-start">
                         <div className="avatar-xs me-3">
@@ -11,7 +15,8 @@ const RenderList = (props) => {
                                 <i className="bx bxs-report"></i>
                             </span>
                         </div>
-                        <div className="flex-1">
+                        <Link to={`/ShowReport/${item.id}`}
+                            className="flex-1">
                             <h6 className="mt-0 mb-1">
                                 {item.ReportName}
                             </h6>
@@ -24,10 +29,20 @@ const RenderList = (props) => {
                                     {item.CreateDate}
                                 </p>
                             </div>
+                        </Link>
+                        <div className="col-auto">
+                            <button className="small btn-rounded waves-effect btn btn-link  text-danger"
+                            value={item.id}
+                            onClick={(e) => props.OnDeleteClick(e)}
+                            >
+                                <i className="bx bx-error-alt font-size-16 align-middle me-2"></i>
+                                حدف
+                            </button>
                         </div>
                     </div>
-                </Link>
+                </div>
             </div>
-        ))}
+        ))
+}
 
 export default RenderList

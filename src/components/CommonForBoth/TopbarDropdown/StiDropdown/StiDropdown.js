@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { Dropdown, DropdownToggle, DropdownMenu, Row, Col, Media, Label, Button } from "reactstrap"
+import { Dropdown, DropdownToggle, DropdownMenu, Row, Col, Media, Label, Button, Alert } from "reactstrap"
 import SimpleBar from "simplebar-react"
 import { SET_REPORT, RELOAD, REG_DATA } from "store/StiReport/actionTypes"
 import { useSelector, useDispatch } from 'react-redux'
@@ -18,6 +18,8 @@ const StiDropdown = props => {
     const Rep = useSelector((state) => state.stiReport)
     const dispatch = useDispatch()
     const tog_center = () => { setModalIsVisible(!ModalIsVisible) }
+
+
 
     const getCurrentRouteWithoutLastPart = () => {
         return location.pathname.slice(0, location.pathname.lastIndexOf('/'))
@@ -42,17 +44,24 @@ const StiDropdown = props => {
                 }, (error) => {
                     console.error(error);
                 });
-                Rep.ONC()
+                if (Rep.ONC){
+                    Rep.ONC()
+                }else{
+                    alert('No Data For Sti Report')
+                }
         }
         else {
-            console.log('Menu Open')
+            console.log('Menu close')
         }
         setMenu(!menu)
     }
 
 
+    const OnDeleteClick  = (e) => {
+        console.log(e.target.value)
+        alert(`Delet ${e.target.value}`  )
 
-
+    }
 
     const onSubmit = (data) => {
         setIsLoading(true)
@@ -66,22 +75,6 @@ const StiDropdown = props => {
             });
     };
 
-    const modifiers = {
-        setMaxHeight: {
-            enabled: true,
-            fn: (data) => {
-                return {
-                    ...data,
-                    styles: {
-                        ...data.styles,
-                        overflow: 'auto',
-                        maxHeight: 600,
-                    },
-                };
-            },
-        },
-    }
-    
     return (
         <>
             <Modal
@@ -126,7 +119,6 @@ const StiDropdown = props => {
                 </DropdownToggle>
                 <DropdownMenu
                     className="dropdown-menu-lg dropdown-menu-end p-0"
-                    modifiers={modifiers}
                 >
 
                     <Reload></Reload>
@@ -139,8 +131,9 @@ const StiDropdown = props => {
                         </div>
                         :
                         <>
-                            <SimpleBar >
-                                <RenderList Rep={Rep}
+                            <SimpleBar style={{ height: "230px" }} >
+                                <RenderList Rep={Rep} 
+                                            OnDeleteClick = {OnDeleteClick}
                                     //onClick={Rep.ONC}
                                 />
                             </SimpleBar>
