@@ -130,8 +130,8 @@ export {
   postLogin,
   postFakeProfile,
   postFakeForgetPwd,
-  postJwtRegister,
+  //postJwtRegister,
   postJwtLogin,
-  postJwtForgetPwd,
-  postJwtProfile,
+  //postJwtForgetPwd,
+  //postJwtProfile,
 }

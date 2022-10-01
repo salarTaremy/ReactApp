@@ -22,8 +22,6 @@ import Design from "pages/StiReport/Design"
 // Authentication related pages
 import Login from "pages/Authentication/Login"
 import Logout from "pages/Authentication/Logout"
-import Register from "pages/Authentication/Register"
-import ForgetPwd from "pages/Authentication/ForgetPassword"
 
 const userRoutes = [
   { path: "/ManageOppositeSide", component: ManageOppositeSide },
@@ -43,8 +41,6 @@ const authRoutes = [
 
   { path: "/logout", component: Logout },
   { path: "/login", component: Login },
-  { path: "/forgot-password", component: ForgetPwd },
-  { path: "/register", component: Register },
 
 ]
 
