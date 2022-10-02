@@ -21,11 +21,6 @@ const postFakeRegister = (data) => post(url.POST_FAKE_REGISTER, data)
 //const postFakeLogin = data => post(url.POST_FAKE_LOGIN, data)
 const postLogin = data => post(url.POST_LOGIN, data)
 
-// postForgetPwd
-const postFakeForgetPwd = data => post(url.POST_FAKE_PASSWORD_FORGET, data)
-
-// Edit profile
-const postJwtProfile = data => post(url.POST_EDIT_JWT_PROFILE, data)
 
 const postProfile = data => post(url.POST_EDIT_PROFILE, data)
 
@@ -60,11 +55,6 @@ const postJwtRegister = (url, data) => {
     })
 }
 
-// Login Method
-const postJwtLogin = data => post(url.POST_FAKE_JWT_LOGIN, data)
-
-// postForgetPwd
-const postJwtForgetPwd = data => post(url.POST_FAKE_JWT_PASSWORD_FORGET, data)
 
 // postSocialLogin
 export const postSocialLogin = data => post(url.SOCIAL_LOGIN, data)
@@ -122,6 +112,10 @@ export const getTasks = () => get(url.GET_TASKS)
 export const getUsers = () => get(url.GET_USERS)
 
 export const getUserProfile = () => get(url.GET_USER_PROFILE)
+
+//StiReport
+export const postStiReport =  data => post(url.POST_STIREPORT,data)  
+
 
 export {
   getLoggedInUser,

@@ -29,7 +29,7 @@ const StiDropdown = props => {
         return route?route:location.pathname
     }
     const onToggleDropDown = () => {
-        if (menu == false) {
+        if (menu === false) {
             console.log('Menu Open')
             dispatch({ type: RELOAD });
             //const finalUrl = `${url.GET_STIREPORT}?Route=${location.pathname}`;
@@ -59,13 +59,17 @@ const StiDropdown = props => {
 
     const OnDeleteClick  = (e) => {
         console.log(e.target.value)
-        alert(`Delet ${e.target.value}`  )
+        alert(`Delete ${e.target.value}`  )
 
     }
 
     const onSubmit = (data) => {
         setIsLoading(true)
-        const obj = { reportName: data.reportName, description: data.description, route:getCurrentRoute() , jsonData : '' }
+        const obj = {   reportName: data.reportName, 
+                        description: data.description, 
+                        route:getCurrentRoute() , 
+                        jsonData : '' }
+
         api.post(url.POST_STIREPORT, obj)
             .then((response) => {
                 setIsLoading(false)

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { useEffect } from "react"
 
 import { Row, Col, Alert, Container } from "reactstrap"
+import { api, url, str } from 'common/imports'
 
 // Redux
 import { connect } from "react-redux"
@@ -45,8 +46,8 @@ const Login = (props) => {
                 <div className="bg-login text-center">
                   <div className="bg-login-overlay"></div>
                   <div className="position-relative">
-                    <h5 className="text-white font-size-20">Welcome Back !</h5>
-                    <p className="text-white-50 mb-0">Sign in to continue to Qovex.</p>
+                    <h5 className="text-white font-size-20">{str.PUBLIC.WELCOME}</h5>
+                    <p className="text-white-50 mb-0">{str.AUT.SIGN_IN_TO_CONTINUE}</p>
                     <Link to="/" className="logo logo-admin mt-4">
                       <img src={logo} alt="" height="30" />
                     </Link>
@@ -67,7 +68,7 @@ const Login = (props) => {
                       <div className="mb-3">
                         <AvField
                           name="userName"
-                          label="UserName"
+                          label={str.AUT.USER_NAME}
                           value="salar"
                           className="form-control"
                           placeholder="Enter email"
@@ -78,7 +79,7 @@ const Login = (props) => {
                       <div className="mb-3">
                         <AvField
                           name="password"
-                          label="Password"
+                          label={str.AUT.PASS}
                           value="123"
                           type="password"
                           required
@@ -96,7 +97,7 @@ const Login = (props) => {
                           className="form-check-label"
                           htmlFor="customControlInline"
                         >
-                          Remember me
+                          {str.AUT.REMEMBER_ME}
                         </label>
                       </div>
 
@@ -105,29 +106,23 @@ const Login = (props) => {
                           className="btn btn-primary w-100 waves-effect waves-light"
                           type="submit"
                         >
-                          Log In
+                          {str.AUT.LOG_IN}
                         </button>
                       </div>
 
-                      <div className="mt-4 text-center">
-                        <Link to="/forgot-password" className="text-muted"><i
-                          className="mdi mdi-lock me-1"></i> Forgot your password?</Link>
-                      </div>
                     </AvForm>
 
                   </div>
                 </div>
               </div>
               <div className="mt-5 text-center">
-                <p>Don't have an account ? <Link to="/register"
-                  className="fw-medium text-primary"> Signup now </Link> </p>
-                <p>© {new Date().getFullYear()} Qovex. Crafted with <i
-                  className="mdi mdi-heart text-danger"></i> by Themesbrand
+                <p>نمیتوانید وارد سیستم شوید ؟ <Link to="/register"
+                  className="fw-medium text-primary"> با واحد it تماس بگیرید </Link> </p>
+                <p>طراح و برنامه نویس :  سالار طارمی
                         </p>
               </div>
             </Col>
           </Row>
-
         </Container>
       </div>
     </React.Fragment>

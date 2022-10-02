@@ -67,14 +67,14 @@ export async function get(url, config = {}) {
 
 export async function post(url, data, config = {}) {
   axiosApi.defaults.headers.common["Authorization"] = 'Bearer '+ authHeader().Authorization;
-  return axiosApi
+  return await axiosApi
     .post(url, { ...data }, { ...config })
     .then(response => response.data)
 }
 
 export async function put(url, data, config = {}) {
   axiosApi.defaults.headers.common["Authorization"] = 'Bearer '+ authHeader().Authorization;
-  return axiosApi
+  return await axiosApi
     .put(url, { ...data }, { ...config })
     .then(response => response.data)
 }

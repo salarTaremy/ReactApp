@@ -4,3 +4,4 @@ export const RELOAD = "RELOAD"
 export const REG_DATA = "REG_DATA"
 export const SET_ON_CLICK = "SET_ON_CLICK"
 
+

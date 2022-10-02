@@ -1,6 +1,7 @@
 
 
 const PUBLIC = {
+    WELCOME : 'خوش آمدید',
     RELOAD:"بارگیری مجدد",
     DESCRIPTION : 'توضیحات',
     CONFIRM : 'تایید',
@@ -9,6 +10,14 @@ const PUBLIC = {
 
 }
 
+const AUT = {
+    USER : 'کاربر',
+    USER_NAME : 'نام کاربری',
+    PASS : 'رمز عبور',
+    REMEMBER_ME : 'مرا به خاطر بسپار',
+    SIGN_IN_TO_CONTINUE: 'برای ادامه وارد شوید',
+    LOG_IN:'ورود به سیستم',
+}
 const REPORTS = {
     REPORTS: 'گزارشات',
     REPORT : 'گزارش',
@@ -21,5 +30,6 @@ const REPORTS = {
 export default {PUBLIC}
 export{
     PUBLIC,
+    AUT,
     REPORTS
 }
