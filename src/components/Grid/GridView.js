@@ -62,10 +62,8 @@ const GridView = (props) => {
       const data = params.request
       //console.log(JSON.stringify(params.request, null, 1))
       post(props.Url  ,data).then((response) => {
-        console.log (response)
         var lastRow = 0;
         if (response.value.length > 0) {
-          
           //gridOptions.api.setColumnDefs(response.columns)     //For Server Side Cols
           gridOptions.api.setColumnDefs(props.Columns)       //For Client Side Cols
           lastRow = parseInt(response.value[0].lastRow);

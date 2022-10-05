@@ -30,7 +30,6 @@ const stiReport = (state = initialState, action) => {
       state = { ...state }
       break
   }
-  console.log (state)
   return state
 }
 

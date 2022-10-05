@@ -133,14 +133,18 @@ export async function del(url, config = {}) {
 
   useEffect(() => {
     setLoading(true)
+    console.log(`Start fetch from : ${url}`  )
     get(url)
     .then((response) => {
       setData(response)
+      console.log('End fetch')
     }, (error) => {
       setError(error)
     })
     .finally(() => setLoading(false));
   }, []);
+
+
 
   return { data, error, loading };
 };

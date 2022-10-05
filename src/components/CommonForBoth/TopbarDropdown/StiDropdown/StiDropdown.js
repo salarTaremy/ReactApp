@@ -9,6 +9,8 @@ import RenderList from "./RenderList"
 import { Reload } from "./Reload"
 import AddNewReportForm from './AddNewReportForm'
 import { api, url, str } from 'common/imports'
+import { useFetch } from "helpers/api_helper"
+import { setDefaultLocale } from "react-datepicker"
 
 const StiDropdown = props => {
     const [IsLoading, setIsLoading] = useState(false)
@@ -20,7 +22,6 @@ const StiDropdown = props => {
     const tog_center = () => { setModalIsVisible(!ModalIsVisible) }
 
 
-
     const getCurrentRouteWithoutLastPart = () => {
         return location.pathname.slice(0, location.pathname.lastIndexOf('/'))
     }
@@ -28,26 +29,50 @@ const StiDropdown = props => {
         const route = getCurrentRouteWithoutLastPart()
         return route?route:location.pathname
     }
+
+
+    
+    const finalUrl = `${url.GET_STIREPORT}?Route=${getCurrentRoute()}`;
+    const {data, error, loading}  = useFetch(finalUrl)
+
+
+
+
+
+
     const onToggleDropDown = () => {
         if (menu === false) {
             console.log('Menu Open')
             dispatch({ type: RELOAD });
-            //const finalUrl = `${url.GET_STIREPORT}?Route=${location.pathname}`;
-            const finalUrl = `${url.GET_STIREPORT}?Route=${getCurrentRoute()}`;
-            api.get(finalUrl)
-                .then((response) => {
-                    var Reports = []
-                    response.value.map((item, i) => {
-                        Reports.push(JSON.parse(item))
-                    })
-                    dispatch({ type: SET_REPORT, payload: Reports });
-                }, (error) => {
-                    console.error(error);
-                });
+
+
+
+
+            var Reports = []
+            data.value.map((item, i) => {
+                    Reports.push(JSON.parse(item))
+                })
+                dispatch({ type: SET_REPORT, payload: Reports });
+
+
+            // api.get(finalUrl)
+            //     .then((response) => {
+            //         var Reports = []
+            //         response.value.map((item, i) => {
+            //             Reports.push(JSON.parse(item))
+            //         })
+            //         dispatch({ type: SET_REPORT, payload: Reports });
+            //     }, (error) => {
+            //         console.error(error);
+            //     });
+
+
+
+
                 if (Rep.ONC){
                     Rep.ONC()
                 }else{
-                    alert('No Data For Sti Report')
+                    //alert('No Data For Sti Report')
                 }
         }
         else {
@@ -119,7 +144,9 @@ const StiDropdown = props => {
                     id="page-header-notifications-dropdown-print"
                 >
                     <i className="dripicons-print"></i>
-                    {/* <span className="badge rounded-pill bg-danger ">2</span> */}
+                    {/* <span className="badge rounded-pill bg-danger ">loding</span> */}
+                     
+                    {loading?<span className="badge rounded-pill bg-danger ">loding</span>:<span className="badge rounded-pill bg-danger ">ok</span> }
                 </DropdownToggle>
                 <DropdownMenu
                     className="dropdown-menu-lg dropdown-menu-end p-0"
