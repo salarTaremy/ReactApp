@@ -1,22 +1,12 @@
 import React from "react"
+import * as all from 'common/imports'
 
-
+import { useState,useEffect } from "react"
 
 import {
-  Col,
-  Row,
+
   Card,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  CardImg,
-  CardText,
-  CardHeader,
-  CardImgOverlay,
-  CardFooter,
-  CardDeck,
-  CardColumns,
-  CardGroup,
+
 } from "reactstrap"
 
 
@@ -28,7 +18,11 @@ import * as url from '../../helpers/url_helper'
 
 
 
-const test = () => {
+const Test = () => {
+  const {data, error, loading } =   all.api.useFetch(all.url.GET_CITY)
+  
+
+
   return (
 
     <React.Fragment>
@@ -37,6 +31,10 @@ const test = () => {
         <Card className="p-3">
           <p>از تاریخ 1400/01/01</p>
           <p>تا تاریخ 1400/01/01</p>
+          <p>{JSON.stringify(error)}</p>
+          <p>{JSON.stringify(loading)}</p>
+          <p>{JSON.stringify(data)}</p>
+
         </Card>
         <Card   className="p-1">
           <p>محدوده زمانی</p>
@@ -47,4 +45,4 @@ const test = () => {
 }
 
 
-export default test
+export default Test

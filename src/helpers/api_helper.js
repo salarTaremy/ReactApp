@@ -1,12 +1,13 @@
 
 import axios from "axios"
 import authHeader from "../helpers/jwt-token-access/auth-token-header"
+import { useState,useEffect } from "react"
 //pass new generated access token here ...
 //const token = 'Bearer '+ authHeader().Authorization; 
 
 //apply base url for axios
 //const API_URL = "http://192.168.200.7:4000/api"
-const API_URL = "http://localhost:5000/api"
+const API_URL = "http://localhost:7000/api"
 
 const axiosApi = axios.create({
   baseURL: API_URL,
@@ -85,3 +86,64 @@ export async function del(url, config = {}) {
     .delete(url, { ...config })
     .then(response => response.data)
 }
+
+
+// export const useFetch = url => {
+//   const [data, setData] = useState();
+//   const [error, setError] = useState();
+//   const [loading, setLoading] = useState(false);
+
+//   useEffect(() => {
+//       setLoading(true);
+//       get(url)
+
+//       .then(response => console.log( response))
+//       .then(setData)
+//       .catch(setError)
+//       .finally(() => setLoading(false));
+//   }, [url]);
+
+//   return { data, error, loading };
+// };
+
+
+// export const useFetch = url => {
+//   const [data, setData] = useState();
+//   const [error, setError] = useState();
+//   const [loading, setLoading] = useState(false);
+
+//   useEffect(() => {
+//       setLoading(true);
+//       fetch(url)
+//           .then(response => response.json())
+//           .then(setData)
+//           .catch(setError)
+//           .finally(() => setLoading(false));
+//   }, []);
+
+//   return { data, error, loading };
+// };
+
+
+
+ export const useFetch = url => {
+  const [data, setData] = useState();
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true)
+    get(url)
+    .then((response) => {
+      setData(response)
+    }, (error) => {
+      setError(error)
+    })
+    .finally(() => setLoading(false));
+  }, []);
+
+  return { data, error, loading };
+};
+
+
+
