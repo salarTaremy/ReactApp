@@ -13,6 +13,7 @@ import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import NotificationDropdown from "../CommonForBoth/TopbarDropdown/NotificationDropdown";
 import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu";
 import StiDropdown from "../CommonForBoth/TopbarDropdown/StiDropdown/StiDropdown";
+import StiDropDown2 from "../CommonForBoth/TopbarDropdown/StiDropdown/StiDropDown2";
 
 import logoSm from "../../assets/images/logo-sm.png";
 import logoDark from "../../assets/images/logo-dark.png";
@@ -131,7 +132,8 @@ const Header = (props) => {
                   <i className="mdi mdi-fullscreen"></i>
                 </button>
               </Dropdown>{" "}
-              <StiDropdown/>
+              <StiDropDown2/>
+              {/* <StiDropdown/> */}
               <NotificationDropdown /> 
               <ProfileMenu />{" "}
               <button
