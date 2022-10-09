@@ -146,7 +146,7 @@ export async function del(url, config = {}) {
 
 
 
-  return { data, error, loading };
+  return [ data, error, loading ];
 };
 
 
