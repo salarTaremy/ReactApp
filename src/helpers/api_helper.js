@@ -7,7 +7,7 @@ import { useState,useEffect } from "react"
 
 //apply base url for axios
 //const API_URL = "http://192.168.200.7:4000/api"
-const API_URL = "http://localhost:5000/api"
+const API_URL = "http://localhost:7000/api"
 
 const axiosApi = axios.create({
   baseURL: API_URL,
@@ -91,7 +91,7 @@ export async function del(url, config = {}) {
 
 
  export const useFetch = url => {
-  const [data, setData] = useState();
+  const [response, setResponse] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -99,7 +99,7 @@ export async function del(url, config = {}) {
     console.log(`Start fetch from : ${url}`  )
     get(url)
     .then((response) => {
-      setData(response)
+      setResponse(response)
       //console.log(response)
       console.log('End fetch')
     }, (error) => {
@@ -107,8 +107,31 @@ export async function del(url, config = {}) {
     })
     .finally(() => setLoading(false));
   }, []);
-  return [ data, error, loading ];
+  return [ response, error, loading ];
 };
 
 
+export const usePost = () => {
+  const [response, setResponse] = useState();
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
+const doFetch = (url,data,onExecuted=() => {} ) =>{
+  setResponse()
+  setLoading(true)
+  console.log(`Start Post to : ${url}`  )
+  post(url,data)
+  .then((response) => {
+    setResponse(response)
+    //console.log(response)
+    console.log('End Post')
+    onExecuted(response,null)
+  }, (error) => {
+    setError(error)
+    onExecuted(null,error)
+  })
+  .finally(() => setLoading(false));
+}
+
+  return [ response, error, loading,doFetch ];
+};
 

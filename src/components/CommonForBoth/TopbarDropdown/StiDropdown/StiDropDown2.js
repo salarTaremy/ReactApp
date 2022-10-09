@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Dropdown, DropdownToggle, DropdownMenu, Row, Col } from "reactstrap";
 import SimpleBar from "simplebar-react";
-import { Spinner, Modal } from "reactstrap";
+import { Spinner, Modal,Alert } from "reactstrap";
 import AddNewReportForm from "./AddNewReportForm";
 import { api, url, str } from "common/imports";
-import { useFetch } from "helpers/api_helper";
+import { useFetch, usePost } from "helpers/api_helper";
+import { isLength } from "lodash";
 
 
 const StiDropDown2 = (props) => {
@@ -14,13 +15,14 @@ const StiDropDown2 = (props) => {
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const location = useLocation();
   const tog_modal = () => {
+    
     setMenu(false)
     setModalIsOpen(true);
   };
 
 
 
-  
+
   const getCurrentRouteWithoutLastPart = () => {
     return location.pathname.slice(0, location.pathname.lastIndexOf("/"));
   };
@@ -63,13 +65,12 @@ const StiDropDown2 = (props) => {
 
   return (
     <>
-
-<StiModal      
-route={getCurrentRoute()} 
-isOpen={ModalIsOpen}
-toggle={tog_modal}
-setIsOpen={(isOpen) => setModalIsOpen(isOpen) }
-/>
+      <StiModal
+        route={getCurrentRoute()}
+        isOpen={ModalIsOpen}
+        toggle={tog_modal}
+        setIsOpen={(isOpen) => setModalIsOpen(isOpen)}
+      />
       <Dropdown
         isOpen={menu}
         toggle={onToggleDropDown}
@@ -84,8 +85,8 @@ setIsOpen={(isOpen) => setModalIsOpen(isOpen) }
         >
           <i className="dripicons-print"></i>
         </DropdownToggle>
-        {menu === true && <DDM /> }
-      </Dropdown>
+        {menu === true && <DDM />}
+      </Dropdown>      
     </>
   );
 };
@@ -97,58 +98,50 @@ export default StiDropDown2;
 
 
 export const StiModal = (props) => {
-  const [IsLoading, setIsLoading] = useState(false);
-  
+
+  const [response, error, IsLoading, doFetch] = usePost()
   const onSubmit = (data) => {
-    setIsLoading(true);
+
     const obj = {
       reportName: data.reportName,
       description: data.description,
       route: props.route,
       jsonData: "",
     };
+    const onExecuted= (res,err)=>{
+      props.setIsOpen(false)
+      alert(res.objectId)   
+    }
+    doFetch(url.POST_STIREPORT, obj,onExecuted )
 
-    api.post(url.POST_STIREPORT, obj).then(
-      (response) => {
-        setIsLoading(false);
-        console.log(response);
-        if (response && response.statusCode === 200) {
-          props.setIsOpen(false)
-          alert(response.message);
-        }
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+
   };
 
   return (
     <Modal
-    isOpen={props.isOpen}
-    toggle={props.toggle}
-    centered={true}
-    backdrop={false}
->
-    <div className="modal-header">
+      isOpen={props.isOpen}
+      toggle={props.toggle}
+      centered={true}
+      backdrop={false}
+    >
+      <div className="modal-header">
         <h6 className="modal-title mt-0">{str.REPORTS.ADD_NEW_REPORT}</h6>
         <button
-            type="button"
-            //onClick={() => { setModalIsOpen(false) }}
-            onClick={() => props.setIsOpen(false)}
-            className="close bg-danger"
-            disabled={IsLoading}
-            data-dismiss="modal"
-            aria-label="Close"
+          type="button"
+          //onClick={() => { setModalIsOpen(false) }}
+          onClick={() => props.setIsOpen(false)}
+          className="close bg-danger"
+          disabled={IsLoading}
+          data-dismiss="modal"
+          aria-label="Close"
         >
-            <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">&times;</span>
         </button>
-    </div>
-    <div className="modal-body">
-        {/* <AddNewReportForm onSubmit={onSubmit} IsLoading={IsLoading}  route={getCurrentRoute()} /> */}
-        <AddNewReportForm onSubmit={ onSubmit} IsLoading={IsLoading}  route={props.route} />
-    </div>
-</Modal>
+      </div>
+      <div className="modal-body">
+        <AddNewReportForm onSubmit={onSubmit} IsLoading={IsLoading} route={props.route} />
+      </div>
+    </Modal>
   )
 }
 
