@@ -15,7 +15,6 @@ import * as Yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 
 export const AddNewReportForm = (props) => {
-  const [IsLoading, setIsLoading] = useState(false);
   const validationSchema = Yup.object().shape({
     reportName: Yup.string().required().min(4),
     description: Yup.string().max(70),
@@ -31,30 +30,9 @@ export const AddNewReportForm = (props) => {
     defaultValues: {},
     resolver: yupResolver(validationSchema),
   });
-  const onSubmit = (data) => {
-    setIsLoading(true);
-    const obj = {
-      reportName: data.reportName,
-      description: data.description,
-      route: props.route,
-      jsonData: "",
-    };
 
-    api.post(url.POST_STIREPORT, obj).then(
-      (response) => {
-        setIsLoading(false);
-        console.log(response);
-        if (response && response.statusCode === 200) {
-          alert(response.message);
-        }
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(props.onSubmit)}>
       <Row>
         <Col>
           <div className="mb-3">
@@ -88,7 +66,7 @@ export const AddNewReportForm = (props) => {
           </div>
         </Col>
       </Row>
-      {IsLoading ? (
+      {props.IsLoading ? (
         <button
           disabled={true}
           className="btn btn-primary waves-effect waves-light"

@@ -57,32 +57,19 @@ const StiDropDown2 = (props) => {
     setMenu(!menu);
   };
 
+
+
+
+
   return (
     <>
-    <Modal
-                isOpen={ModalIsOpen}
-                toggle={tog_modal}
-                centered={true}
-                backdrop={false}
-            >
-                <div className="modal-header">
-                    <h6 className="modal-title mt-0">{str.REPORTS.ADD_NEW_REPORT}</h6>
-                    <button
-                        type="button"
-                        onClick={() => { setModalIsOpen(false) }}
-                        className="close bg-danger"
-                        //disabled={IsLoading}
-                        data-dismiss="modal"
-                        aria-label="Close"
-                    >
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div className="modal-body">
-                    {/* <AddNewReportForm onSubmit={onSubmit} IsLoading={IsLoading}  route={getCurrentRoute()} /> */}
-                    <AddNewReportForm    route={getCurrentRoute()}  />
-                </div>
-            </Modal>
+
+<StiModal      
+route={getCurrentRoute()} 
+isOpen={ModalIsOpen}
+toggle={tog_modal}
+setIsOpen={(isOpen) => setModalIsOpen(isOpen) }
+/>
       <Dropdown
         isOpen={menu}
         toggle={onToggleDropDown}
@@ -105,6 +92,69 @@ const StiDropDown2 = (props) => {
 export default StiDropDown2;
 
 ///////////////////////////////////////////////////////////////////////
+
+
+
+
+export const StiModal = (props) => {
+  const [IsLoading, setIsLoading] = useState(false);
+  
+  const onSubmit = (data) => {
+    setIsLoading(true);
+    const obj = {
+      reportName: data.reportName,
+      description: data.description,
+      route: props.route,
+      jsonData: "",
+    };
+
+    api.post(url.POST_STIREPORT, obj).then(
+      (response) => {
+        setIsLoading(false);
+        console.log(response);
+        if (response && response.statusCode === 200) {
+          props.setIsOpen(false)
+          alert(response.message);
+        }
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  };
+
+  return (
+    <Modal
+    isOpen={props.isOpen}
+    toggle={props.toggle}
+    centered={true}
+    backdrop={false}
+>
+    <div className="modal-header">
+        <h6 className="modal-title mt-0">{str.REPORTS.ADD_NEW_REPORT}</h6>
+        <button
+            type="button"
+            //onClick={() => { setModalIsOpen(false) }}
+            onClick={() => props.setIsOpen(false)}
+            className="close bg-danger"
+            disabled={IsLoading}
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div className="modal-body">
+        {/* <AddNewReportForm onSubmit={onSubmit} IsLoading={IsLoading}  route={getCurrentRoute()} /> */}
+        <AddNewReportForm onSubmit={ onSubmit} IsLoading={IsLoading}  route={props.route} />
+    </div>
+</Modal>
+  )
+}
+
+
+
+
 
 const OnDeleteClick = (e) => {
   console.log(e.target.value);
