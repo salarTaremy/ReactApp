@@ -21,7 +21,6 @@ const StiDropdown = props => {
     const dispatch = useDispatch()
     const tog_center = () => { setModalIsVisible(!ModalIsVisible) }
 
-
     const getCurrentRouteWithoutLastPart = () => {
         return location.pathname.slice(0, location.pathname.lastIndexOf('/'))
     }
@@ -31,21 +30,13 @@ const StiDropdown = props => {
     }
 
 
-    
     const finalUrl = `${url.GET_STIREPORT}?Route=${getCurrentRoute()}`;
     const {data, error, loading}  = useFetch(finalUrl)
-
-
-
-
-
 
     const onToggleDropDown = () => {
         if (menu === false) {
             console.log('Menu Open')
             dispatch({ type: RELOAD });
-
-
 
 
             var Reports = []
@@ -82,11 +73,7 @@ const StiDropdown = props => {
     }
 
 
-    const OnDeleteClick  = (e) => {
-        console.log(e.target.value)
-        alert(`Delete ${e.target.value}`  )
 
-    }
 
     const onSubmit = (data) => {
         setIsLoading(true)
@@ -164,7 +151,7 @@ const StiDropdown = props => {
                         <>
                             <SimpleBar style={{ height: "230px" }} >
                                 <RenderList Rep={Rep} 
-                                            OnDeleteClick = {OnDeleteClick}
+                                            //OnDeleteClick = {OnDeleteClick}
                                     //onClick={Rep.ONC}
                                 />
                             </SimpleBar>

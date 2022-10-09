@@ -88,64 +88,25 @@ export async function del(url, config = {}) {
 }
 
 
-// export const useFetch = url => {
-//   const [data, setData] = useState();
-//   const [error, setError] = useState();
-//   const [loading, setLoading] = useState(false);
-
-//   useEffect(() => {
-//       setLoading(true);
-//       get(url)
-
-//       .then(response => console.log( response))
-//       .then(setData)
-//       .catch(setError)
-//       .finally(() => setLoading(false));
-//   }, [url]);
-
-//   return { data, error, loading };
-// };
-
-
-// export const useFetch = url => {
-//   const [data, setData] = useState();
-//   const [error, setError] = useState();
-//   const [loading, setLoading] = useState(false);
-
-//   useEffect(() => {
-//       setLoading(true);
-//       fetch(url)
-//           .then(response => response.json())
-//           .then(setData)
-//           .catch(setError)
-//           .finally(() => setLoading(false));
-//   }, []);
-
-//   return { data, error, loading };
-// };
-
 
 
  export const useFetch = url => {
   const [data, setData] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     setLoading(true)
     console.log(`Start fetch from : ${url}`  )
     get(url)
     .then((response) => {
       setData(response)
+      //console.log(response)
       console.log('End fetch')
     }, (error) => {
       setError(error)
     })
     .finally(() => setLoading(false));
   }, []);
-
-
-
   return [ data, error, loading ];
 };
 
