@@ -4,8 +4,12 @@ const PUBLIC = {
     WELCOME : 'خوش آمدید',
     RELOAD:"بارگیری مجدد",
     DESCRIPTION : 'توضیحات',
-    CONFIRM : 'تایید',
-    SAVE : 'دخیره',
+    CONFIRM: 'تایید',
+    CANCEL: 'انصراف',
+    SAVE: 'دخیره',
+    DELETE: 'حذف',
+    YES: 'بله',
+    NO: 'خیر',
     CONFIRM_AND_SAVE : 'تایید و دخیره',
 
 }

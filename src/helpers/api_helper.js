@@ -7,7 +7,7 @@ import { useState,useEffect } from "react"
 
 //apply base url for axios
 //const API_URL = "http://192.168.200.7:4000/api"
-const API_URL = "http://localhost:7000/api"
+const API_URL = "http://localhost:5000/api"
 
 const axiosApi = axios.create({
   baseURL: API_URL,
@@ -47,16 +47,16 @@ const handeError = (error) =>{
     // // The request was made but no response was received
     // // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
     // // http.ClientRequest in node.js
-    // console.log(error.request);
+     console.error(error.request);
   } else {
     // // Something happened in setting up the request that triggered an Error
     // console.log('Error', error.message);
   }
-  // console.log(error.config);
+   console.error(error.config);
 }
 
 
-
+//***************************************************************************************************
 export async function get(url, config = {}) {
   axiosApi.defaults.headers.common["Authorization"] = 'Bearer '+ authHeader().Authorization;
   return await axiosApi
@@ -87,9 +87,7 @@ export async function del(url, config = {}) {
     .then(response => response.data)
 }
 
-
-
-
+//***************************************************************************************************
  export const useFetch = url => {
   const [response, setResponse] = useState();
   const [error, setError] = useState();
@@ -101,7 +99,7 @@ export async function del(url, config = {}) {
     .then((response) => {
       setResponse(response)
       //console.log(response)
-      console.log('End fetch')
+      console.log('Success fetch')
     }, (error) => {
       setError(error)
     })
@@ -110,7 +108,7 @@ export async function del(url, config = {}) {
   return [ response, error, loading ];
 };
 
-
+//***************************************************************************************************
 export const usePost = () => {
   const [response, setResponse] = useState();
   const [error, setError] = useState();
@@ -123,7 +121,7 @@ const doFetch = (url,data,onExecuted=() => {} ) =>{
   .then((response) => {
     setResponse(response)
     //console.log(response)
-    console.log('End Post')
+    console.log('Success Post')
     onExecuted(response,null)
   }, (error) => {
     setError(error)
@@ -131,7 +129,28 @@ const doFetch = (url,data,onExecuted=() => {} ) =>{
   })
   .finally(() => setLoading(false));
 }
-
   return [ response, error, loading,doFetch ];
 };
-
+//***************************************************************************************************
+export const useDel = () => {
+  const [response, setResponse] = useState();
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
+const doFetch = (url,data,onExecuted=() => {} ) =>{
+  setResponse()
+  setLoading(true)
+  console.log(`start Delete Request to : ${url}`  )
+  del(url,data)
+  .then((response) => {
+    setResponse(response)
+    //console.log(response)
+    console.log('Success Delete')
+    onExecuted(response,null)
+  }, (error) => {
+    setError(error)
+    onExecuted(null,error)
+  })
+  .finally(() => setLoading(false));
+}
+  return [ response, error, loading,doFetch ];
+};

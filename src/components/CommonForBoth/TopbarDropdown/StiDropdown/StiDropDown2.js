@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Dropdown, DropdownToggle, DropdownMenu, Row, Col } from "reactstrap";
 import SimpleBar from "simplebar-react";
-import { Spinner, Modal,Alert } from "reactstrap";
+import { Spinner, Modal, Alert, Button } from "reactstrap";
 import AddNewReportForm from "./AddNewReportForm";
 import { api, url, str } from "common/imports";
 import { useFetch, usePost } from "helpers/api_helper";
 import { isLength } from "lodash";
-
+import { set } from "lodash";
 
 const StiDropDown2 = (props) => {
   //const [IsLoading, setIsLoading] = useState(false);
@@ -15,13 +15,9 @@ const StiDropDown2 = (props) => {
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const location = useLocation();
   const tog_modal = () => {
-    
-    setMenu(false)
+    setMenu(false);
     setModalIsOpen(true);
   };
-
-
-
 
   const getCurrentRouteWithoutLastPart = () => {
     return location.pathname.slice(0, location.pathname.lastIndexOf("/"));
@@ -59,10 +55,6 @@ const StiDropDown2 = (props) => {
     setMenu(!menu);
   };
 
-
-
-
-
   return (
     <>
       <StiModal
@@ -86,7 +78,7 @@ const StiDropDown2 = (props) => {
           <i className="dripicons-print"></i>
         </DropdownToggle>
         {menu === true && <DDM />}
-      </Dropdown>      
+      </Dropdown>
     </>
   );
 };
@@ -94,27 +86,20 @@ export default StiDropDown2;
 
 ///////////////////////////////////////////////////////////////////////
 
-
-
-
 export const StiModal = (props) => {
-
-  const [response, error, IsLoading, doFetch] = usePost()
+  const [response, error, IsLoading, doFetch] = usePost();
   const onSubmit = (data) => {
-
     const obj = {
       reportName: data.reportName,
       description: data.description,
       route: props.route,
       jsonData: "",
     };
-    const onExecuted= (res,err)=>{
-      props.setIsOpen(false)
-      alert(res.objectId)   
-    }
-    doFetch(url.POST_STIREPORT, obj,onExecuted )
-
-
+    const onExecuted = (res, err) => {
+      props.setIsOpen(false);
+      alert(res.objectId);
+    };
+    doFetch(url.POST_STIREPORT, obj, onExecuted);
   };
 
   return (
@@ -139,15 +124,15 @@ export const StiModal = (props) => {
         </button>
       </div>
       <div className="modal-body">
-        <AddNewReportForm onSubmit={onSubmit} IsLoading={IsLoading} route={props.route} />
+        <AddNewReportForm
+          onSubmit={onSubmit}
+          IsLoading={IsLoading}
+          route={props.route}
+        />
       </div>
     </Modal>
-  )
-}
-
-
-
-
+  );
+};
 
 const OnDeleteClick = (e) => {
   console.log(e.target.value);
@@ -197,12 +182,42 @@ const MnuHeader = () => {
 };
 
 const MnuItems = (props) => {
-  const it = [];
-  props.LST.map((item, i) => {
-    it.push(JSON.parse(item));
-  });
+  const [it, setIt] = useState([]);
+
+  useEffect(() => {
+    const Tmp = [];
+    [...props.LST].map((item, i) => {
+      const obj = JSON.parse(item);
+      obj.ChkForDelete = false;
+      Tmp.push(obj);
+      console.log(obj.ReportName);
+    });
+    setIt([...Tmp]);
+  }, []);
+
+  const ChengeChk = (e) => {
+    console.clear();
+    const tmp = [...it];
+    const id = e.target.value
+    const index = tmp.findIndex((x) => x.id == id);
+    tmp.forEach((x) => {
+      x.ChkForDelete = false;
+    });
+    tmp[index].ChkForDelete = true;
+    setIt([...tmp]);
+    console.log(it);
+  };
+
+  const UnDelete = () => {
+    const tmp = [...it];
+    tmp.forEach((x) => {
+      x.ChkForDelete = false;
+    });
+    setIt([...tmp]);
+  }
+
   return it.map((item, i) => (
-    <div key={item.id}>
+    <div key={i}>
       <div
         //to={`/ShowReport/${item.id}`}
         //onClick={()=>{history.push(`/ShowReport/${item.id}`)}}
@@ -217,28 +232,39 @@ const MnuItems = (props) => {
           <Link to={`/ShowReport/${item.id}`} className="flex-1">
             <h6 className="mt-0 mb-1">{item.ReportName}</h6>
             <div className="font-size-12 text-muted">
-              <p className="mb-1">{item.Description}</p>
+              <p className="mb-1">{JSON.stringify(item.description)}</p>
               <p className="mb-0">
                 <i className="mdi mdi-clock-outline" />
                 {item.CreateDate}
               </p>
             </div>
           </Link>
-          <div className="col-auto">
+          {item.ChkForDelete === true && (
+            <div
+              className="btn-group btn-group-sm mt-2"
+              role="group"
+              aria-label="Basic example"
+            >
+              <Button onClick={(e) => props.OnDeleteClick(e)} color="success">
+                {str.PUBLIC.YES}
+              </Button>{" "}
+              <Button onClick={() => UnDelete()} color="danger">
+                {str.PUBLIC.NO}
+              </Button>{" "}
+            </div>
+          )}
+          {item.ChkForDelete != true && (
             <button
               className="small btn-rounded waves-effect btn btn-link  text-danger"
               value={item.id}
-              onClick={(e) => props.OnDeleteClick(e)}
+              onClick={(e) => ChengeChk(e)}
             >
-              <i className="bx bx-error-alt font-size-16 align-middle me-2"></i>
-              حدف
+              {/* <i className="bx bx-error-alt font-size-16 align-middle me-2"></i> */}
+              {str.PUBLIC.DELETE}
             </button>
-          </div>
+          )}
         </div>
       </div>
     </div>
   ));
 };
-
-
-
