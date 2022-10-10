@@ -76,6 +76,7 @@ export const GET_USER_PROFILE = "/user"
 //Stimulsoft Report
 export const POST_STIREPORT= "/StiReport"
 export const PUT_STIREPORT= "/StiReport"
+export const DEL_STIREPORT= "/StiReport"
 export const GET_STIREPORT= "/StiReport"
 export const GET_STIREPORT_BY_ROUTE= "/StiReport"
 export const GET_STIREPORT_BY_ID= "/StiReport"
