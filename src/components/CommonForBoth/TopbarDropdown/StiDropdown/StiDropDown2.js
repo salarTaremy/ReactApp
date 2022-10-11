@@ -4,16 +4,16 @@ import { Dropdown, DropdownToggle, DropdownMenu, Row, Col } from "reactstrap";
 import SimpleBar from "simplebar-react";
 import { Spinner, Modal, Alert, Button } from "reactstrap";
 import AddNewReportForm from "./AddNewReportForm";
-import { api, url, str } from "common/imports";
+import { api, url, str ,toast} from "common/imports";
 import { useDel, useFetch, usePost } from "helpers/api_helper";
-import { isLength } from "lodash";
-import { set } from "lodash";
 
 const StiDropDown2 = (props) => {
-  //const [IsLoading, setIsLoading] = useState(false);
   const [menu, setMenu] = useState(false);
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const location = useLocation();
+
+
+
   const tog_modal = () => {
     setMenu(false);
     setModalIsOpen(true);
@@ -97,7 +97,7 @@ export const StiModal = (props) => {
     };
     const onExecuted = (res, err) => {
       props.setIsOpen(false);
-      alert(res.objectId);
+      toast.info(res.objectId);
     };
     doFetch(url.POST_STIREPORT, obj, onExecuted);
   };
@@ -136,7 +136,7 @@ export const StiModal = (props) => {
 
 const OnDeleteClick = (e) => {
   console.log(e.target.value);
-  alert(`Delete ${e.target.value}`);
+  toast.info(`Delete ${e.target.value}`)
 };
 
 export const StiLoading = () => {
@@ -183,8 +183,7 @@ const MnuHeader = () => {
 
 const MnuItems = (props) => {
   const [it, setIt] = useState([]);
-  const [responseDel, errorDel, loadingDel ,doFetchDel] = useDel()
-
+  const [responseDel, errorDel, loadingDel, doFetchDel] = useDel();
 
   useEffect(() => {
     const Tmp = [];
@@ -197,11 +196,10 @@ const MnuItems = (props) => {
     setIt([...Tmp]);
   }, []);
 
-
   const ChengeChk = (e) => {
     console.clear();
     const tmp = [...it];
-    const id = e.target.value
+    const id = e.target.value;
     const index = tmp.findIndex((x) => x.id == id);
     tmp.forEach((x) => {
       x.ChkForDelete = false;
@@ -211,27 +209,30 @@ const MnuItems = (props) => {
     console.log(it);
   };
 
-
   const cancelDelete = () => {
     const tmp = [...it];
     tmp.forEach((x) => {
       x.ChkForDelete = false;
     });
     setIt([...tmp]);
-  }
-
+  };
 
   const onDelete = (id) => {
     const tmp = [...it];
     tmp.forEach((x) => {
-      if (x.id === id){
-        x.ChkForDelete = false
-        doFetchDel( `${url.DEL_STIREPORT}/${id}` ,{},(response,error) =>{alert('Deleted ' + response.value )  }  )
-        
+      if (x.id === id) {
+        x.ChkForDelete = false;
+        const finalUrl = `${url.DEL_STIREPORT}/${id}`;
+        const onExecuted = (response, error) => {
+          response.rowAffect > 0
+            ? toast.success(response.message)
+            : toast.warn("حدف انجام نشد");
+        };
+        doFetchDel(finalUrl, {}, onExecuted);
       }
     });
     setIt([...tmp]);
-  }
+  };
 
   return it.map((item, i) => (
     <div key={i}>
@@ -256,7 +257,7 @@ const MnuItems = (props) => {
               </p>
             </div>
           </Link>
-          {loadingDel &&<Spinner></Spinner> }
+          {loadingDel && <Spinner></Spinner>}
           {item.ChkForDelete === true && loadingDel === false && (
             <div
               className="btn-group btn-group-sm mt-2"
@@ -286,4 +287,3 @@ const MnuItems = (props) => {
     </div>
   ));
 };
-
