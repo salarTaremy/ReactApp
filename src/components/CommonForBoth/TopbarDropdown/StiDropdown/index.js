@@ -34,9 +34,9 @@ const StiDropDown = (props) => {
         <MnuHeader />
         <SimpleBar style={{ height: "230px" }}>
           {data ? (
-            <MnuItems LST={data.value} OnDeleteClick={OnDeleteClick} />
+            <MnuItems LST={data.value} />
           ) : (
-            <StiLoading  message={str.REPORTS.RECEIVING_RELEVANT_REPORTS} />
+            <StiLoading message={str.REPORTS.RECEIVING_RELEVANT_REPORTS} />
           )}
         </SimpleBar>
         <AddNewReport onClick={tog_modal} />
@@ -95,7 +95,8 @@ export const StiModal = (props) => {
     };
     const onExecuted = (res, err) => {
       props.setIsOpen(false);
-      toast.info(res.objectId);
+      const msg = str.PUBLIC.SAVED_SUCCESSFUL_WITH_ID(['گزارش', res.objectId])
+      toast.success(msg);
     };
     doFetch(url.POST_STIREPORT, obj, onExecuted);
   };
@@ -132,10 +133,10 @@ export const StiModal = (props) => {
   );
 };
 
-const OnDeleteClick = (e) => {
-  console.log(e.target.value);
-  toast.info(`Delete ${e.target.value}`);
-};
+// const OnDeleteClick = (e) => {
+//   console.log(e.target.value);
+//   toast.warn(`Delete ${e.target.value}`);
+// };
 
 export const StiLoading = (props) => {
   return (
@@ -215,6 +216,18 @@ const MnuItems = (props) => {
     setIt([...tmp]);
   };
 
+
+  const removeItem = (id) => {
+    const tmp = [...it];
+    const index = tmp.map(item => item.id).indexOf(id);
+    if (index !== -1) {
+      tmp.splice(index, 1);
+      console.log([...tmp])
+      setIt([...tmp]);
+    }
+  }
+
+
   const onDelete = (id) => {
     const tmp = [...it];
     tmp.forEach((x) => {
@@ -222,9 +235,13 @@ const MnuItems = (props) => {
         x.ChkForDelete = false;
         const finalUrl = `${url.DEL_STIREPORT}/${id}`;
         const onExecuted = (response, error) => {
-          response.rowAffect > 0
-            ? toast.success(response.message)
-            : toast.warn("حدف انجام نشد");
+          if (response.rowAffect > 0) {
+            toast.success(response.message)
+            removeItem(id)
+          }
+          else {
+            toast.warn("حدف انجام نشد");
+          }
         };
         doFetch(finalUrl, {}, onExecuted);
       }
@@ -233,7 +250,7 @@ const MnuItems = (props) => {
   };
 
   if (loading) {
-    return <StiLoading  message={str.PUBLIC.DELETING_DATA}/>;
+    return <StiLoading message={str.PUBLIC.DELETING_DATA} />;
   } else {
     return it.map((item, i) => (
       <div key={i}>

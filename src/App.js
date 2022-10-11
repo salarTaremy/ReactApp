@@ -19,7 +19,8 @@ import NonAuthLayout from "./components/NonAuthLayout";
 import "./assets/scss/theme.scss";
 
 // Toast
-import "react-toastify/dist/ReactToastify.css";
+//import "react-toastify/dist/ReactToastify.css";
+import "./assets/css/ReactToastify.css"
 import { ToastContainer } from "react-toastify";
 
 const App = (props) => {
