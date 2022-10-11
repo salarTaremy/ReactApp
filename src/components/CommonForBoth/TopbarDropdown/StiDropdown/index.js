@@ -4,15 +4,13 @@ import { Dropdown, DropdownToggle, DropdownMenu, Row, Col } from "reactstrap";
 import SimpleBar from "simplebar-react";
 import { Spinner, Modal, Alert, Button } from "reactstrap";
 import AddNewReportForm from "./AddNewReportForm";
-import { api, url, str ,toast} from "common/imports";
+import { api, url, str, toast } from "common/imports";
 import { useDel, useFetch, usePost } from "helpers/api_helper";
 
-const StiDropDown2 = (props) => {
+const StiDropDown = (props) => {
   const [menu, setMenu] = useState(false);
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const location = useLocation();
-
-
 
   const tog_modal = () => {
     setMenu(false);
@@ -38,7 +36,7 @@ const StiDropDown2 = (props) => {
           {data ? (
             <MnuItems LST={data.value} OnDeleteClick={OnDeleteClick} />
           ) : (
-            <StiLoading />
+            <StiLoading  message={str.REPORTS.RECEIVING_RELEVANT_REPORTS} />
           )}
         </SimpleBar>
         <AddNewReport onClick={tog_modal} />
@@ -82,7 +80,7 @@ const StiDropDown2 = (props) => {
     </>
   );
 };
-export default StiDropDown2;
+export default StiDropDown;
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -136,16 +134,16 @@ export const StiModal = (props) => {
 
 const OnDeleteClick = (e) => {
   console.log(e.target.value);
-  toast.info(`Delete ${e.target.value}`)
+  toast.info(`Delete ${e.target.value}`);
 };
 
-export const StiLoading = () => {
+export const StiLoading = (props) => {
   return (
     <div className="text-center p-3">
       <div className="img">
         <Spinner className="m-1" color="primary" />
       </div>
-      <h6 className="mb-4 mt-5"> {str.REPORTS.RECEIVING_RELEVANT_REPORTS}</h6>
+      <h6 className="mb-4 mt-5">{props.message} </h6>
     </div>
   );
 };
@@ -183,7 +181,7 @@ const MnuHeader = () => {
 
 const MnuItems = (props) => {
   const [it, setIt] = useState([]);
-  const [responseDel, errorDel, loadingDel, doFetchDel] = useDel();
+  const [response, error, loading, doFetch] = useDel();
 
   useEffect(() => {
     const Tmp = [];
@@ -228,62 +226,65 @@ const MnuItems = (props) => {
             ? toast.success(response.message)
             : toast.warn("حدف انجام نشد");
         };
-        doFetchDel(finalUrl, {}, onExecuted);
+        doFetch(finalUrl, {}, onExecuted);
       }
     });
     setIt([...tmp]);
   };
 
-  return it.map((item, i) => (
-    <div key={i}>
-      <div
-        //to={`/ShowReport/${item.id}`}
-        //onClick={()=>{history.push(`/ShowReport/${item.id}`)}}
-        className="text-reset notification-item"
-      >
-        <div className="d-flex align-items-start">
-          <div className="avatar-xs me-3">
-            <span className="avatar-title bg-primary rounded-circle font-size-16">
-              <i className="bx bxs-report"></i>
-            </span>
+  if (loading) {
+    return <StiLoading  message={str.PUBLIC.DELETING_DATA}/>;
+  } else {
+    return it.map((item, i) => (
+      <div key={i}>
+        <div
+          //to={`/ShowReport/${item.id}`}
+          //onClick={()=>{history.push(`/ShowReport/${item.id}`)}}
+          className="text-reset notification-item"
+        >
+          <div className="d-flex align-items-start">
+            <div className="avatar-xs me-3">
+              <span className="avatar-title bg-primary rounded-circle font-size-16">
+                <i className="bx bxs-report"></i>
+              </span>
+            </div>
+            <Link to={`/ShowReport/${item.id}`} className="flex-1">
+              <h6 className="mt-0 mb-1">{item.ReportName}</h6>
+              <div className="font-size-12 text-muted">
+                <p className="mb-1">{item.Description}</p>
+                <p className="mb-0">
+                  <i className="mdi mdi-clock-outline" />
+                  {item.CreateDate}
+                </p>
+              </div>
+            </Link>
+            {item.ChkForDelete === true && loading === false && (
+              <div
+                className="btn-group btn-group-sm mt-2"
+                role="group"
+                aria-label="Basic example"
+              >
+                <Button onClick={() => onDelete(item.id)} color="success">
+                  {str.PUBLIC.YES}
+                </Button>{" "}
+                <Button onClick={() => cancelDelete()} color="danger">
+                  {str.PUBLIC.NO}
+                </Button>{" "}
+              </div>
+            )}
+            {item.ChkForDelete != true && (
+              <button
+                className="small btn-rounded waves-effect btn btn-link  text-danger"
+                value={item.id}
+                onClick={(e) => ChengeChk(e)}
+              >
+                {/* <i className="bx bx-error-alt font-size-16 align-middle me-2"></i> */}
+                {str.PUBLIC.DELETE}
+              </button>
+            )}
           </div>
-          <Link to={`/ShowReport/${item.id}`} className="flex-1">
-            <h6 className="mt-0 mb-1">{item.ReportName}</h6>
-            <div className="font-size-12 text-muted">
-              <p className="mb-1">{item.Description}</p>
-              <p className="mb-0">
-                <i className="mdi mdi-clock-outline" />
-                {item.CreateDate}
-              </p>
-            </div>
-          </Link>
-          {loadingDel && <Spinner></Spinner>}
-          {item.ChkForDelete === true && loadingDel === false && (
-            <div
-              className="btn-group btn-group-sm mt-2"
-              role="group"
-              aria-label="Basic example"
-            >
-              <Button onClick={() => onDelete(item.id)} color="success">
-                {str.PUBLIC.YES}
-              </Button>{" "}
-              <Button onClick={() => cancelDelete()} color="danger">
-                {str.PUBLIC.NO}
-              </Button>{" "}
-            </div>
-          )}
-          {item.ChkForDelete != true && (
-            <button
-              className="small btn-rounded waves-effect btn btn-link  text-danger"
-              value={item.id}
-              onClick={(e) => ChengeChk(e)}
-            >
-              {/* <i className="bx bx-error-alt font-size-16 align-middle me-2"></i> */}
-              {str.PUBLIC.DELETE}
-            </button>
-          )}
         </div>
       </div>
-    </div>
-  ));
+    ));
+  }
 };

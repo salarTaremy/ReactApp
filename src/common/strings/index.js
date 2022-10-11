@@ -7,10 +7,19 @@ const PUBLIC = {
     CONFIRM: 'تایید',
     CANCEL: 'انصراف',
     SAVE: 'دخیره',
+    SAVED: 'دخیره انجام شد',
+    SAVING_DATA: 'در حال دخیره اطلاعات',
+    NOT_SAVED: 'دخیره انجام نشد',
     DELETE: 'حذف',
+    DELETED: 'حذف انجام شد',
+    DELETING: 'در حال حذف',
+    DELETING_DATA: 'در حال حذف اطلاعات',
+    NOT_DELETED: 'حذف انجام نشد',
     YES: 'بله',
     NO: 'خیر',
     CONFIRM_AND_SAVE : 'تایید و دخیره',
+    SAVED_SUCCESSFUL_WITH_ID: (param = []) => {return `${param[0]}  مورد نظر با موقیت با شناسه ${param[1]} ذخیره شد`}
+
 
 }
 
