@@ -6,6 +6,7 @@ import { Spinner, Modal, Alert, Button } from "reactstrap";
 import AddNewReportForm from "./AddNewReportForm";
 import { api, url, str, toast } from "common/imports";
 import { useDel, useFetch, usePost } from "helpers/api_helper";
+import noData from "assets/images/reports/no-data.png"
 
 const StiDropDown = (props) => {
   const [menu, setMenu] = useState(false);
@@ -95,7 +96,7 @@ export const StiModal = (props) => {
     };
     const onExecuted = (res, err) => {
       props.setIsOpen(false);
-      const msg = str.PUBLIC.SAVED_SUCCESSFUL_WITH_ID(['گزارش', res.objectId])
+      const msg = str.PUBLIC.SAVED_SUCCESSFUL_WITH_ID(["گزارش", res.objectId]);
       toast.success(msg);
     };
     doFetch(url.POST_STIREPORT, obj, onExecuted);
@@ -208,6 +209,17 @@ const MnuItems = (props) => {
     console.log(it);
   };
 
+  const NoData = () => {
+    return(
+      <div className="text-center p-3">
+      <div className="img" >
+        <img src ={noData} style={{ height: "60px", width:"60px" }} />
+      </div>
+      <h6 className="mb-4 mt-5">{str.REPORTS.NO_REPORT} </h6>
+    </div>
+    )
+  };
+
   const cancelDelete = () => {
     const tmp = [...it];
     tmp.forEach((x) => {
@@ -216,17 +228,15 @@ const MnuItems = (props) => {
     setIt([...tmp]);
   };
 
-
   const removeItem = (id) => {
     const tmp = [...it];
-    const index = tmp.map(item => item.id).indexOf(id);
+    const index = tmp.map((item) => item.id).indexOf(id);
     if (index !== -1) {
       tmp.splice(index, 1);
-      console.log([...tmp])
+      console.log([...tmp]);
       setIt([...tmp]);
     }
-  }
-
+  };
 
   const onDelete = (id) => {
     const tmp = [...it];
@@ -236,10 +246,9 @@ const MnuItems = (props) => {
         const finalUrl = `${url.DEL_STIREPORT}/${id}`;
         const onExecuted = (response, error) => {
           if (response.rowAffect > 0) {
-            toast.success(response.message)
-            removeItem(id)
-          }
-          else {
+            toast.success(response.message);
+            removeItem(id);
+          } else {
             toast.warn("حدف انجام نشد");
           }
         };
@@ -251,14 +260,12 @@ const MnuItems = (props) => {
 
   if (loading) {
     return <StiLoading message={str.PUBLIC.DELETING_DATA} />;
+  } else if (it.length <= 0) {
+    return <NoData/>;
   } else {
     return it.map((item, i) => (
       <div key={i}>
-        <div
-          //to={`/ShowReport/${item.id}`}
-          //onClick={()=>{history.push(`/ShowReport/${item.id}`)}}
-          className="text-reset notification-item"
-        >
+        <div className="text-reset notification-item">
           <div className="d-flex align-items-start">
             <div className="avatar-xs me-3">
               <span className="avatar-title bg-primary rounded-circle font-size-16">
@@ -295,7 +302,6 @@ const MnuItems = (props) => {
                 value={item.id}
                 onClick={(e) => ChengeChk(e)}
               >
-                {/* <i className="bx bx-error-alt font-size-16 align-middle me-2"></i> */}
                 {str.PUBLIC.DELETE}
               </button>
             )}

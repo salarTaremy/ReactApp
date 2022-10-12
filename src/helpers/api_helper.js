@@ -2,12 +2,13 @@
 import axios from "axios"
 import authHeader from "../helpers/jwt-token-access/auth-token-header"
 import { useState,useEffect } from "react"
+import { toast,str } from "common/imports"
 //pass new generated access token here ...
 //const token = 'Bearer '+ authHeader().Authorization; 
 
 //apply base url for axios
 //const API_URL = "http://192.168.200.7:4000/api"
-const API_URL = "http://localhost:7000/api"
+const API_URL = "http://localhost:5000/api"
 
 const axiosApi = axios.create({
   baseURL: API_URL,
@@ -25,34 +26,36 @@ axiosApi.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.status === 401) {
-      handeError(error)
-    }
+    //if (error.response.status === 401) {handeError(error)}
+    handeError(error)
     return error;
   }
 );
 
 
 const handeError = (error) =>{
-  if(error.response.status == 401){
+  if(error.message === 'Network Error')
+  {
+    toast.error(str.ERRORS.NETWORK_ERROR)
+  }
+  if(error.response.status === 401){
     window.location = "/logout";
   }
   if (error.response) {
-    // // The request was made and the server responded with a status code
-    // // that falls out of the range of 2xx
-    // console.log(error.response.data);
-    // console.log(error.response.status);
-    // console.log(error.response.headers);
+    // The request was made and the server responded with a status code
+    // that falls out of the range of 2xx
+    console.log(error.response.data);
+    console.log(error.response.status);
+    console.log(error.response.headers);
   } else if (error.request) {
-    // // The request was made but no response was received
-    // // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-    // // http.ClientRequest in node.js
+    // The request was made but no response was received
+    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+    // http.ClientRequest in node.js
      console.error(error.request);
   } else {
-    // // Something happened in setting up the request that triggered an Error
-    // console.log('Error', error.message);
+    // Something happened in setting up the request that triggered an Error
+     console.log('Error', error.message);
   }
-   console.error(error.config);
 }
 
 
@@ -67,10 +70,10 @@ export async function get(url, config = {}) {
 }
 
 export async function post(url, data, config = {}) {
-  axiosApi.defaults.headers.common["Authorization"] = 'Bearer '+ authHeader().Authorization;
-  return await axiosApi
-    .post(url, { ...data }, { ...config })
-    .then(response => response.data)
+    axiosApi.defaults.headers.common["Authorization"] = 'Bearer '+ authHeader().Authorization;
+    return await axiosApi
+      .post(url, { ...data }, { ...config })
+      .then(response => response.data)
 }
 
 export async function put(url, data, config = {}) {
