@@ -1,9 +1,12 @@
-import { SET_REPORT, RELOAD,REG_DATA ,SET_ON_CLICK } from "./actionTypes"
+import { SET_REPORT, RELOAD,REG_DATA ,SET_ON_CLICK,CLEAR_DATASET } from "./actionTypes"
 
 
 const initialState = { isLoading: false, Reports: [] ,data:{} }
 const stiReport = (state = initialState, action) => {
   switch (action.type) {
+    case CLEAR_DATASET:
+      state = initialState
+      break
     case RELOAD:
       state = {...state ,isLoading: true, Reports: [],data:{} }
       break

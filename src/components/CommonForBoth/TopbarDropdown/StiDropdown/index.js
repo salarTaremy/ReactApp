@@ -7,11 +7,13 @@ import AddNewReportForm from "./AddNewReportForm";
 import { api, url, str, toast } from "common/imports";
 import { useDel, useFetch, usePost } from "helpers/api_helper";
 import noData from "assets/images/reports/no-data.png"
+import { useSelector } from "react-redux";
 
 const StiDropDown = (props) => {
   const [menu, setMenu] = useState(false);
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const location = useLocation();
+  const Rep = useSelector((state) => state.stiReport)
 
   const tog_modal = () => {
     setMenu(false);
@@ -47,6 +49,9 @@ const StiDropDown = (props) => {
 
   const onToggleDropDown = () => {
     if (menu === false) {
+      if (Rep.ONC){
+        Rep.ONC()
+      }
       console.log("Menu Open");
     } else {
       console.log("Menu close");
@@ -272,7 +277,7 @@ const MnuItems = (props) => {
                 <i className="bx bxs-report"></i>
               </span>
             </div>
-            <Link to={`/ShowReport/${item.id}`} className="flex-1">
+            <Link   target='_blank' to={`/ShowReport/${item.id}`} className="flex-1">
               <h6 className="mt-0 mb-1">{item.ReportName}</h6>
               <div className="font-size-12 text-muted">
                 <p className="mb-1">{item.Description}</p>

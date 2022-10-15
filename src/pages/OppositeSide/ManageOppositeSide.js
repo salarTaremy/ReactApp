@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react"
 import * as cols from "components/Grid/columnHelper"
-import { Card, Modal } from "reactstrap"
+import { Card, Modal, Toast } from "reactstrap"
 import Breadcrumbs from "components/Common/Breadcrumb"
 import GridView from "components/Grid/GridView"
 import Loading from "components/Common/Loading"
 import {api,url,str} from 'common/imports'
 import { useDispatch } from "react-redux"
-import { REG_DATA } from "store/StiReport/actionTypes"
+import { REG_DATA, SET_ON_CLICK } from "store/StiReport/actionTypes"
 
 let CityList = [];
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +22,15 @@ const ManageOppositeSide = () => {
         console.error(error);
       });
   }, []);
-  dispatch({type: REG_DATA , payload:{ name:"salar" , famil:"taremi" }})
+  
+
+    ////////////////////////////////////////////////////
+    const stiDataSeter =()=> {
+      alert('Ok From Manage')
+      dispatch({type: REG_DATA , payload:{ name:"salar" , famil:"taremi" }})
+    }
+    dispatch({type: SET_ON_CLICK , payload:stiDataSeter})
+    ////////////////////////////////////////////////////
   return (
     <React.Fragment>
       <div className="page-content">

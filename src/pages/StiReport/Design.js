@@ -13,7 +13,7 @@ const Design = () => {
 
 
     var Options = new Stimulsoft.Designer.StiDesignerOptions();
-    //Options.appearance.fullScreenMode = true;
+    Options.appearance.fullScreenMode = true;
     //Options.viewerOptions.appearance.reportDisplayMode = Stimulsoft.Report.Export.StiHtmlExportMode.Auto;
     //Options.toolbar.showFileMenuExit = false;
     //Options.toolbar.showFileMenuOptions = false;

@@ -37,6 +37,7 @@ const OppositeSideDetail = () => {
   }, []);
   ////////////////////////////////////////////////////
   const stiDataSeter =()=> {
+    alert ('Onc')
     dispatch({type: REG_DATA , payload:Th})
   }
   dispatch({type: SET_ON_CLICK , payload:stiDataSeter})

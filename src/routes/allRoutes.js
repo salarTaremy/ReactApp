@@ -29,9 +29,7 @@ const userRoutes = [
   { path: "/Blank", component: Blank },
   { path: "/dashboard", component: Dashboard },
   { path: "/test", component: Test },
-  { path: "/ShowReport/:id", component: ShowReport },
-  { path: "/OppositeReportDesigner", component: OppositeReportDesigner },
-  { path: "/Design", component: Design },
+
 
   // this route should be at the end of all other routes
   { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
@@ -41,6 +39,9 @@ const authRoutes = [
 
   { path: "/logout", component: Logout },
   { path: "/login", component: Login },
+  { path: "/ShowReport/:id", component: ShowReport },
+  { path: "/OppositeReportDesigner", component: OppositeReportDesigner },
+  { path: "/Design", component: Design },
 
 ]
 
