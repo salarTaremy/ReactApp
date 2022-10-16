@@ -26,7 +26,7 @@ const ManageOppositeSide = () => {
 
     ////////////////////////////////////////////////////
     const stiDataSeter =()=> {
-      alert('Ok From Manage')
+   
       dispatch({type: REG_DATA , payload:{ name:"salar" , famil:"taremi" }})
     }
     dispatch({type: SET_ON_CLICK , payload:stiDataSeter})
