@@ -14,7 +14,7 @@ const Authmiddleware = ({
   ...rest
 }) => {
   const dispatch = useDispatch();
-  const onRoatChenged = (props)=>{
+  const onRoatChanged = (props)=>{
     console.log('Reset Report');
     console.log(props);
     dispatch({type: CLEAR_DATASET  }) 
@@ -24,7 +24,7 @@ const Authmiddleware = ({
       {...rest}
       render={(props) => {
         if(isAuthProtected){
-          onRoatChenged(props)
+          onRoatChanged(props)
         }
         if (isAuthProtected && !localStorage.getItem("authUser")) {
           return (
