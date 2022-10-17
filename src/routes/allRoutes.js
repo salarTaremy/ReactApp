@@ -13,7 +13,7 @@ import Blank from "pages/Blank/Blank"
 //Opposite Side
 import ManageOppositeSide from "pages/OppositeSide/ManageOppositeSide"
 import OppositeSideDetail from "pages/OppositeSide/OppositeSideDetail"
-import ShowReport from "pages/OppositeSide/ShowReport"
+import ShowReport from "pages/StiReport/ShowReport"
 import OppositeReportDesigner from "pages/OppositeSide/OppositeReportDesigner"
 
 //Stimulsoft Report

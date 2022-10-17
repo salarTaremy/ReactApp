@@ -24,7 +24,7 @@ const ShowReport = () => {
     return (
         <React.Fragment>
             <div className="page-content">
-                <Breadcrumbs title="گزارش طرف حساب" breadcrumbItem="طرف حساب ها" />
+                {/* <Breadcrumbs title="نمایش گزارش" breadcrumbItem="گزارشات" /> */}
                 {JsonData ?
                     <ReportViewer data={Rep.data}  route={location.pathname}  JsonData = {JsonData}    ></ReportViewer>
                     : <Loading />}
