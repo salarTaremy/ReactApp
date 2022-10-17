@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
-import * as url from 'helpers/url_helper'
-import * as api from "helpers/api_helper"
+import { api, url, str, toast } from "common/imports";
 import { useParams,useHistory } from 'react-router-dom';
 import Breadcrumbs from "components/Common/Breadcrumb"
 import Loading from "components/Common/Loading"
@@ -37,7 +36,7 @@ const OppositeSideDetail = () => {
   }, []);
   ////////////////////////////////////////////////////
   const stiDataSeter =()=> {
-    alert ('Onc')
+    toast.info('detail')
     dispatch({type: REG_DATA , payload:Th})
   }
   dispatch({type: SET_ON_CLICK , payload:stiDataSeter})

@@ -4,7 +4,7 @@ import { Card, Modal, Toast } from "reactstrap"
 import Breadcrumbs from "components/Common/Breadcrumb"
 import GridView from "components/Grid/GridView"
 import Loading from "components/Common/Loading"
-import {api,url,str} from 'common/imports'
+import {api,url,str,toast} from 'common/imports'
 import { useDispatch } from "react-redux"
 import { REG_DATA, SET_ON_CLICK } from "store/StiReport/actionTypes"
 
@@ -26,7 +26,7 @@ const ManageOppositeSide = () => {
 
     ////////////////////////////////////////////////////
     const stiDataSeter =()=> {
-   
+      toast.info('Click Manege');
       dispatch({type: REG_DATA , payload:{ name:"salar" , famil:"taremi" }})
     }
     dispatch({type: SET_ON_CLICK , payload:stiDataSeter})
