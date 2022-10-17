@@ -12,9 +12,9 @@ const ReportViewer = ({ data, route, JsonData }) => {
 
     //appearance
     Options.appearance.reportDisplayMode = Stimulsoft.Report.Export.StiHtmlExportMode.Div;
-    Options.appearance.scrollbarsMode = true;
+    //Options.appearance.scrollbarsMode = true;
     Options.appearance.showTooltips = false;
-    Options.appearance.fullScreenMode = true;
+    //Options.appearance.fullScreenMode = true;
     Options.appearance.pageAlignment = Stimulsoft.Viewer.StiContentAlignment.right
     //Options.appearance.backgroundColor = "#ffffff";
     //Options.appearance.pageBorderColor = Stimulsoft.System.Drawing.Color.transparent;

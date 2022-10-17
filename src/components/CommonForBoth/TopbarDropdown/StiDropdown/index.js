@@ -277,7 +277,9 @@ const MnuItems = (props) => {
                 <i className="bx bxs-report"></i>
               </span>
             </div>
-            <Link   target='_blank' to={`/ShowReport/${item.id}`} className="flex-1">
+            <Link   
+            //target='_blank' 
+              to={`/ShowReport/${item.id}`} className="flex-1">
               <h6 className="mt-0 mb-1">{item.ReportName}</h6>
               <div className="font-size-12 text-muted">
                 <p className="mb-1">{item.Description}</p>
