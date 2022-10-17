@@ -15,8 +15,6 @@ const Authmiddleware = ({
 }) => {
   const dispatch = useDispatch();
   const onRoatChanged = (props)=>{
-    console.log('Reset Report');
-    console.log(props);
     dispatch({type: CLEAR_DATASET  }) 
   }
   return (
