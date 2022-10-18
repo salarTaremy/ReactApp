@@ -50,9 +50,7 @@ const StiDropDown = (props) => {
 
   const onToggleDropDown = () => {
     if (menu === false) {
-      if (Rep.ONC) {
-        Rep.ONC();
-      }
+      Rep.ONC();
       //console.log("Menu Open");
     } else {
       //console.log("Menu close");
