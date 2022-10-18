@@ -12,7 +12,6 @@ const OppositeSideDetail = () => {
   const [Cities, SetCities] = useState(null);
   const { id } = useParams();
   const dispatch = useDispatch();
-  const history = useHistory();
   ////////////////////////////////////////////////////
   useEffect(() => {
     api.get(`${url.FETCH_OPPOSITE_SIDE_DETAIL}/${id}`)
