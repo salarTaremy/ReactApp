@@ -6,7 +6,6 @@ import { Spinner, Modal, Alert, Button } from "reactstrap";
 import AddNewReportForm from "./AddNewReportForm";
 import { api, url, str, toast } from "common/imports";
 import { useDel, useFetch, usePost } from "helpers/api_helper";
-import { useSelector } from "react-redux";
 import { StiLoading } from "./StiLoading";
 import { MenuItems } from "./MenuItems";
 import { useDispatch } from "react-redux";
@@ -16,7 +15,6 @@ const StiDropDown = (props) => {
   const [menu, setMenu] = useState(false);
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const location = useLocation();
-  //const Rep = useSelector((state) => state.stiReport);
   const dispatch = useDispatch();
 
   const tog_modal = () => {
@@ -53,7 +51,6 @@ const StiDropDown = (props) => {
 
   const onToggleDropDown = () => {
     if (menu === false) {
-      //Rep.ONC();
       dispatch({type: EXEC })
       //console.log("Menu Open");
     } else {
