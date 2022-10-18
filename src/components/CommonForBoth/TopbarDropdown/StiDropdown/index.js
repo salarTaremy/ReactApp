@@ -14,7 +14,7 @@ const StiDropDown = (props) => {
   const [menu, setMenu] = useState(false);
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const location = useLocation();
-  const Rep = useSelector((state) => state.stiReport);
+  //const Rep = useSelector((state) => state.stiReport);
 
   const tog_modal = () => {
     setMenu(false);
@@ -50,7 +50,7 @@ const StiDropDown = (props) => {
 
   const onToggleDropDown = () => {
     if (menu === false) {
-      Rep.ONC();
+      //Rep.ONC();
       //console.log("Menu Open");
     } else {
       //console.log("Menu close");
