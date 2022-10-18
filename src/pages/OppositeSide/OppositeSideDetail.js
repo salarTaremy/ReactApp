@@ -36,7 +36,8 @@ const OppositeSideDetail = () => {
   ////////////////////////////////////////////////////
   const stiDataSeter =()=> {
     toast.info('detail')
-    dispatch({type: REG_DATA , payload:Th})
+    // dispatch({type: REG_DATA , payload:Th})
+    return Th;
   }
   dispatch({type: SET_ON_CLICK , payload:stiDataSeter})
   ////////////////////////////////////////////////////

@@ -9,12 +9,15 @@ import { useDel, useFetch, usePost } from "helpers/api_helper";
 import { useSelector } from "react-redux";
 import { StiLoading } from "./StiLoading";
 import { MenuItems } from "./MenuItems";
+import { useDispatch } from "react-redux";
+import { EXEC } from "store/StiReport/actionTypes";
 
 const StiDropDown = (props) => {
   const [menu, setMenu] = useState(false);
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const location = useLocation();
   //const Rep = useSelector((state) => state.stiReport);
+  const dispatch = useDispatch();
 
   const tog_modal = () => {
     setMenu(false);
@@ -51,6 +54,7 @@ const StiDropDown = (props) => {
   const onToggleDropDown = () => {
     if (menu === false) {
       //Rep.ONC();
+      dispatch({type: EXEC })
       //console.log("Menu Open");
     } else {
       //console.log("Menu close");

@@ -13,11 +13,10 @@ import Blank from "pages/Blank/Blank"
 //Opposite Side
 import ManageOppositeSide from "pages/OppositeSide/ManageOppositeSide"
 import OppositeSideDetail from "pages/OppositeSide/OppositeSideDetail"
-import ShowReport from "pages/StiReport/ShowReport"
-import OppositeReportDesigner from "pages/OppositeSide/OppositeReportDesigner"
 
 //Stimulsoft Report
 import Design from "pages/StiReport/Design"
+import ShowReport from "pages/StiReport/ShowReport"
 
 // Authentication related pages
 import Login from "pages/Authentication/Login"
@@ -32,7 +31,7 @@ const userRoutes = [
 
 
   // this route should be at the end of all other routes
-  { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
+  { path: "/", exact: true, component: () => <Redirect to="/login" /> },
 ]
 
 const authRoutes = [
@@ -40,7 +39,6 @@ const authRoutes = [
   { path: "/logout", component: Logout },
   { path: "/login", component: Login },
   { path: "/ShowReport/:id", component: ShowReport },
-  { path: "/OppositeReportDesigner", component: OppositeReportDesigner },
   { path: "/Design", component: Design },
 
 ]

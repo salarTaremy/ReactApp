@@ -11,6 +11,7 @@ import { select } from "redux-saga/effects";
 const ShowReport = () => {
   const location = useLocation();
   const [JsonData, SetJsonData] = useState(null);
+  //const Rep2 = useSelector((state) => state.stiReport);
   const Rep = useSelector((state) => state.stiReport);
   const { id } = useParams();
   useEffect(() => {

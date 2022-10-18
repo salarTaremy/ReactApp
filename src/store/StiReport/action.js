@@ -1,11 +1,11 @@
 import {
-    RELOAD,SET_REPORT,REG_DATA
+    SET_ON_CLICK
   } from "./actionTypes"
   
   
   export const GetData = (path) => {
     return {
-      type: SET_REPORT,
+      type: SET_ON_CLICK,
       payload: {path},
     }
   }

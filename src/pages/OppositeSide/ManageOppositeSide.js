@@ -14,7 +14,8 @@ const ManageOppositeSide = () => {
     ////////////////////////////////////////////////////
   const stiDataSeter = () => {
     toast.info("Click Manege");
-    dispatch({ type: REG_DATA, payload: { name: "salar", famil: "taremi" } });
+    //dispatch({ type: REG_DATA, payload: { name: "salar", famil: "taremi" } });
+    return { name: "salar", famil: "taremi" } ;
   };
   dispatch({ type: SET_ON_CLICK, payload: stiDataSeter });
   ////////////////////////////////////////////////////
