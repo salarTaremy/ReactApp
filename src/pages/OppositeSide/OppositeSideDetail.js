@@ -5,7 +5,7 @@ import Breadcrumbs from "components/Common/Breadcrumb"
 import Loading from "components/Common/Loading"
 import OppositeSideDetailForm from 'pages/OppositeSide/OppositeSideDetailForm'
 import { useDispatch } from "react-redux";
-import { REG_DATA, SET_ON_CLICK } from "store/StiReport/actionTypes"
+import {FETCH_DATA,FETCH_DATA_SUCCESS,DO_FETCH_DATA } from "store/StiReport/actionTypes"
 
 const OppositeSideDetail = () => { 
   const [Th, SetTh] = useState(null);
@@ -33,14 +33,21 @@ const OppositeSideDetail = () => {
         console.error(error);
       });
   }, []);
-  ////////////////////////////////////////////////////
-  const stiDataSeter =()=> {
-    toast.info('detail')
-    // dispatch({type: REG_DATA , payload:Th})
-    return Th;
-  }
-  dispatch({type: SET_ON_CLICK , payload:stiDataSeter})
-  ////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////
+    useEffect(() => {
+      const doFetchData = () => {
+                  dispatch({ type: FETCH_DATA });
+              if (Th && Cities){
+                dispatch({ type: FETCH_DATA_SUCCESS,payload: Th });
+              }
+              else{
+                dispatch({ type: FETCH_DATA_SUCCESS});
+              }
+      };
+      dispatch({ type: DO_FETCH_DATA, payload: doFetchData });
+    }, [Th,Cities]);
+    ////////////////////////////////////////////////////
+    
   return (
     <React.Fragment>
       <div className="page-content">

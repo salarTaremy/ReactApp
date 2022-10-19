@@ -22,6 +22,9 @@ const StiDropDown = (props) => {
     setMenu(false);
     setModalIsOpen(true);
   };
+  useEffect(()=> {
+    console.log(Rep.data)
+  })
 
   const getCurrentRouteWithoutLastPart = () => {
     return location.pathname.slice(0, location.pathname.lastIndexOf("/"));
@@ -61,7 +64,6 @@ const StiDropDown = (props) => {
     }
     setMenu(!menu);
   };
-
   return (
     <>
       <StiModal
@@ -84,7 +86,7 @@ const StiDropDown = (props) => {
         >
           <i className="dripicons-print"></i>
         </DropdownToggle>
-        {menu === true    && <StiDropdownMenu />}
+        {menu === true  && <StiDropdownMenu />}
       </Dropdown>
     </>
   );
