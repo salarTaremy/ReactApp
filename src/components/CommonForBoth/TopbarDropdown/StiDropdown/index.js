@@ -8,15 +8,16 @@ import { api, url, str, toast } from "common/imports";
 import { useDel, useFetch, usePost } from "helpers/api_helper";
 import { StiLoading } from "./StiLoading";
 import { MenuItems } from "./MenuItems";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { EXEC } from "store/StiReport/actionTypes";
+
 
 const StiDropDown = (props) => {
   const [menu, setMenu] = useState(false);
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
-
+  const Rep = useSelector(store => store.stiReport)
   const tog_modal = () => {
     setMenu(false);
     setModalIsOpen(true);
@@ -32,15 +33,18 @@ const StiDropDown = (props) => {
 
   const StiDropdownMenu = () => {
     const finalUrl = `${url.GET_STIREPORT}?Route=${getCurrentRoute()}`;
-    const [data, error, loading] = useFetch(finalUrl);
+    const [data, error, loading,doFetch] = useFetch();
+    useEffect(() =>{
+      doFetch(finalUrl)
+    } ,[])
     return (
       <DropdownMenu className="dropdown-menu-lg dropdown-menu-end p-0">
         <MnuHeader />
         <SimpleBar style={{ height: "230px" }}>
-          {data ? (
+          {data   && Rep.isFetchingData ===false   ? (
             <MenuItems LST={data.value} />
           ) : (
-            <StiLoading message={str.REPORTS.RECEIVING_RELEVANT_REPORTS} />
+            <StiLoading message={Rep.isFetchingData === false? str.REPORTS.RECEIVING_RELEVANT_REPORTS : "داره میاد"} />
           )}
         </SimpleBar>
         <AddNewReport onClick={tog_modal} />
@@ -50,7 +54,7 @@ const StiDropDown = (props) => {
 
   const onToggleDropDown = () => {
     if (menu === false) {
-      dispatch({type: EXEC })
+    Rep.DoFetchData()
       //console.log("Menu Open");
     } else {
       //console.log("Menu close");
@@ -80,7 +84,7 @@ const StiDropDown = (props) => {
         >
           <i className="dripicons-print"></i>
         </DropdownToggle>
-        {menu === true && <StiDropdownMenu />}
+        {menu === true    && <StiDropdownMenu />}
       </Dropdown>
     </>
   );

@@ -91,24 +91,26 @@ export async function del(url, config = {}) {
 }
 
 //***************************************************************************************************
- export const useFetch = url => {
+ export const useFetch = () => {
   const [response, setResponse] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
+  const doFetch = (url,onExecuted=() => {} ) =>{
+    setResponse()
     setLoading(true)
-    console.log(`Start fetch from : ${url}`  )
+    console.log(`Start Get to : ${url}`  )
     get(url)
     .then((response) => {
       setResponse(response)
-      //console.log(response)
-      console.log('Success fetch')
+      console.log('Success Get')
+      onExecuted(response,null)
     }, (error) => {
       setError(error)
+      onExecuted(null,error)
     })
     .finally(() => setLoading(false));
-  }, []);
-  return [ response, error, loading ];
+  }
+  return [ response, error, loading ,doFetch];
 };
 
 //***************************************************************************************************
@@ -123,7 +125,6 @@ const doFetch = (url,data,onExecuted=() => {} ) =>{
   post(url,data)
   .then((response) => {
     setResponse(response)
-    //console.log(response)
     console.log('Success Post')
     onExecuted(response,null)
   }, (error) => {
@@ -146,7 +147,6 @@ const doFetch = (url,data,onExecuted=() => {} ) =>{
   del(url,data)
   .then((response) => {
     setResponse(response)
-    //console.log(response)
     console.log('Success Delete')
     onExecuted(response,null)
   }, (error) => {
