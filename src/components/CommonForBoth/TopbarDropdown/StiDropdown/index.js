@@ -30,10 +30,9 @@ const StiDropDown = (props) => {
     return route ? route : location.pathname;
   };
 
-  const DDM = () => {
+  const StiDropdownMenu = () => {
     const finalUrl = `${url.GET_STIREPORT}?Route=${getCurrentRoute()}`;
     const [data, error, loading] = useFetch(finalUrl);
-
     return (
       <DropdownMenu className="dropdown-menu-lg dropdown-menu-end p-0">
         <MnuHeader />
@@ -81,7 +80,7 @@ const StiDropDown = (props) => {
         >
           <i className="dripicons-print"></i>
         </DropdownToggle>
-        {menu === true && <DDM />}
+        {menu === true && <StiDropdownMenu />}
       </Dropdown>
     </>
   );
