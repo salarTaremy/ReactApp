@@ -36,10 +36,12 @@ import {
   toggleLeftmenu,
   changeSidebarType,
 } from "../../store/actions";
+import { useSelector } from "react-redux";
 
 const Header = (props) => {
   const [search, setsearch] = useState(false);
   const [megaMenu, setmegaMenu] = useState(false);
+  const Rep = useSelector(store => store.stiReport)
 
   function toggleFullscreen() {
     if (
@@ -132,6 +134,7 @@ const Header = (props) => {
                 </button>
               </Dropdown>{" "}
               <StiDropDown/>
+
               <NotificationDropdown /> 
               <ProfileMenu />{" "}
               <button
