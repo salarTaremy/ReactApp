@@ -9,6 +9,7 @@ import { useDel, useFetch, usePost } from "helpers/api_helper";
 import { StiLoading } from "./StiLoading";
 import { MenuItems } from "./MenuItems";
 import { useDispatch, useSelector } from "react-redux";
+import { NoData } from "./NoData";
 
 const StiDropDown = (props) => {
   const [menu, setMenu] = useState(false);
@@ -19,7 +20,7 @@ const StiDropDown = (props) => {
     setMenu(false);
     setModalIsOpen(true);
   };
-  
+
   // useEffect(() => {
   //   console.log(Rep.data);
   // });
@@ -32,50 +33,31 @@ const StiDropDown = (props) => {
     return route ? route : location.pathname;
   };
 
-  const StiDropdownMenu = () => {
-    const finalUrl = `${url.GET_STIREPORT}?Route=${getCurrentRoute()}`;
-    const [data, error, loading, doFetch] = useFetch();
-    useEffect(() => {
-      doFetch(finalUrl);
-    }, []);
-    return (
-      <DropdownMenu className="dropdown-menu-lg dropdown-menu-end p-0">
-        <MnuHeader />
-        <SimpleBar style={{ height: "230px" }}>
-          {data && Rep.isFetchingData === false ? (
-            <MenuItems LST={data.value} />
-          ) : (
-            <StiLoading
-              message={
-                Rep.isFetchingData === false
-                  ? str.REPORTS.RECEIVING_RELEVANT_REPORTS
-                  : "داره میاد"
-              }
-            />
-          )}
-        </SimpleBar>
-        <AddNewReport onClick={tog_modal} />
-      </DropdownMenu>
-    );
-  };
-
   const onToggleDropDown = () => {
     if (menu === false) {
-      Rep.DoFetchData()
+      Rep.DoFetchData();
       //console.log("Menu Open");
     } else {
       //console.log("Menu close");
     }
     setMenu(!menu);
   };
+
+  const finalUrl = `${url.GET_STIREPORT}?Route=${getCurrentRoute()}`;
+  const [data, error, loading, doFetch] = useFetch();
+  useEffect(() => {
+    doFetch(finalUrl);
+  }, []);
+
   return (
-    <>
+<>
       <StiModal
         route={getCurrentRoute()}
         isOpen={ModalIsOpen}
         toggle={tog_modal}
         setIsOpen={(isOpen) => setModalIsOpen(isOpen)}
       />
+
       <Dropdown
         isOpen={menu}
         toggle={onToggleDropDown}
@@ -90,7 +72,43 @@ const StiDropDown = (props) => {
         >
           <i className="dripicons-print"></i>
         </DropdownToggle>
-        {menu === true && <StiDropdownMenu />}
+        {menu === true && (
+          <DropdownMenu className="dropdown-menu-lg dropdown-menu-end p-0">
+            <div className="p-3">
+              <Row className="align-items-center">
+                <Col>
+                  <h6 className="m-0">{str.REPORTS.REPORTS}</h6>
+                </Col>
+                <div className="col-auto">
+                  <a href="#!" className="small">
+                    {str.PUBLIC.RELOAD}
+                  </a>
+                </div>
+              </Row>
+            </div>
+            {Rep.data === null ?   
+
+<NoData />
+            
+            : 
+
+            <SimpleBar style={{ height: "230px" }}>
+              {data && Rep.isFetchingData === false ? (
+                <MenuItems LST={data.value} />
+              ) : (
+                <StiLoading
+                  message={
+                    Rep.isFetchingData === false
+                      ? str.REPORTS.RECEIVING_RELEVANT_REPORTS
+                      : "داره میاد"
+                  }
+                />
+              )}
+            </SimpleBar>}
+
+            <AddNewReport onClick={tog_modal} />
+          </DropdownMenu>
+        )}
       </Dropdown>
     </>
   );
@@ -157,23 +175,6 @@ export const AddNewReport = (props) => {
         <i className="mdi mdi-arrow-right-circle me-1"></i>
         {str.REPORTS.ADD_NEW_REPORT}
       </button>
-    </div>
-  );
-};
-
-const MnuHeader = () => {
-  return (
-    <div className="p-3">
-      <Row className="align-items-center">
-        <Col>
-          <h6 className="m-0">{str.REPORTS.REPORTS}</h6>
-        </Col>
-        <div className="col-auto">
-          <a href="#!" className="small">
-            {str.PUBLIC.RELOAD}
-          </a>
-        </div>
-      </Row>
     </div>
   );
 };

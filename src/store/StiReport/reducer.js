@@ -11,7 +11,7 @@ import {
 const initialState = {
   isLoading: false,
   Reports: [],
-  data: {},
+  data: null,
   ONC: () => {},
   DoFetchData: () => {},
   isFetchingData: false,
@@ -36,7 +36,7 @@ const stiReport = (state = initialState, action) => {
       state = {
         ...state,
         isFetchingData: false,
-        data:{}
+        data:null
       };
       break;
     case DO_FETCH_DATA:
