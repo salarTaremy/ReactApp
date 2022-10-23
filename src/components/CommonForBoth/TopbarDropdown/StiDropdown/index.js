@@ -9,22 +9,20 @@ import { useDel, useFetch, usePost } from "helpers/api_helper";
 import { StiLoading } from "./StiLoading";
 import { MenuItems } from "./MenuItems";
 import { useDispatch, useSelector } from "react-redux";
-import { EXEC } from "store/StiReport/actionTypes";
-
 
 const StiDropDown = (props) => {
   const [menu, setMenu] = useState(false);
   const [ModalIsOpen, setModalIsOpen] = useState(false);
   const location = useLocation();
-  const dispatch = useDispatch();
-  const Rep = useSelector(store => store.stiReport)
+  const Rep = useSelector((store) => store.stiReport);
   const tog_modal = () => {
     setMenu(false);
     setModalIsOpen(true);
   };
-  useEffect(()=> {
-    console.log(Rep.data)
-  })
+  
+  // useEffect(() => {
+  //   console.log(Rep.data);
+  // });
 
   const getCurrentRouteWithoutLastPart = () => {
     return location.pathname.slice(0, location.pathname.lastIndexOf("/"));
@@ -36,18 +34,24 @@ const StiDropDown = (props) => {
 
   const StiDropdownMenu = () => {
     const finalUrl = `${url.GET_STIREPORT}?Route=${getCurrentRoute()}`;
-    const [data, error, loading,doFetch] = useFetch();
-    useEffect(() =>{
-      doFetch(finalUrl)
-    } ,[])
+    const [data, error, loading, doFetch] = useFetch();
+    useEffect(() => {
+      doFetch(finalUrl);
+    }, []);
     return (
       <DropdownMenu className="dropdown-menu-lg dropdown-menu-end p-0">
         <MnuHeader />
         <SimpleBar style={{ height: "230px" }}>
-          {data   && Rep.isFetchingData ===false   ? (
+          {data && Rep.isFetchingData === false ? (
             <MenuItems LST={data.value} />
           ) : (
-            <StiLoading message={Rep.isFetchingData === false? str.REPORTS.RECEIVING_RELEVANT_REPORTS : "داره میاد"} />
+            <StiLoading
+              message={
+                Rep.isFetchingData === false
+                  ? str.REPORTS.RECEIVING_RELEVANT_REPORTS
+                  : "داره میاد"
+              }
+            />
           )}
         </SimpleBar>
         <AddNewReport onClick={tog_modal} />
@@ -57,7 +61,7 @@ const StiDropDown = (props) => {
 
   const onToggleDropDown = () => {
     if (menu === false) {
-    Rep.DoFetchData()
+      Rep.DoFetchData()
       //console.log("Menu Open");
     } else {
       //console.log("Menu close");
@@ -86,7 +90,7 @@ const StiDropDown = (props) => {
         >
           <i className="dripicons-print"></i>
         </DropdownToggle>
-        {menu === true  && <StiDropdownMenu />}
+        {menu === true && <StiDropdownMenu />}
       </Dropdown>
     </>
   );
@@ -123,7 +127,6 @@ export const StiModal = (props) => {
         <h6 className="modal-title mt-0">{str.REPORTS.ADD_NEW_REPORT}</h6>
         <button
           type="button"
-          //onClick={() => { setModalIsOpen(false) }}
           onClick={() => props.setIsOpen(false)}
           className="close bg-danger"
           disabled={IsLoading}

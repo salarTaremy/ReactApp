@@ -6,22 +6,26 @@ import GridView from "components/Grid/GridView";
 import Loading from "components/Common/Loading";
 import { api, url, str, toast } from "common/imports";
 import { useDispatch } from "react-redux";
-import { FETCH_DATA, FETCH_DATA_SUCCESS,DO_FETCH_DATA } from "store/StiReport/actionTypes";
-
+import {
+  FETCH_DATA,
+  FETCH_DATA_SUCCESS,
+  DO_FETCH_DATA,
+  CLEAR_DATASET,
+} from "store/StiReport/actionTypes";
 
 const ManageOppositeSide = () => {
   const dispatch = useDispatch();
-
-  ////////////////////////////////////////////////////
+  ///////////////////////// Sti Report \\\\\\\\\\\\\\\\\\\\\\\\\
+  const data = { name: "salar", famil: "taremi" };
   useEffect(() => {
     const doFetchData = () => {
       dispatch({ type: FETCH_DATA });
-      const data = { name: "salar", famil: "taremi" }
       dispatch({ type: FETCH_DATA_SUCCESS, payload: data });
     };
     dispatch({ type: DO_FETCH_DATA, payload: doFetchData });
   }, []);
-  ////////////////////////////////////////////////////
+  //////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
   return (
     <React.Fragment>
       <div className="page-content">
@@ -45,9 +49,6 @@ const ManageOppositeSide = () => {
   );
 };
 export default ManageOppositeSide;
-
-
-
 
 const Report = () => {
   const [modal_center, setmodal_center] = useState(false);
