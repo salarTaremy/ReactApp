@@ -15,21 +15,21 @@ import {
 const Dashboard = () => {
   const dispatch = useDispatch();
   ///////////////////////// Sti Report \\\\\\\\\\\\\\\\\\\\\\\\\
-  // useEffect(() => {
-  //   const doFetchData = () => {
-  //     dispatch({ type: FETCH_DATA });
-  //     api.get(url.GET_CITY).then(
-  //       (response) => {
-  //         dispatch({ type: FETCH_DATA_SUCCESS, payload: response.value });
-  //       },
-  //       (error) => {
-  //         console.error(error);
-  //         dispatch({ type: FETCH_DATA_FAILURE });
-  //       }
-  //     );
-  //   };
-  //   dispatch({ type: DO_FETCH_DATA, payload: doFetchData });
-  // }, []);
+  useEffect(() => {
+    const doFetchData = () => {
+      dispatch({ type: FETCH_DATA });
+      api.get(url.GET_CITY).then(
+        (response) => {
+          dispatch({ type: FETCH_DATA_SUCCESS, payload: response.value });
+        },
+        (error) => {
+          console.error(error);
+          dispatch({ type: FETCH_DATA_FAILURE });
+        }
+      );
+    };
+    dispatch({ type: DO_FETCH_DATA, payload: doFetchData });
+  }, []);
   //////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
   return (

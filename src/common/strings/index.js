@@ -35,6 +35,7 @@ const REPORTS = {
   REPORT_NAME: "نام گزارش",
   REPORT_PATH: "مسیر گزارش",
   RECEIVING_RELEVANT_REPORTS: "درحال دریافت گزارشات مربوطه",
+  RECEIVING_DATA_REPORTS: "درحال دریافت داده های گزارش",
   ADD_NEW_REPORT: "اضافه کردن گزارش جدید",
   NO_DATA: "هیچ داده ای وجود ندارد",
   NO_REPORT: "هیچ گزارشی وجود ندارد",

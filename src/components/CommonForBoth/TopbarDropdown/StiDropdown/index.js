@@ -21,9 +21,9 @@ const StiDropDown = (props) => {
     setModalIsOpen(true);
   };
 
-  // useEffect(() => {
-  //   console.log(Rep.data);
-  // });
+  useEffect(() => {
+    console.log(Rep.data);
+  });
 
   const getCurrentRouteWithoutLastPart = () => {
     return location.pathname.slice(0, location.pathname.lastIndexOf("/"));
@@ -50,7 +50,7 @@ const StiDropDown = (props) => {
   }, []);
 
   return (
-<>
+    <>
       <StiModal
         route={getCurrentRoute()}
         isOpen={ModalIsOpen}
@@ -86,25 +86,23 @@ const StiDropDown = (props) => {
                 </div>
               </Row>
             </div>
-            {Rep.data === null ?   
-
-<NoData />
-            
-            : 
-
-            <SimpleBar style={{ height: "230px" }}>
-              {data && Rep.isFetchingData === false ? (
-                <MenuItems LST={data.value} />
-              ) : (
-                <StiLoading
-                  message={
-                    Rep.isFetchingData === false
-                      ? str.REPORTS.RECEIVING_RELEVANT_REPORTS
-                      : "داره میاد"
-                  }
-                />
-              )}
-            </SimpleBar>}
+            {Rep.data === null ? (
+              <NoData />
+            ) : (
+              <SimpleBar style={{ height: "230px" }}>
+                {data && Rep.isFetchingData === false ? (
+                  <MenuItems LST={data.value} />
+                ) : (
+                  <StiLoading
+                    message={
+                      Rep.isFetchingData === false
+                        ? str.REPORTS.RECEIVING_RELEVANT_REPORTS
+                        : str.REPORTS.RECEIVING_DATA_REPORTS
+                    }
+                  />
+                )}
+              </SimpleBar>
+            )}
 
             <AddNewReport onClick={tog_modal} />
           </DropdownMenu>
