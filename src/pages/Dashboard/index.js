@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Row } from "reactstrap";
 import { useEffect } from "react";
-import { toast, url, api } from "common/imports";
+import { toast, url, api ,str} from "common/imports";
 import { useDispatch } from "react-redux";
 import { useFetch } from "helpers/api_helper";
 import {
@@ -15,21 +15,21 @@ import {
 const Dashboard = () => {
   const dispatch = useDispatch();
   ///////////////////////// Sti Report \\\\\\\\\\\\\\\\\\\\\\\\\
-  useEffect(() => {
-    const doFetchData = () => {
-      dispatch({ type: FETCH_DATA });
-      api.get(url.GET_CITY).then(
-        (response) => {
-          dispatch({ type: FETCH_DATA_SUCCESS, payload: response.value });
-        },
-        (error) => {
-          console.error(error);
-          dispatch({ type: FETCH_DATA_FAILURE });
-        }
-      );
-    };
-    dispatch({ type: DO_FETCH_DATA, payload: doFetchData });
-  }, []);
+  // useEffect(() => {
+  //   const doFetchData = () => {
+  //     dispatch({ type: FETCH_DATA });
+  //     api.get(url.GET_CITY).then(
+  //       (response) => {
+  //         dispatch({ type: FETCH_DATA_SUCCESS, payload: response.value });
+  //       },
+  //       (error) => {
+  //         console.error(error);
+  //         dispatch({ type: FETCH_DATA_FAILURE });
+  //       }
+  //     );
+  //   };
+  //   dispatch({ type: DO_FETCH_DATA, payload: doFetchData });
+  // }, []);
   //////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
   return (
@@ -43,7 +43,7 @@ const Dashboard = () => {
               <div className="page-title-right">
                 <ol className="breadcrumb m-0">
                   <li className="breadcrumb-item active">
-                  <a href="tel:09123589893"> 09123589893 </a>
+                  <a href="tel:09123589893"> {str.PUBLIC.WELCOME} </a>
                   </li>
                 </ol>
               </div>

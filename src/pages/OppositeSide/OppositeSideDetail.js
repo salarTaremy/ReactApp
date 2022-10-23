@@ -9,7 +9,7 @@ import {
   FETCH_DATA,
   FETCH_DATA_SUCCESS,
   DO_FETCH_DATA,
-  CLEAR_DATASET
+  CLEAR_DATASET,
 } from "store/StiReport/actionTypes";
 
 const OppositeSideDetail = () => {
@@ -44,15 +44,15 @@ const OppositeSideDetail = () => {
   }, []);
   ///////////////////////// Sti Report \\\\\\\\\\\\\\\\\\\\\\\\\
   useEffect(() => {
-    const doFetchData = () => {
-      dispatch({ type: FETCH_DATA });
-      if (Th && Cities) {
+    if (Th && Cities) {
+      const doFetchData = () => {
+        dispatch({ type: FETCH_DATA });
         dispatch({ type: FETCH_DATA_SUCCESS, payload: Th });
-      } else {
-        dispatch({ type: FETCH_DATA_SUCCESS });
-      }
-    };
-    dispatch({ type: DO_FETCH_DATA, payload: doFetchData });
+      };
+      dispatch({ type: DO_FETCH_DATA, payload: doFetchData });
+    } else {
+      dispatch({ type: CLEAR_DATASET });
+    }
   }, [Th, Cities]);
   //////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   return (
