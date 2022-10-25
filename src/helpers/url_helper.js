@@ -45,7 +45,7 @@ export const GET_CART_DATA = "/cart"
 export const GET_CUSTOMERS = "/customers"
 export const FETCH_CUSTOMERS = "/Customer/List"
 
-//TarafHesab
+//TARAF_HESAB
 export const FETCH_OPPOSITE_SIDE= "/Tarafhesab/Filter"
 export const FETCH_OPPOSITE_SIDE_DETAIL = "/TarafHesab"
 export const OPPOSITE_SIDE_DETAIL = "/OppositeSideDetail"
@@ -73,7 +73,10 @@ export const GET_TASKS = "/tasks"
 export const GET_USERS = "/users"
 export const GET_USER_PROFILE = "/user"
 
-//Stimulsoft Report
+//MENU
+export const GET_MENU= "/MENU"
+
+//STIMULSOFT REPORT
 export const POST_STIREPORT= "/StiReport"
 export const PUT_STIREPORT= "/StiReport"
 export const DEL_STIREPORT= "/StiReport"

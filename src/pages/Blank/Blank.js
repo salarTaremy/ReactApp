@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 import {
   Col,
   Row,
@@ -15,25 +15,30 @@ import {
   CardColumns,
   CardGroup,
   Spinner,
-} from "reactstrap"
-
+} from "reactstrap";
 
 //Import Breadcrumbnpm start
-import Breadcrumbs from "components/Common/Breadcrumb"
-
+import Breadcrumbs from "components/Common/Breadcrumb";
 
 //Loading Component
-import Loading from "components/Common/Loading"
+import Loading from "components/Common/Loading";
 
 //For Call Api
-import { post, del, get, put } from "helpers/api_helper"
+import { post, del, get, put } from "helpers/api_helper";
 
-//Url For Call Api
-import * as url from 'helpers/url_helper'
+import {
+  FETCH_DATA,
+  FETCH_DATA_SUCCESS,
+  FETCH_DATA_FAILURE,
+  DO_FETCH_DATA,
+} from "store/StiReport/actionTypes";
+import { useDispatch } from "react-redux";
 
+import { api, url, str, toast } from "common/imports";
 
 const Blank = () => {
-  // ////////////////////////////////////////////////////
+  const dispatch = useDispatch();
+  ///////////////////////// Sti Report \\\\\\\\\\\\\\\\\\\\\\\\\
   // useEffect(() => {
   //   console.log('componentDidMount')
   // }, []);
@@ -48,7 +53,24 @@ const Blank = () => {
   //     console.log('componentWillUnmount')
   //   }
   // }, [tarafHesab]);
-  // ////////////////////////////////////////////////////
+  ///////////////////////// Sti Report \\\\\\\\\\\\\\\\\\\\\\\\\
+  useEffect(() => {
+    const doFetchData = () => {
+      dispatch({ type: FETCH_DATA });
+      api.get(url.GET_CITY).then(
+        (response) => {
+          dispatch({ type: FETCH_DATA_SUCCESS, payload: response.value });
+        },
+        (error) => {
+          console.error(error);
+          dispatch({ type: FETCH_DATA_FAILURE });
+        }
+      );
+    };
+    dispatch({ type: DO_FETCH_DATA, payload: doFetchData });
+  }, []);
+  //////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
   return (
     <React.Fragment>
       <div className="page-content">
@@ -58,7 +80,7 @@ const Blank = () => {
         </Card>
       </div>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default Blank
+export default Blank;

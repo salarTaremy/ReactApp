@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from 'components/Common/DatePicker';
+import PropTypes from 'prop-types';
 import Select from "react-select";
 import {
   Row,
@@ -249,6 +250,11 @@ const ThForm = (props) => {
 
     </>
   );
+}
+
+ThForm.propTypes = {
+  Th: PropTypes.object,
+  Cities: PropTypes.object
 }
 
 

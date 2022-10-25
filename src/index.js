@@ -5,10 +5,8 @@ import * as serviceWorker from "./serviceWorker"
 import { BrowserRouter } from "react-router-dom"
 import { Provider } from "react-redux"
 import './index.css';
-
-
-
 import store from "./store"
+
 const app = (
   <Provider store={store}>
     <BrowserRouter>

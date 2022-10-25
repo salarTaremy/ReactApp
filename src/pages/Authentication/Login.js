@@ -5,19 +5,22 @@ import { Row, Col, Alert, Container } from "reactstrap"
 import { api, url, str } from 'common/imports'
 
 // Redux
-import { connect } from "react-redux"
+import { connect, useDispatch } from "react-redux"
 import { withRouter, Link } from "react-router-dom"
 
 // availity-reactstrap-validation
 import { AvForm, AvField } from "availity-reactstrap-validation"
 
 // actions
-import { loginUser, apiError, socialLogin } from "../../store/actions"
+import { loginUser2, apiError, socialLogin  ,tst} from "../../store/actions"
 
 // import images
 import logo from "../../assets/images/logo-sm-dark.png"
 
+import { useSelector } from 'react-redux'
+
 const Login = (props) => {
+  const  dispatch = useDispatch()
   useEffect(() => {
     document.body.className = "authentication-bg";
     // remove classname when component will unmount
@@ -27,8 +30,8 @@ const Login = (props) => {
   });
 
   // handleValidSubmit
-  const handleValidSubmit = (event, values) => {
-    props.loginUser(values, props.history)
+  const handleValidSubmit = (event, user) => {
+    dispatch({ type: 'LOGIN_USER' ,payload: { user :user , history:  props.history },});
   }
 
   return (
@@ -129,18 +132,19 @@ const Login = (props) => {
   )
 }
 
-const mapStateToProps = state => {
-  const { error } = state.Login
-  return { error }
-}
+// const mapStateToProps = state => {
+//   const { error } = state.Login
+//   return { error }
+// }
 
-export default withRouter(
-  connect(mapStateToProps, { loginUser, apiError, socialLogin })(Login)
-)
+// export default withRouter(
+//   connect(mapStateToProps, { loginUser2, apiError, socialLogin,tst })(Login)
+// )
+export default Login
 
 Login.propTypes = {
   error: PropTypes.any,
   history: PropTypes.object,
-  loginUser: PropTypes.func,
+  loginUser2: PropTypes.func,
   socialLogin: PropTypes.func
 }

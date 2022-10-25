@@ -98,8 +98,6 @@ export const getMessages = (roomId = "") =>
 // post messages
 export const addMessage = message => post(url.ADD_MESSAGE, message)
 
-// get project
-export const getProjects = () => get(url.GET_PROJECTS)
 
 // get project details
 export const getProjectsDetails = id =>
