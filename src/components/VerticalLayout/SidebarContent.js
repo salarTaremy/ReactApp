@@ -15,24 +15,41 @@ import { withTranslation } from "react-i18next";
 import { useFetch } from "helpers/api_helper";
 import { api, url, str, toast } from "../../common/imports";
 import { useSelector, useDispatch } from "react-redux";
-import { GET_MENUS ,GET_MENUS_SUCCESS} from "store/menu/actionTypes";
+import { GET_MENUS, GET_MENUS_SUCCESS } from "store/menu/actionTypes";
 
 const SidebarContent = (props) => {
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
 
-const  OnMnuClick = (id)  => {
-  const Menus  =  [store.Menus.menus]
-  for (let i = 0; i < Menus.length; ++i) {
-    if (Menus[i].id === id){
-      Menus[i].isActive = true
-    }else{
-      Menus[i].isActive = false
+  const OnMnuClick = (id) => {
+
+    const Menus = [...store.Menus.menus]
+    for (let i = 0; i < Menus.length; ++i) {
+
+      if (Menus[i].parentID === 0 ) {
+        Menus[i].salar = ""
+      }
+
+
+      if (Menus[i].id === id) {
+        Menus[i].isActive = true
+      } else {
+        Menus[i].isActive = false
+      }
     }
+    const commentIndex = Menus.findIndex((c) => c.id === id)
+    const parentID = Menus[commentIndex].parentID 
+    const parentIndex = Menus.findIndex((c) => c.id === parentID)
+    Menus[parentIndex].salar = 'zzzzzzzzzz' 
+ console.log('Menus',Menus)
+
+
+
+
+
+  
+    dispatch({ type: GET_MENUS_SUCCESS, payload: Menus });
   }
-    //dispatch({ type: GET_MENUS_SUCCESS , payload :Menus}); 
-    console.log('Menus',Menus)
-}
 
 
   useEffect(() => {
@@ -42,7 +59,7 @@ const  OnMnuClick = (id)  => {
     }
   }, []);
 
-   const ref = useRef();
+  const ref = useRef();
 
   // // Use ComponentDidMount and ComponentDidUpdate method symultaniously
   // useEffect(() => {
@@ -122,8 +139,8 @@ const  OnMnuClick = (id)  => {
       <SimpleBar className="vertical-simplebar" ref={ref}>
         <div id="sidebar-menu">
           <ul className="metismenu list-unstyled" id="side-menu">
-            {(store.Menus.menus.length === 0) && <li className="menu-title">   در حال دریافت منو مطابق دسترسی دسترسی شما</li>  }
-            {(store.Menus.menus.length > 0) && <li className="menu-title">منوی اصلی</li>  }
+            {(store.Menus.menus.length === 0) && <li className="menu-title">   در حال دریافت منو مطابق دسترسی دسترسی شما</li>}
+            {(store.Menus.menus.length > 0) && <li className="menu-title">منوی اصلی</li>}
             {store.Menus.menus.map((subMenu, i) => {
               if (subMenu.parentID == 0)
                 return (
@@ -137,10 +154,10 @@ const  OnMnuClick = (id)  => {
                         .filter((c) => c.parentID == subMenu.id)
                         .map((childMenu, j) => (
                           <li key={j}>
-                            <Link 
-                                className={childMenu.isActive && 'mm-active'}
-                                onClick={() => OnMnuClick(childMenu.id)} 
-                                to={childMenu.path}>{childMenu.name}</Link>
+                            <Link
+                              className={childMenu.isActive === true && 'mm-active'}
+                              onClick={() => OnMnuClick(childMenu.id)}
+                              to={childMenu.path}>{childMenu.name}</Link>
                           </li>
                         ))}
                     </ul>
