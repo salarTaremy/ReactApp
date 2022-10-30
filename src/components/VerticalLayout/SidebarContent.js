@@ -15,11 +15,26 @@ import { withTranslation } from "react-i18next";
 import { useFetch } from "helpers/api_helper";
 import { api, url, str, toast } from "../../common/imports";
 import { useSelector, useDispatch } from "react-redux";
-import { GET_MENUS } from "store/menu/actionTypes";
+import { GET_MENUS ,GET_MENUS_SUCCESS} from "store/menu/actionTypes";
 
 const SidebarContent = (props) => {
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
+
+const  OnMnuClick = (id)  => {
+  const Menus  =  [store.Menus.menus]
+  for (let i = 0; i < Menus.length; ++i) {
+    if (Menus[i].id === id){
+      Menus[i].isActive = true
+    }else{
+      Menus[i].isActive = false
+    }
+  }
+    //dispatch({ type: GET_MENUS_SUCCESS , payload :Menus}); 
+    console.log('Menus',Menus)
+}
+
+
   useEffect(() => {
     if (store.Menus.menus.length === 0) {
       console.log("Fetching  Menu");
@@ -27,79 +42,80 @@ const SidebarContent = (props) => {
     }
   }, []);
 
-  const ref = useRef();
-  // Use ComponentDidMount and ComponentDidUpdate method symultaniously
-  useEffect(() => {
-    console.log("==> ", props.location.pathname);
-    const pathName = props.location.pathname;
-    const initMenu = () => {
-      new MetisMenu("#side-menu");
-      let matchingMenuItem = null;
-      const ul = document.getElementById("side-menu");
-      const items = ul.getElementsByTagName("a");
-      for (let i = 0; i < items.length; ++i) {
-        if (pathName === items[i].pathname) {
-          matchingMenuItem = items[i];
-          break;
-        }
-      }
-      if (matchingMenuItem) {
-        activateParentDropdown(matchingMenuItem);
-      }
-    };
-    initMenu();
-  }, [props.location.pathname]);
+   const ref = useRef();
 
-  useEffect(() => {
-    ref.current.recalculate();
-  });
+  // // Use ComponentDidMount and ComponentDidUpdate method symultaniously
+  // useEffect(() => {
+  //   console.log("==> ", props.location.pathname);
+  //   const pathName = props.location.pathname;
+  //   const initMenu = () => {
+  //     new MetisMenu("#side-menu");
+  //     let matchingMenuItem = null;
+  //     const ul = document.getElementById("side-menu");
+  //     const items = ul.getElementsByTagName("a");
+  //     for (let i = 0; i < items.length; ++i) {
+  //       if (pathName === items[i].pathname) {
+  //         matchingMenuItem = items[i];
+  //         break;
+  //       }
+  //     }
+  //     if (matchingMenuItem) {
+  //       activateParentDropdown(matchingMenuItem);
+  //     }
+  //   };
+  //   initMenu();
+  // }, [props.location.pathname]);
 
-  function scrollElement(item) {
-    if (item) {
-      const currentPosition = item.offsetTop;
-      if (currentPosition > window.innerHeight) {
-        ref.current.getScrollElement().scrollTop = currentPosition - 300;
-      }
-    }
-  }
+  // useEffect(() => {
+  //   ref.current.recalculate();
+  // });
 
-  function activateParentDropdown(item) {
-    item.classList.add("active");
-    const parent = item.parentElement;
-    const parent2El = parent.childNodes[1];
-    if (parent2El && parent2El.id !== "side-menu") {
-      parent2El.classList.add("mm-show");
-    }
+  // function scrollElement(item) {
+  //   if (item) {
+  //     const currentPosition = item.offsetTop;
+  //     if (currentPosition > window.innerHeight) {
+  //       ref.current.getScrollElement().scrollTop = currentPosition - 300;
+  //     }
+  //   }
+  // }
 
-    if (parent) {
-      parent.classList.add("mm-active");
-      const parent2 = parent.parentElement;
+  // function activateParentDropdown(item) {
+  //   item.classList.add("active");
+  //   const parent = item.parentElement;
+  //   const parent2El = parent.childNodes[1];
+  //   if (parent2El && parent2El.id !== "side-menu") {
+  //     parent2El.classList.add("mm-show");
+  //   }
 
-      if (parent2) {
-        parent2.classList.add("mm-show"); // ul tag
+  //   if (parent) {
+  //     parent.classList.add("mm-active");
+  //     const parent2 = parent.parentElement;
 
-        const parent3 = parent2.parentElement; // li tag
+  //     if (parent2) {
+  //       parent2.classList.add("mm-show"); // ul tag
 
-        if (parent3) {
-          parent3.classList.add("mm-active"); // li
-          parent3.childNodes[0].classList.add("mm-active"); //a
-          const parent4 = parent3.parentElement; // ul
-          if (parent4) {
-            parent4.classList.add("mm-show"); // ul
-            const parent5 = parent4.parentElement;
-            if (parent5) {
-              parent5.classList.add("mm-show"); // li
-              parent5.childNodes[0].classList.add("mm-active"); // a tag
-            }
-          }
-        }
-      }
-      scrollElement(item);
-      return false;
-    }
-    scrollElement(item);
-    return false;
-  }
+  //       const parent3 = parent2.parentElement; // li tag
+
+  //       if (parent3) {
+  //         parent3.classList.add("mm-active"); // li
+  //         parent3.childNodes[0].classList.add("mm-active"); //a
+  //         const parent4 = parent3.parentElement; // ul
+  //         if (parent4) {
+  //           parent4.classList.add("mm-show"); // ul
+  //           const parent5 = parent4.parentElement;
+  //           if (parent5) {
+  //             parent5.classList.add("mm-show"); // li
+  //             parent5.childNodes[0].classList.add("mm-active"); // a tag
+  //           }
+  //         }
+  //       }
+  //     }
+  //     scrollElement(item);
+  //     return false;
+  //   }
+  //   scrollElement(item);
+  //   return false;
+  // }
 
   return (
     <React.Fragment>
@@ -121,7 +137,10 @@ const SidebarContent = (props) => {
                         .filter((c) => c.parentID == subMenu.id)
                         .map((childMenu, j) => (
                           <li key={j}>
-                            <Link to={childMenu.path}>{childMenu.name}</Link>
+                            <Link 
+                                className={childMenu.isActive && 'mm-active'}
+                                onClick={() => OnMnuClick(childMenu.id)} 
+                                to={childMenu.path}>{childMenu.name}</Link>
                           </li>
                         ))}
                     </ul>
