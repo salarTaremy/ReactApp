@@ -29,19 +29,19 @@ const TestBase = ({ Nm }) => {
   const [data2, setdata2] = useState(1);
 
   useEffect(() => {
-    console.log("Every render");
+    //console.log("Every render");
   });
 
   useEffect(() => {
-    console.log(" First");
+    //console.log(" First");
   }, []);
 
   useEffect(() => {
-    console.log("chenged   1");
+    //console.log("chenged   1");
   }, [data]);
 
   useEffect(() => {
-    console.log("chenged data2");
+    //console.log("chenged data2");
   }, [data2]);
 
   return (

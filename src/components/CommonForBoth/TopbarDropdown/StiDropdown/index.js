@@ -22,7 +22,7 @@ const StiDropDown = (props) => {
   };
 
   useEffect(() => {
-    console.log(Rep.data);
+    console.log('Rep.data', Rep.data);
   });
 
   const getCurrentRouteWithoutLastPart = () => {

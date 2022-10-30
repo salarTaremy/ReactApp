@@ -106,7 +106,8 @@ const SidebarContent = (props) => {
       <SimpleBar className="vertical-simplebar" ref={ref}>
         <div id="sidebar-menu">
           <ul className="metismenu list-unstyled" id="side-menu">
-            <li className="menu-title">منوی اصلی</li>
+            {(store.Menus.menus.length === 0) && <li className="menu-title">   در حال دریافت منو مطابق دسترسی دسترسی شما</li>  }
+            {(store.Menus.menus.length > 0) && <li className="menu-title">منوی اصلی</li>  }
             {store.Menus.menus.map((subMenu, i) => {
               if (subMenu.parentID == 0)
                 return (
