@@ -73,13 +73,19 @@ export const GET_TASKS = "/tasks"
 export const GET_USERS = "/users"
 export const GET_USER_PROFILE = "/user"
 
-//MENU
-export const GET_MENU= "/MENU"
+
 
 //STIMULSOFT REPORT
-export const POST_STIREPORT= "/StiReport"
-export const PUT_STIREPORT= "/StiReport"
-export const DEL_STIREPORT= "/StiReport"
 export const GET_STIREPORT= "/StiReport"
 export const GET_STIREPORT_BY_ROUTE= "/StiReport"
 export const GET_STIREPORT_BY_ID= "/StiReport"
+export const POST_STIREPORT= "/StiReport"
+export const PUT_STIREPORT= "/StiReport"
+export const DEL_STIREPORT= "/StiReport"
+
+
+//MENU
+export const GET_MENU= "/Menu"
+export const POST_MENU= "/Menu"
+export const PUT_MENU= "/Menu"
+export const DEL_MENU= "/Menu"

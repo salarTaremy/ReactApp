@@ -13,23 +13,24 @@ import { Link } from "react-router-dom";
 import { withTranslation } from "react-i18next";
 
 import { useFetch } from "helpers/api_helper";
-import { api,url,str,toast} from '../../common/imports'
-import { useSelector ,useDispatch} from "react-redux";
-
-
-
+import { api, url, str, toast } from "../../common/imports";
+import { useSelector, useDispatch } from "react-redux";
+import { GET_MENUS } from "store/menu/actionTypes";
 
 const SidebarContent = (props) => {
-  const [ response, error, loading ,doFetch] = useFetch()
-
+  const store = useSelector((store) => store);
+  const dispatch = useDispatch();
   useEffect(() => {
-   doFetch(url.GET_MENU)
-  },[]);
+    if (store.Menus.menus.length === 0) {
+      console.log("Fetching  Menu");
+      dispatch({ type: GET_MENUS });
+    }
+  }, []);
 
   const ref = useRef();
   // Use ComponentDidMount and ComponentDidUpdate method symultaniously
   useEffect(() => {
-    console.log('==> ' , props.location.pathname)
+    console.log("==> ", props.location.pathname);
     const pathName = props.location.pathname;
     const initMenu = () => {
       new MetisMenu("#side-menu");
@@ -105,59 +106,27 @@ const SidebarContent = (props) => {
       <SimpleBar className="vertical-simplebar" ref={ref}>
         <div id="sidebar-menu">
           <ul className="metismenu list-unstyled" id="side-menu">
-            <li className="menu-title">منو  </li>
-
-
-            <li>
-              <Link to="/#" className="waves-effect">
-                <i className="mdi mdi-airplay"></i>
-                <span>{props.t("Dashboard")}</span>
-              </Link>
-              <ul className="sub-menu">
-                <li>
-                  <Link to="/dashboard">{props.t("Dashboard")} 1</Link>
-                </li>
-                <li>
-                  <Link to="/#">{props.t("Dashboard")} 2</Link>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <Link to="/#" className=" waves-effect">
-                <i className="mdi mdi-calendar-text"></i>
-                <span>{props.t("Calendar")}</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/#" className="has-arrow waves-effect">
-                <i className="mdi mdi-inbox-full"></i>
-                <span>{props.t("طرف حساب ها")}</span>
-              </Link>
-              <ul className="sub-menu">
-                <li>
-                  <Link to="/ManageOppositeSide">
-                    {props.t("مدیریت طرف حساب ها")}{" "}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/ShowReport/131">{props.t("گزارش")} </Link>
-                </li>
-                <li>
-                  <Link to="/OppositeReportDesigner">
-                    {props.t("طراحی گزارش حساب ها")}{" "}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/Blank">{props.t("صفحه خالی")} </Link>
-                </li>
-                <li>
-                  <Link to="/test">{props.t("تست 1")}</Link>
-                </li>
-              </ul>
-            </li>
-
+            <li className="menu-title">منوی اصلی</li>
+            {store.Menus.menus.map((subMenu, i) => {
+              if (subMenu.parentID == 0)
+                return (
+                  <li>
+                    <Link to={subMenu.path} className="waves-effect">
+                      <i className={subMenu.iconName}></i>
+                      <span>{subMenu.name}</span>
+                    </Link>
+                    <ul className="sub-menu">
+                      {store.Menus.menus
+                        .filter((c) => c.parentID == subMenu.id)
+                        .map((childMenu, j) => (
+                          <li key={j}>
+                            <Link to={childMenu.path}>{childMenu.name}</Link>
+                          </li>
+                        ))}
+                    </ul>
+                  </li>
+                );
+            })}
           </ul>
         </div>
       </SimpleBar>

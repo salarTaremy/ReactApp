@@ -22,6 +22,10 @@ import tasks from "./tasks/reducer"
 //report
 import stiReport from "./StiReport/reducer"
 
+//menu
+import Menus from "./menu/reducer"
+
+
 const rootReducer = combineReducers({
   // public
   Layout,
@@ -31,7 +35,8 @@ const rootReducer = combineReducers({
   chat,
   tasks,
   contacts,
-  stiReport
+  stiReport,
+  Menus
 })
 
 export default rootReducer

@@ -115,6 +115,12 @@ export const getUserProfile = () => get(url.GET_USER_PROFILE)
 export const postStiReport =  data => post(url.POST_STIREPORT,data)  
 
 
+//Menu
+export const getMenus =  () => get(url.GET_MENU) 
+export const addNewMenu =  data => post(url.POST_MENU,data) 
+export const deleteMenu =  id => del(`${url.DEL_MENU}/${id}`)
+
+
 export {
   getLoggedInUser,
   isUserAuthenticated,

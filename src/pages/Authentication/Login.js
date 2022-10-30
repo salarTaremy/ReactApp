@@ -31,7 +31,7 @@ const Login = (props) => {
 
   // handleValidSubmit
   const handleValidSubmit = (event, user) => {
-    dispatch({ type: 'LOGIN_USER' ,payload: { user :user , history:  props.history },});
+    dispatch({ type: 'LOGIN_USER' ,payload: { user :user , history:  props.history }});
   }
 
   return (

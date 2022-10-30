@@ -88,7 +88,7 @@ const GridView = (props) => {
     <div 
       //id="myGrid"
       style={{
-        height: '510px',
+        height: '400px',
         width: '100%',
       }}
       className={themeName} >
