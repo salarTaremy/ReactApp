@@ -39,7 +39,8 @@ const handeError = (error) =>{
     toast.error(str.ERRORS.NETWORK_ERROR)
   }
   if(error.response.status === 401){
-    window.location = "/logout";
+    toast.error(str.ERRORS.AUTHORIZE_ERROR)
+    window.location = "/login";
   }
   if (error.response) {
     // The request was made and the server responded with a status code

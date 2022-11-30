@@ -45,7 +45,8 @@ const REPORTS = {
 const ERRORS = {
   ERROR: "خطا",
   NETWORK_ERROR: "خطای شبکه",
-  CONNECTION_SERVER_ERROR: "خطا در برقراری ارتباط با سرور"
+  CONNECTION_SERVER_ERROR: "خطا در برقراری ارتباط با سرور",
+  AUTHORIZE_ERROR : "خطای احراز هویت",
 
 };
 
